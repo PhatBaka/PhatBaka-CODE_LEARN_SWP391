@@ -5,6 +5,7 @@
  */
 package controllers.course;
 
+import dao.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,18 +31,20 @@ public class ViewCourseDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ViewCourseDetailController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ViewCourseDetailController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        try {
+          CourseDAO Cd= new CourseDAO();
+        int total = Cd.GetTotalCourse();
+        int po= total/6;
+        if(total%6!=0){
+            po++;
         }
+       request.setAttribute("List", po);
+                request.getRequestDispatcher("List.jsp").forward(request, response);
+                
+        } catch (Exception e) {
+        }
+
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
