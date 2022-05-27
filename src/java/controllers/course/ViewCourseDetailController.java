@@ -5,8 +5,17 @@
  */
 package controllers.course;
 
+import DBtills.DBUtils;
+import dao.CourseDAO;
+import dto.CourseDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +26,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author nearl
  */
 public class ViewCourseDetailController extends HttpServlet {
-
+    private final String DETAIL_PAGE = ""; // course detail page address
+    private final String NOT_FOUND_PAGE = ""; //error page 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -28,19 +38,26 @@ public class ViewCourseDetailController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ViewCourseDetailController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ViewCourseDetailController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = NOT_FOUND_PAGE;
+        
+        String _courseName = request.getParameter("courseName"); //course id hidden trong .jsp/.html
+        
+        try {
+           CourseDAO dao = new CourseDAO();
+           CourseDTO course = dao.detail(_courseName);
+           
+           if(course!=null){
+               request.setAttribute("course", course);
+               url = DETAIL_PAGE;
+           }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            response.sendRedirect(url);
         }
     }
 
@@ -56,7 +73,13 @@ public class ViewCourseDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ViewCourseDetailController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewCourseDetailController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -70,7 +93,13 @@ public class ViewCourseDetailController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ViewCourseDetailController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ViewCourseDetailController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
