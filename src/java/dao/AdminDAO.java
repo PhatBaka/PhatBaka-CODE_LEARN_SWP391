@@ -10,5 +10,5 @@ package dao;
  * @author nearl
  */
 public class AdminDAO {
-    
+    System.out.println("pl");
 }
