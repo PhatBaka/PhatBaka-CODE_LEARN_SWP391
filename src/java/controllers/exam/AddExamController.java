@@ -5,8 +5,15 @@
  */
 package controllers.exam;
 
+import dao.ExamDAO;
+import dto.ExamDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,20 +34,24 @@ public class AddExamController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private static final String DISPLAY = "";//trang co form add_exam
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = DISPLAY;
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddExamController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddExamController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String name = request.getParameter("name");// lay ten param exam
+            String question = request.getParameter("question"); // lay ten param question
+            ExamDTO exam = new ExamDTO(name, question, Date.valueOf(LocalDate.now()));
+            int result = ExamDAO.addNewExam(exam);
+            if(result > 0){
+                request.setAttribute("MESSAGE", "The behavior is SUCCESS!");
+                url = "SearchExamController";
+            }else{
+                request.setAttribute("MESSAGE", "The behavior is failed!");
+            }
+            request.getRequestDispatcher(url).forward(request, response);
+            
         }
     }
 
@@ -56,7 +67,13 @@ public class AddExamController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddExamController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddExamController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -70,7 +87,13 @@ public class AddExamController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddExamController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddExamController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

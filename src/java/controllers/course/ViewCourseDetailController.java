@@ -32,19 +32,18 @@ public class ViewCourseDetailController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-          CourseDAO Cd= new CourseDAO();
-        int total = Cd.GetTotalCourse();
-        int po= total/6;
-        if(total%6!=0){
-            po++;
-        }
-       request.setAttribute("List", po);
-                request.getRequestDispatcher("List.jsp").forward(request, response);
-                
+            CourseDAO Cd = new CourseDAO();
+            int total = Cd.GetTotalCourse();
+            int po = total / 6;
+            if (total % 6 != 0) {
+                po++;
+            }
+            request.setAttribute("List", po);
+            request.getRequestDispatcher("List.jsp").forward(request, response);
+
         } catch (Exception e) {
         }
 
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
