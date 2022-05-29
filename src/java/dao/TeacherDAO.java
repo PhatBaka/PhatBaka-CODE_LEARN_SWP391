@@ -17,17 +17,19 @@ import java.sql.SQLException;
  * @author nearl
  */
 public class TeacherDAO {
+
     private static final String LOGIN = "SELECT Id_Teacher, Username, Password, Name, Phone_Num, Information FROM Teacher "
-            +                           "WHERE Username = ? AND Password = ?";
-    public static TeacherDTO getAccount(String teachername, String password) throws ClassNotFoundException, SQLException{
+            + "WHERE Username = ? AND Password = ?";
+
+    public static TeacherDTO getAccount(String teachername, String password) throws ClassNotFoundException, SQLException {
         TeacherDTO acc = null;
         Connection conn = DBUtils.getConnection();
-        if(conn != null){
+        if (conn != null) {
             PreparedStatement ptm = conn.prepareStatement(LOGIN);
             ptm.setString(1, teachername);
             ptm.setString(2, password);
             ResultSet rs = ptm.executeQuery();
-            if(rs != null && rs.next()){
+            if (rs != null && rs.next()) {
                 int id_teacher = rs.getInt("Id_Teacher");
                 String name = rs.getString("Name");
                 String phone_num = rs.getString("Phone_Num");
@@ -37,5 +39,5 @@ public class TeacherDAO {
             conn.close();
         }
         return acc;
-    }    
+    }
 }

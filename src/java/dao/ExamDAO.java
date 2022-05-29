@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -82,7 +83,90 @@ public class ExamDAO {
         }
         return list;
     }
-    
+    public ExamDTO SearchingExam(String Search) throws SQLException {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+               conn = DBUtils.getConnection();
+               String sql = "SELECT * from dbo.exam where Name like ?  ";
+               ps = conn.prepareStatement(sql);
+               ps.setString(1, "%" + Search + "%");
+
+               rs = ps.executeQuery();
+               while (rs.next()) {
+                   return new ExamDTO(rs.getInt("Id_Exam"),
+                           rs.getString("Name"),
+                           rs.getString("Question"),
+                           rs.getDate("date"));
+
+               }
+           } catch (Exception e) {
+               e.printStackTrace();
+           } finally {
+               conn.close();
+               ps.close();
+               rs.close();
+           }
+           return null;
+
+    }
+       public int GetTotalExam() throws SQLException {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            String sql = "SElect COUNT(*) from dbo.exam  ";
+            ps = conn.prepareStatement(sql);
+             rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            conn.close();
+            ps.close();
+            rs.close();
+        }
+        return 0;
+
+    }
+
+    public List<ExamDTO> PagingExam(int Index) throws SQLException {
+        List<ExamDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            String sql = "SElect COUNT(*) from dbo.exam"
+                    + "Order BY Id_Exam  "
+                    + "OFFSET ? ROWS FETCH NEXT 6 ROWS ONLY";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, (Index - 1) * 6);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new ExamDTO(rs.getInt(sql), 
+                        rs.getString(sql),
+                        rs.getString(sql),
+                        rs.getDate(sql)));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            conn.close();
+            ps.close();
+            rs.close();
+        }
+        return list;
+
+    }
 
         
 }

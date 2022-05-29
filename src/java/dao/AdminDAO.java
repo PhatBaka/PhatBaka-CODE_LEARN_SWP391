@@ -36,4 +36,33 @@ public class AdminDAO {
         }
         return acc;
     }
+    public AdminDTO SearchingAdmin(String Search) throws SQLException {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+               conn = DBUtils.getConnection();
+               String sql = "SELECT * from dbo.admin where Name like ?  ";
+               ps = conn.prepareStatement(sql);
+               ps.setString(1, "%" + Search + "%");
+
+               rs = ps.executeQuery();
+               while (rs.next()) {
+                   return new AdminDTO(rs.getInt("Id_Admin"), 
+                           rs.getString("AdminName"), 
+                           rs.getString("Password"),
+                           rs.getString("Notification"));
+
+               }
+           } catch (Exception e) {
+               e.printStackTrace();
+           } finally {
+               conn.close();
+               ps.close();
+               rs.close();
+           }
+           return null;
+
+    }
 }

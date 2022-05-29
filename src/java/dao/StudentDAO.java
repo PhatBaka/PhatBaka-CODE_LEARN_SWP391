@@ -68,5 +68,35 @@ public class StudentDAO {
         }
         return false;
     }
+    public StudentDTO SearchingStudent(String Search) throws SQLException {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+               conn = DBUtils.getConnection();
+               String sql = "SELECT * from dbo.student where Name like ?  ";
+               ps = conn.prepareStatement(sql);
+               ps.setString(1, "%" + Search + "%");
+
+               rs = ps.executeQuery();
+               while (rs.next()) {
+                   return new StudentDTO(rs.getInt("Id_Student"),
+                           rs.getString("Username"), 
+                           rs.getString("Password"), 
+                           rs.getString("Notification"));
+
+               }
+           } catch (Exception e) {
+               e.printStackTrace();
+           } finally {
+               conn.close();
+               ps.close();
+               rs.close();
+           }
+           return null;
+
+    }
+
 }
 
