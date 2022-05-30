@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package controllers.course;
-
+import dao.CourseDAO;
+import dto.CourseDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -30,19 +31,24 @@ public class SearchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SearchController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SearchController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        try {
+            CourseDAO ud = new CourseDAO();
+            String Search = request.getParameter("search");
+            CourseDTO course = ud.SearchingCourse(Search);
+            if (!course.equals("")) {
+                request.setAttribute("List", ud);
+                request.getRequestDispatcher("List.jsp").forward(request, response);
+            }else{
+                  request.setAttribute("Error", "Not Found " + Search);
+                request.getRequestDispatcher("List.jsp").forward(request, response);
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error: "+e.toString());
         }
+
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

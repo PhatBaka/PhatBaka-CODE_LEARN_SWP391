@@ -19,6 +19,12 @@ public class ExamDTO {
     
     public ExamDTO(){}
 
+    public ExamDTO(String Name, String Question, Date date) {
+        this.Name = Name;
+        this.Question = Question;
+        this.date = date;
+    }
+   
     public ExamDTO(int Id_Exam, String Name, String Question, Date date) {
         this.Id_Exam = Id_Exam;
         this.Name = Name;
