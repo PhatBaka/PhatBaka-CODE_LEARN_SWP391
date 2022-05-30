@@ -5,8 +5,10 @@
  */
 package controllers.course;
 
+import dao.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author nearl
  */
 public class DeleteCourseController extends HttpServlet {
+    private final String ERROR_PAGE = "";
+    private final String SUCCESS_PAGE = "";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,8 +34,26 @@ public class DeleteCourseController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String _coursename = request.getParameter("coursename");
+        
+        String url = ERROR_PAGE;
+        String msg = "Failed to delete!!!";
+        String _coursename = request.getParameter("coursename");
+        boolean check = false;
+        
+        try {
+            CourseDAO dao = new CourseDAO();
+            check = dao.delete(_coursename);
+            
+            if(check){
+                msg = "Deleted successfully!!!";
+            }
+            request.setAttribute("msg", msg);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        } finally {
+            response.sendRedirect(url);
         }
     }
 
