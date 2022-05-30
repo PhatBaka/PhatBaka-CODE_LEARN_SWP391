@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/This%20PC/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/StudentDAO.java</file>
-            <file>file:/C:/Users/This%20PC/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/auth/LoginController.java</file>
-            <file>file:/C:/Users/This%20PC/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/NotificationDAO.java</file>
-            <file>file:/C:/Users/This%20PC/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/SubjectDAO.java</file>
-            <file>file:/C:/Users/This%20PC/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/TeacherDAO.java</file>
+            <file>file:/C:/Users/HoangMinh/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/course/DeleteCourseController.java</file>
+            <file>file:/C:/Users/HoangMinh/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/css/login.css</file>
+            <file>file:/C:/Users/HoangMinh/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/HoangMinh/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/home.jsp</file>
+            <file>file:/C:/Users/HoangMinh/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/css/register.css</file>
+            <file>file:/C:/Users/HoangMinh/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/css/home.css</file>
+            <file>file:/C:/Users/HoangMinh/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/HoangMinh/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/index.html</file>
         </group>
     </open-files>
 </project-private>
