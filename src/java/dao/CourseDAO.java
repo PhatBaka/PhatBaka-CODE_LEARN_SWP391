@@ -7,6 +7,7 @@ package dao;
 
 import DBtills.DBUtils;
 import dto.CourseDTO;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ import java.util.List;
  *
  * @author nearl
  */
-public class CourseDAO {
+public class CourseDAO implements Serializable{
 
     public List<CourseDTO> display(int page) throws ClassNotFoundException, SQLException {
         Connection con = null;

@@ -8,6 +8,7 @@ package controllers.course;
 import dao.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nearl
  */
-public class DeleteCourseController extends HttpServlet {
+public class DeleteCourseController extends HttpServlet implements Serializable{
     private final String ERROR_PAGE = "";
     private final String SUCCESS_PAGE = "";
 

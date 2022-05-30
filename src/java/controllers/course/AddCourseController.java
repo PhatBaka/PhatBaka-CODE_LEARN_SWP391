@@ -10,6 +10,7 @@ import dao.CourseDAO;
 import dto.CourseDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -25,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nearl
  */
-public class AddCourseController extends HttpServlet {
+public class AddCourseController extends HttpServlet implements Serializable {
     private final String DETAIL_PAGE = ""; //Show the added course's detail
     private final String ERROR_PAGE = ""; //failed to add
     /**
