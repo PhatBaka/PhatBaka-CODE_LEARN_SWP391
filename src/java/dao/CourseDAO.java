@@ -187,4 +187,40 @@ public class CourseDAO {
         }
         return false;
     }
+    
+    public List<CourseDTO> search(String courseName) throws SQLException, ClassNotFoundException{
+        String _courseName = courseName;
+        Connection con = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        ArrayList<CourseDTO> list = new ArrayList<>();
+        
+        try{
+            String sql = "SELECT * FROM Course "
+                    + "WHERE Name LIKE '?' ";
+            con = DBUtils.getConnection();
+            if (con != null) {
+                statement = con.prepareStatement(sql);
+                statement.setString(1, _courseName);
+                
+                rs = statement.executeQuery();
+
+                while(rs.next()){
+                    list.add(new CourseDTO(rs.getInt("Id_Course"), rs.getInt("Id_Subject"), rs.getNString("Name"), rs.getNString("Description"), rs.getDate("Date_Open"), rs.getDate("Date_Close"), rs.getInt("Rating")));
+                }
+
+            }
+        }finally {
+            if(rs != null){
+                rs.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
+    }
 }

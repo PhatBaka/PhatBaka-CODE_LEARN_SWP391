@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package controllers.course;
+
 import dao.CourseDAO;
 import dto.CourseDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,12 +36,12 @@ public class SearchController extends HttpServlet {
         try {
             CourseDAO ud = new CourseDAO();
             String Search = request.getParameter("search");
-            CourseDTO course = ud.SearchingCourse(Search);
-            if (!course.equals("")) {
-                request.setAttribute("List", ud);
+            List<CourseDTO> list = ud.search(Search);
+            if (list!=null) {
+                request.setAttribute("list", list);
                 request.getRequestDispatcher("List.jsp").forward(request, response);
             }else{
-                  request.setAttribute("Error", "Not Found " + Search);
+                  request.setAttribute("error", Search + "Not Found ");
                 request.getRequestDispatcher("List.jsp").forward(request, response);
             }
             
