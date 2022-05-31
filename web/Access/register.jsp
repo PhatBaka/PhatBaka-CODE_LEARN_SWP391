@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -21,6 +22,8 @@
         function validateform()
         {
 =======
+=======
+>>>>>>> Stashed changes
     <head lang="en">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,12 +36,16 @@
         <script type="text/javascript">
           function validateform()
           {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             var name = document.myform.username.value;
             var password = document.myform.password.value;
             var confirm = document.myform.confirm.value;
             var gmail = document.myform.gmail.value;
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             if (name == null || name == "")
             {
@@ -262,6 +269,8 @@
             <h3>REGISTER</h3>
             <form action="#" name="myform" method="post" onsubmit="return validateform()">
 =======
+=======
+>>>>>>> Stashed changes
             if(name == null || name == "")
             {
               alert("username can not be null");
@@ -495,11 +504,15 @@ html {
             <div id="formContent" style="padding:2%;">
                 <h3>REGISTER</h3>
               <form action="#" name="myform" method="post" onsubmit="return validateform()">
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 <lable>username:  <input type="text" id="login" class="fadeIn second" name="username" placeholder="Username"></lable>
                 <lable>password:  <input type="text" id="login" class="fadeIn second" name="password" placeholder="Password"></lable></br>    
                 <lable>confirm :  <input type="text" id="login" class="fadeIn second" name="confirm" placeholder="Password confirm"></lable></br>
                 <input type="submit" class="fadeIn fourth" style="background-color: pink; color:black; border-radius:50px ;" value="register">
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                 <label id="option">Select:</label>
                 <select id="select" name="role">         
@@ -519,6 +532,8 @@ html {
 
 </body>
 =======
+=======
+>>>>>>> Stashed changes
               </form>
             </div>
             
@@ -530,6 +545,9 @@ html {
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
           
       </body>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 </html>
