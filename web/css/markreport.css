@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : May 30, 2022, 10:46:58 AM
+    Created on : May 31, 2022, 10:11:14 PM
     Author     : HoangMinh
 */
 body
@@ -12,28 +12,20 @@ body
     background-image: url(https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png);
     background-size:  1920px 980px;
     background-position: 60% 100%; 
-}
+}   
 
-#search_form
-{
-    width: 20%;
-    position: absolute;
-    top: 10%;
-    left: 20%;
-}
 
-#course
+.container_2
 {
+    padding: 1%;
+    border-radius: 30px;
     position: absolute;
-    top: 50%;
+    top: 20%;
+    background-color: rgb(211, 204, 205);
+    width: 50%;
+    left: 25%;
     text-align: center;
-}
-
-#paging
-{
-    position: absolute;
-    top: 80%;
-    left: 44%;
+    opacity: 0.9;
 }
 
 
