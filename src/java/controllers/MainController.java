@@ -83,7 +83,7 @@ public class MainController extends HttpServlet {
             }
             //use-case 5
             else if("/viewCourseDetail".equals(action)){
-                url = "ViewCourseDetailController";
+                url = "/ViewCourseDetailController";
             }
             //user-case 6
             else if("view user profile".equals(action)){

@@ -4,6 +4,7 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dto.CourseDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
     <head lang="en">
@@ -69,6 +70,8 @@
     </head>
 
     <body>
+        
+        <%! CourseDTO course;%>
         <div class="container">
           <nav class="navbar navbar-expand-lg bg-light" id="background">
             <div class="container-fluid">
@@ -94,7 +97,8 @@
               <div class="col-6" >
                 <div class="p-3 border bg-light" >
                   <p id="column_inf">
-                    Date Open: ...
+                    Date Open: 
+                    
                   </p>
                   <p id="column_inf">
                     Date Close: ...

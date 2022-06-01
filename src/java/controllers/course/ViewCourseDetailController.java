@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author nearl
  */
 public class ViewCourseDetailController extends HttpServlet {
-    private final String DETAIL_PAGE = "/Access/detail.jsp"; // course detail page address
+    private final String DETAIL_PAGE = "./View/coursedetail.jsp"; // course detail page address
     private final String NOT_FOUND_PAGE = "/View/error.jsp"; //error page 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
