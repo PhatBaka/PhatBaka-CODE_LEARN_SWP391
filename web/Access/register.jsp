@@ -250,6 +250,10 @@ html {
                 <lable>username:  <input type="text" id="login" class="fadeIn second" name="username" placeholder="Username"></lable>
                 <lable>password:  <input type="text" id="login" class="fadeIn second" name="password" placeholder="Password"></lable></br>    
                 <lable>confirm :  <input type="text" id="login" class="fadeIn second" name="confirm" placeholder="Password confirm"></lable></br>
+                <label id="option">Select:</label>
+                <select id="select" name="role">              
+                <option value="Teacher">Teacher</option>
+                <option value="Student">Student</option> 
                 <input type="submit" class="fadeIn fourth" style="background-color: pink; color:black; border-radius:50px ;" value="register">
               </form>
             </div>
