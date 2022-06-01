@@ -64,13 +64,13 @@ public class MainController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String url = ERROR;
             String action = request.getPathInfo(); // lấy thằng url 
-            action = action.toLowerCase();// đồng bộ parameter action kiểu chữ thường
+            //action = action.toLowerCase();// đồng bộ parameter action kiểu chữ thường
             //use-case 1
-            if("./login".equals(action)){
+            if("/login".equals(action)){
                 url = "/LoginController";
             } 
             //use-case 2
-            else if("./logout".equals(action)){
+            else if("/logout".equals(action)){
                 url = "/LogoutController";
             }            
             //use-case 3

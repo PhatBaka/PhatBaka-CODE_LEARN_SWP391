@@ -40,7 +40,8 @@ public class LoginController extends HttpServlet {
     private static final String TEACHER_ROLE = "teacher";
     private static final String STUDENT_ROLE = "student";
     private static final String ADMIN_ROLE = "admin";
-    private static final String ERROR = "";// trang login
+    private static final String ERROR = "./login.jsp";// trang login
+    private static final String HOME = "./home.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
@@ -54,13 +55,13 @@ public class LoginController extends HttpServlet {
             
             if(STUDENT_ROLE.equals(role)){
                 acc = (StudentDTO)StudentDAO.getAccount(username, password);
-                url = ""; //chuyen den sau khi login
+                url = HOME; //chuyen den sau khi login
             }else if(TEACHER_ROLE.equals(role)){
                 acc = (TeacherDTO)TeacherDAO.getAccount(username, password);
-                url = ""; //chuyen den sau khi login
+                url = HOME; //chuyen den sau khi login
             }else if(ADMIN_ROLE.equals(role)){
                 acc = (AdminDTO)AdminDAO.getAccount(username, password);
-                url = ""; //chuyen den sau khi login
+                url = HOME; //chuyen den sau khi login
                 
             }
             if(acc == null){
