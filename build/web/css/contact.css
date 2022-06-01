@@ -4,7 +4,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : May 30, 2022, 10:46:58 AM
+    Created on : Jun 1, 2022, 11:16:04 AM
     Author     : HoangMinh
 */
 body
@@ -14,30 +14,16 @@ body
     background-position: 60% 100%; 
 }
 
-#search_form
+
+.container_2
 {
-    width: 20%;
+    padding: 1%;
+    border-radius: 30px;
     position: absolute;
-    top: 10%;
-    left: 20%;
+    top: 20%;
+    background-color: rgb(211, 204, 205);
+    width: 50%;
+    left: 25%;
+    text-align: center;
+    opacity: 0.9;
 }
-
-#course
-{
-    position: absolute;
-    top: 50%;
-
-
-    left: 10%;
-
-    left: 10%;
-
-}
-
-#paging
-{
-    position: absolute;
-    top: 80%;
-    left: 44%;
-}
-
