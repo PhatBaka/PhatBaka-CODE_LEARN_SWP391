@@ -255,7 +255,7 @@ html {
         <div class="wrapper fadeInDown">
             <div id="formContent" style="padding:2%;">
                 <h3>REGISTER</h3>
-              <form action="#" name="myform" method="post" onsubmit="return validateform()">
+              <form action="./register" name="myform" method="POST" onsubmit="return validateform()">
                 <lable>username:  <input type="text" id="login" class="fadeIn second" name="username" placeholder="Username"></lable>
                 <lable>password:  <input type="text" id="login" class="fadeIn second" name="password" placeholder="Password"></lable></br>    
                 <lable>confirm :  <input type="text" id="login" class="fadeIn second" name="confirm" placeholder="Password confirm"></lable></br>

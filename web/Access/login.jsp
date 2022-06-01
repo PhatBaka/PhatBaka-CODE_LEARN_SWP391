@@ -189,7 +189,7 @@ html {
           
           
               <!-- Login Form -->
-              <form>
+              <form action="login" method="POST">
                 <label>Username</label><input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
                 <label>Password</label><input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
                
@@ -199,11 +199,11 @@ html {
                 <option value="Teacher">Teacher</option>
                 <option value="Student">Student</option>
                 <input type="submit" class="fadeIn fourth" value="Log In" style="width: 40%;"></br>
-                <input type="submit" class="fadeIn fourth" href="#" value="Forgot password" style="width: 40%; margin-top: -5%;"></br>
-                <input type="submit" class="fadeIn fourth" href="#" value="Sign up" style="width: 40%; margin-top: -5%;">
+                
               </form>
-          
-              
+                <input type="button" class="fadeIn fourth" value="Forgot password" style="width: 40%; margin-top: -5%;"></br>
+                <input type="button" class="fadeIn fourth"  value="Sign up" onclick="document.location='./Access/register.jsp'" style="width: 40%; margin-top: -5%;">
+                
               
                 
               
