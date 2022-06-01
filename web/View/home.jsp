@@ -13,9 +13,15 @@
         <link rel="icon" href="https://cdn.helpex.vn/upload/2019/12/23/55ee433d8b75f32e34155bc3-011719008_50x50.jpg">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <title>Home</title>
+
+      
     </head>
 
     <body>
+    </head>
+
+    <body>
+
         <style>
             body
 {
@@ -37,7 +43,9 @@
     position: absolute;
     top: 50%;
     left: 10%;
-    text-align: center;
+
+    left: 10%;
+
 }
 
 #paging
@@ -46,7 +54,20 @@
     top: 80%;
     left: 44%;
 }
+
+
+
+
         </style>
+    </head>
+
+    <body>
+
+        </style>
+
+=======
+        </style>
+
         <div class="container">
           <nav class="navbar navbar-expand-lg bg-light" id="background">
             <div class="container-fluid">
@@ -95,9 +116,16 @@
 
           <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+
+
+    <footer>
+
+    </footer>
+
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </body>
+
 
 
 </html>
