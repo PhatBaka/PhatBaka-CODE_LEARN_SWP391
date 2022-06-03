@@ -187,7 +187,7 @@ html {
             <div id="formContent" style="padding:2%;">
                 <h3>Forgot Password</h3>
               <form action="#">
-                <lable>Old password: <input type="text" id="oldpassword" class="fadeIn second" name="oldpassword" placeholder="old password" ></lable></br>   
+                
                 <lable>New password: <input type="text" id="password" class="fadeIn third" name="newpassword" placeholder="new password"></lable></br>    
                 <lable>Confirm password: <input type="text" id="password" class="fadeIn third" name="confirmpassword" placeholder="confirm password"></lable></br>
                 <lable>Confirm code: <input type="text" id="code" class="fadeIn third" name="code" placeholder="confirm code"></lable></br>
