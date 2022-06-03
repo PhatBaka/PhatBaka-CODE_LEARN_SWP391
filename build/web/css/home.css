@@ -26,9 +26,12 @@ body
 {
     position: absolute;
     top: 50%;
+
+
     left: 10%;
+
     left: 10%;
-    text-align: center;
+
 }
 
 #paging
@@ -37,5 +40,4 @@ body
     top: 80%;
     left: 44%;
 }
-
 

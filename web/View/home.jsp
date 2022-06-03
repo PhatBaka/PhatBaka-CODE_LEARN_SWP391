@@ -15,9 +15,7 @@
         <title>Home</title>
 
       
-    </head>
-
-    <body>
+ 
     </head>
 
     <body>
@@ -59,14 +57,11 @@
 
 
         </style>
-    </head>
+    
 
-    <body>
+    
 
-        </style>
-
-=======
-        </style>
+       
 
         <div class="container">
           <nav class="navbar navbar-expand-lg bg-light" id="background">
