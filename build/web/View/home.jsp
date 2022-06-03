@@ -66,7 +66,7 @@
         <div class="container">
           <nav class="navbar navbar-expand-lg bg-light" id="background">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Home</a>
+              <a class="navbar-brand" href="/View/home.jsp">Home</a>
             </div>
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Categories</a>
@@ -75,12 +75,12 @@
               <a class="navbar-brand" href="#">My Profile</a>
             </div>
             <div class="container-fluid">
-              <span class="navbar-brand" href="#" style="cursor:pointer;">Welcome User: ...</span>
+              <span class="navbar-brand" style="cursor:pointer;">Welcome User: ...</span>
             </div>
           </nav>
         </div>
         
-        <form action="#" class="d-flex" role="search" id="search_form">
+        <form action="MainController" class="d-flex" role="search" id="search_form">
           <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
           <input class="btn btn-outline-success" type="submit" name="button">Search</br>
         </form>
