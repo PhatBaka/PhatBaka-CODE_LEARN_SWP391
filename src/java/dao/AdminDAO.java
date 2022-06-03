@@ -26,8 +26,8 @@ public class AdminDAO {
         Connection conn = DBUtils.getConnection();
         if (conn != null) {
             PreparedStatement ptm = conn.prepareStatement(LOGIN);
-            ptm.setString(1,"'" + adminname + "'");
-            ptm.setString(2,"'" + password + "'");
+            ptm.setString(1,adminname);
+            ptm.setString(2,password);
             ResultSet rs = ptm.executeQuery();
             if (rs != null && rs.next()) {
                 int id_admin = rs.getInt("ID_Admin");
