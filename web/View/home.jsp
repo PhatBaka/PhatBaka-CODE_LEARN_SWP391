@@ -86,8 +86,8 @@
         </div>
         
         <form action="#" class="d-flex" role="search" id="search_form">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
+          <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
+          <input class="btn btn-outline-success" type="submit" name="button">Search</br>
         </form>
 
         <div class="container px-4" id="course">

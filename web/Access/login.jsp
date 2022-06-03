@@ -182,6 +182,12 @@
         </nav>
     </div>
 
+    <% if (request.getAttribute("ERROR") != null) {
+            String error = request.getAttribute("ERROR").toString();
+            out.print("<h1 style='color:red'>" + error + "</h1>");
+        }
+    %>
+
     <div class="wrapper fadeInDown" id="loginForm" >
         <div id="formContent" style="padding: 2%;">
             <h1>LOGIN</h1>
@@ -189,17 +195,17 @@
 
 
             <!-- Login Form -->
-            <form action="./login" method="POST">
+            <form action="MainController" method="POST">
                 <label>Username</label><input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
                 <label>Password</label><input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
 
                 <label id="option">Select:</label>
-                <select id="select">
-                    <option value="Admin">Admin</option>
+                <select id="select" name="role">
+                    <option value="Admin" selected>Admin</option>
                     <option value="Teacher">Teacher</option>
                     <option value="Student">Student</option>
                 </select>
-                <input type="submit" class="fadeIn fourth" value="Log In" style="width: 40%;"></br>
+                <input type="submit" class="fadeIn fourth" value="Login" name="button" style="width: 40%;"></br>
 
             </form>
             <input type="button" class="fadeIn fourth" value="Forgot password" style="width: 40%; margin-top: -5%;"></br>

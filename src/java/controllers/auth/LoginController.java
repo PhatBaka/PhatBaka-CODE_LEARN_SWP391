@@ -16,6 +16,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -40,17 +41,19 @@ public class LoginController extends HttpServlet {
     private static final String TEACHER_ROLE = "teacher";
     private static final String STUDENT_ROLE = "student";
     private static final String ADMIN_ROLE = "admin";
-    private static final String ERROR = "./login.jsp";// trang login
-    private static final String HOME = "./home.jsp";
+    private static final String ERROR = "/Access/login.jsp";// trang login
+    private static final String HOME = "/View/home.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String url = ERROR;
+        String url = ERROR;
+        
+        try  {
+            
             HttpSession session = request.getSession();
             String username = request.getParameter("username");
             String password = request.getParameter("password");
-            String role = request.getParameter("role");
+            String role = request.getParameter("role").toLowerCase();
             Object acc = null;
             
             if(STUDENT_ROLE.equals(role)){
@@ -70,7 +73,10 @@ public class LoginController extends HttpServlet {
                 session.setAttribute("ACCOUNT", acc);
                
             }
-            response.sendRedirect(url);
+        }
+        finally{
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 
