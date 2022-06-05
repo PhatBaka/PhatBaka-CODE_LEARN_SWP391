@@ -11,12 +11,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
  * @author nearl
  */
 public class StudentDAO {
+    
     private static final String LOGIN = "SELECT Id_Student, Username, Password, Exam_Stats FROM Student "
             +                           "WHERE Username = ? AND Password = ? ";
     
@@ -46,13 +48,10 @@ public class StudentDAO {
         try {
             con = DBUtils.getConnection();
             if (con != null) {
-                String sql = "Insert Into Student("
-                        + "Username, Password, Exam_Stats"
-                        + ") values(?, ?, ?)";
+                String sql = "insert into dbo.Student (Username, Password) values (?, ?)";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, dto.getUsername());
                 stm.setString(2, dto.getPassword());
-                stm.setString(3, "0");
                 int effectRows = stm.executeUpdate();
                 if (effectRows > 0) {
                     return true;

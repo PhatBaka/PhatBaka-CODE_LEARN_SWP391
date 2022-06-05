@@ -28,6 +28,13 @@ public class TeacherDTO {
         this.Information = Information;
     }
 
+    public TeacherDTO(String UserName, String Password) {
+        this.UserName = UserName;
+        this.Password = Password;
+    }
+
+    
+    
     public void setId_Teacher(int Id_Teacher) {
         this.Id_Teacher = Id_Teacher;
     }

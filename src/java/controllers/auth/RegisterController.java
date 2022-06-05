@@ -49,7 +49,7 @@ public class RegisterController extends HttpServlet {
         try {
                 if (role.equals("student")) {
                     StudentDAO dao = new StudentDAO();
-                    StudentDTO dto = new StudentDTO(username, password, "0");
+                    StudentDTO dto = new StudentDTO(username, password);
                     boolean result = dao.createStudentAccount(dto);
                     if (result) {
                         url = "LOGIN_PAGE";
