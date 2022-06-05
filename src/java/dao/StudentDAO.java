@@ -37,7 +37,7 @@ public class StudentDAO {
         }
         return acc;
     }
-    public static boolean createNewAccount(StudentDTO dto) throws ClassNotFoundException, SQLException {
+    public boolean createStudentAccount(StudentDTO dto) throws ClassNotFoundException, SQLException {
         if (dto == null){
             return false;
         }
@@ -68,35 +68,43 @@ public class StudentDAO {
         }
         return false;
     }
-    public StudentDTO SearchingStudent(String Search) throws SQLException {
-
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+    
+    public boolean changePassword(StudentDTO dto, String newPassword, String oldPassword) throws ClassNotFoundException, SQLException {
+        if (dto == null) {
+            return false;
+        }
+        Connection con = null;
+        PreparedStatement stm = null;
+        String validAccSQL = "select Id_Student from dbo.Student where Username = ? and Password = ?";
+        String changePassSQL = "update dbo.Student set Password = ? where Username = ?";
         try {
-               conn = DBUtils.getConnection();
-               String sql = "SELECT * from dbo.student where Name like ?  ";
-               ps = conn.prepareStatement(sql);
-               ps.setString(1, "%" + Search + "%");
+            con = DBUtils.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(validAccSQL);
+                stm.setString(1, dto.getUsername());
+                stm.setString(2, oldPassword);
+                int effectedRows = stm.executeUpdate();
+                if (effectedRows > 0) {
+                    stm = con.prepareStatement(changePassSQL);
+                    stm.setString(1, newPassword);
+                    stm.setString(2, dto.getUsername());
+                    stm.executeUpdate();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (Exception ex) {
 
-               rs = ps.executeQuery();
-               while (rs.next()) {
-                   return new StudentDTO(rs.getInt("Id_Student"),
-                           rs.getString("Username"), 
-                           rs.getString("Password"), 
-                           rs.getString("Notification"));
-
-               }
-           } catch (Exception e) {
-               e.printStackTrace();
-           } finally {
-               conn.close();
-               ps.close();
-               rs.close();
-           }
-           return null;
-
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                con.close();
+            }
+        }
+        return false;
     }
-
 }
 

@@ -40,4 +40,74 @@ public class TeacherDAO {
         }
         return acc;
     }
+
+    public static boolean createTeacherAccount(TeacherDTO dto) throws ClassNotFoundException, SQLException {
+        if (dto == null) {
+            return false;
+        }
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                String sql = "Insert Into Student("
+                        + "Username, Password, Exam_Stats"
+                        + ") values(?, ?, ?)";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, dto.getUserName());
+                stm.setString(2, dto.getPassword());
+                stm.setString(3, "0");
+                int effectRows = stm.executeUpdate();
+                if (effectRows > 0) {
+                    return true;
+                }
+            }
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+        }
+        return false;
+    }
+
+    public boolean changePassword(TeacherDTO dto, String newPassword, String oldPassword) throws ClassNotFoundException, SQLException {
+        if (dto == null) {
+            return false;
+        }
+        Connection con = null;
+        PreparedStatement stm = null;
+        String validAccSQL = "select Id_Teacher from dbo.Teacher where Username = ? and Password = ?";
+        String changePassSQL = "Update dbo.Teacher set Password = ? where Username = ?";
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(validAccSQL);
+                stm.setString(1, dto.getUserName());
+                stm.setString(2, oldPassword);
+                int effectedRows = stm.executeUpdate();
+                if (effectedRows > 0) {
+                    stm = con.prepareStatement(changePassSQL);
+                    stm.setString(1, newPassword);
+                    stm.setString(2, dto.getUserName());
+                    stm.executeUpdate();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (Exception ex) {
+
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                con.close();
+            }
+        }
+        return false;
+    }
 }

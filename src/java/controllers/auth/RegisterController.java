@@ -5,8 +5,18 @@
  */
 package controllers.auth;
 
+import dao.StudentDAO;
+import dao.TeacherDAO;
+import dto.RegisterErrorDTO;
+import dto.StudentDTO;
+import dto.TeacherDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,20 +38,42 @@ public class RegisterController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegisterController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegisterController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String role = request.getParameter("role");
+        RegisterErrorDTO errors = new RegisterErrorDTO();
+        boolean foundError = false;
+        String url = "";
+        try {
+                if (role.equals("student")) {
+                    StudentDAO dao = new StudentDAO();
+                    StudentDTO dto = new StudentDTO(username, password, "0");
+                    boolean result = dao.createStudentAccount(dto);
+                    if (result) {
+                        url = "LOGIN_PAGE";
+                    }
+                } else if (role.equals("teacher")) {
+                    TeacherDAO dao = new TeacherDAO();
+                    TeacherDTO dto = new TeacherDTO(username, password);
+                    boolean result = dao.createTeacherAccount(dto);
+                    if (result) {
+                        url = "LOGGIN_PAGE";
+                    }
+                }
+        } catch (SQLException ex) {
+            String msg = ex.getMessage();
+            log("CreateAccountServlet _ SQL " + ex.getMessage());
+            if (msg.contains("duplicate")) {
+                errors.setUsernameIsExisted(username + " is existed.");
+                request.setAttribute("CREATEERRORS", errors);
+            }
+        } finally {
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -56,7 +88,11 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -70,7 +106,11 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
