@@ -11,7 +11,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="https://png.pngtree.com/png-vector/20190830/ourlarge/pngtree-code-lab-logo-design-inspiration-png-image_1716386.jpg">
-        <link href="/CSS/Home.css" type="text/css" rel="stylesheet">
+        <link href="/css/home.css" type="text/css" rel="stylesheet">
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <!-- JavaScript Bundle with Popper -->
@@ -85,7 +85,7 @@
                 <div class="col" id="frame">
                     <div class="card" style="width: 18rem; margin: auto;">
                         <div class="card-body">
-                          <h5 class="card-title">Lesson name</h5>
+                          <h5 class="card-title">Course name</h5>
                           <p class="card-text">Description</p>
                           <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
                             <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to lesson</a>
@@ -96,7 +96,7 @@
                 <div class="col" id="frame">
                     <div class="card" style="width: 18rem; margin: auto;">
                         <div class="card-body">
-                            <h5 class="card-title">Lesson name</h5>
+                            <h5 class="card-title">Course name</h5>
                             <p class="card-text">Description</p>
                             <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
                                 <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to lesson</a>
@@ -107,7 +107,7 @@
                 <div class="col" id="frame">
                     <div class="card" style="width: 18rem; margin: auto;">
                         <div class="card-body">
-                            <h5 class="card-title">Lesson name</h5>
+                            <h5 class="card-title">Course name</h5>
                             <p class="card-text">Description</p>
                               <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
                                   <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to lesson</a>
