@@ -41,8 +41,8 @@ public class LoginController extends HttpServlet {
     private static final String TEACHER_ROLE = "teacher";
     private static final String STUDENT_ROLE = "student";
     private static final String ADMIN_ROLE = "admin";
-    private static final String ERROR = "/Access/login.jsp";// trang login
-    private static final String HOME = "/View/home.jsp";
+    private static final String ERROR = "./Access/login.jsp";// trang login
+    private static final String HOME = "./View/home.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");

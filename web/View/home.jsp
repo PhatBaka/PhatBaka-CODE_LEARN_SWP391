@@ -91,7 +91,7 @@
                 
                 if (stud == null && teach == null && admin == null) {
                     out.print("<div class='container-fluid'>"
-                            + "<a class='navbar-brand' href='./Access/login.jsp'>Login/SignUp</a>"
+                            + "<a class='navbar-brand' href='./Access/login.jsp' >Login</a>"
                             + "</div>");
                 } else {
                     out.print("<div class='container-fluid'>"
