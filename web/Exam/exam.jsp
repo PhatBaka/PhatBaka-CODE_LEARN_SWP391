@@ -37,7 +37,8 @@
 .question
 {
     border: 1px solid black;
-    width: 100%    ;
+    width: 100%;
+    padding: 1%;
     height: 50%;
     margin: 3px 0px 3px 0px;
 }
@@ -45,9 +46,33 @@
 .answer
 {
     border: 1px solid black;
+    padding: 1%;
     width: 100%    ;
     height: 48%;
     margin: 3px 0px 3px 0px;
+}
+
+.frame_exam
+{
+    border: 1px solid black; 
+    margin: 3px 0px 3px 0px;
+    padding: 2px;
+}
+
+#paging
+{
+    border: 1px solid black;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.title
+{
+    color: white;
+    padding: 4px;
+    position: relative;
+    top: 2rem;  
+    text-align: center;
 }
 
 
@@ -71,8 +96,9 @@
               </div>
             </nav>
           </div>
+        <h1 class="title">EXAM PAGE</h1>
           <div class="row" id="column_pos">
-            <div class="col-sm-8" style="border: 1px solid black; margin: 3px 0px 3px 0px;" >
+            <div class="col-sm-8" class="frame_exam" >
                 
                 <div action="#" class="question" >QUESTION HERE</div>                   
                 
@@ -81,7 +107,7 @@
                 </form>
             </div>
             
-            <div class="col-sm-4">col-sm-4</div>
+              <div class="col-sm-4" id="paging">col-sm-4</div>
           </div>
 
 
