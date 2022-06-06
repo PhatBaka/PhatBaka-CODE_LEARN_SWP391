@@ -63,7 +63,7 @@ public class MainController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String url = ERROR;
-            String action = request.getParameter("action"); // láy parameter name action từ intput type submit 
+            String action = request.getParameter("button"); // láy parameter name action từ intput type submit 
             action = action.toLowerCase();// đồng bộ parameter action kiểu chữ thường
             //use-case 1
             if("login".equals(action)){

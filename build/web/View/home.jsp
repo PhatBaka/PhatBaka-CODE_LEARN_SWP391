@@ -74,16 +74,23 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">My Profile</a>
             </div>
-            
-            
+            <%!
+                Object account = null;
+                String role = "";
+            %>
+
             <%
-                if (request.getAttribute("ACCOUNT") == null) {
+                if (session.getAttribute("role") != null) {
+                    role = session.getAttribute("role").toString();
+                }
+                account = session.getAttribute("ACCOUNT");
+                if (account == null) {
                     out.print("<div class='container-fluid'>"
                             + "<a class='navbar-brand' href='./Access/login.jsp'>Login/SignUp</a>"
                             + "</div>");
                 } else {
                     out.print("<div class='container-fluid'>"
-                            + "<a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User: </a>"
+                            + "<a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User: " + role + " </a>"
                             + "</div>");
                 }
             %>

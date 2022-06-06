@@ -71,4 +71,5 @@ public class ContactDAO {
             result = stm.executeUpdate();
         }
         return (result>0);
+    }
 }

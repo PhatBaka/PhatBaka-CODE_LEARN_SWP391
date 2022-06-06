@@ -36,6 +36,8 @@ public class AddProfileController extends HttpServlet {
         String school = request.getParameter("school");
         try {
             
+        } finally{
+            
         }
     }
 
