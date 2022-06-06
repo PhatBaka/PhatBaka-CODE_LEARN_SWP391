@@ -49,6 +49,13 @@
         </style>    
     </head>
     
+     <%!
+                StudentDTO stud = null;
+                TeacherDTO teach = null;
+                AdminDTO admin = null;
+                String role = "";
+                String name = "";
+            %>
     
     <body>
         <div class="container">
@@ -57,18 +64,9 @@
                 <a class="navbar-brand" href="/View/home.jsp">Home</a>
               </div>
               <div class="container-fluid">
-                <a class="navbar-brand" href="#">Categories</a>
+                <a class="navbar-brand" href="#">Catalog</a>
               </div>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">My Profile</a>
-              </div>
-              <%!
-                StudentDTO stud = null;
-                TeacherDTO teach = null;
-                AdminDTO admin = null;
-                String role = "";
-                String name = "";
-            %>
+             
 
             <%
                 if (session.getAttribute("role") != null) {
@@ -80,9 +78,15 @@
                 } else if (role.equals("teacher")){
                     teach = (TeacherDTO) session.getAttribute("ACCOUNT");
                     name = teach.getUserName();
+                    out.print("<div class='container-fluid'>"
+                            + "<a class='navbar-brand' href='#'>Add Course</a>"
+                            + "</div>");
                 } else if (role.equals("admin")){
                     admin = (AdminDTO) session.getAttribute("ACCOUNT");
                     name = admin.getAdminName();
+                    out.print("<div class='container-fluid'>"
+                            + "<a class='navbar-brand' href='#'>Add Course</a>"
+                            + "</div>");
                 }
                 
                 if (stud == null && teach == null && admin == null) {
