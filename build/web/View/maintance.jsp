@@ -22,7 +22,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <title>Maintance Report</title>
       </head>
-<<<<<<< Updated upstream
       
       <style>
           body
@@ -31,16 +30,6 @@
                 background-size:  1910px 1080px;
                 background-position: 60% 100%; 
             }
-=======
-      <style>
-          body
-{
-    background-image: url(https://i.pinimg.com/originals/c1/0a/bc/c10abc65866267cb2b021ffb0c5498c7.png);
-    background-size:  1910px 1080px;
-    background-position: 60% 100%; 
-}
-
->>>>>>> Stashed changes
       </style>
     <body>
         <div class="container">
@@ -66,7 +55,3 @@
           
     </body>
 </html>
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes

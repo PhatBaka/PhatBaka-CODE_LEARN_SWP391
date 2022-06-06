@@ -10,8 +10,6 @@
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <title>Lesson</title>
-<<<<<<< Updated upstream
-        
         <style>
             body
             {
@@ -45,42 +43,6 @@
                 position: relative;
                 top: 3rem;
             }
-=======
-        <style>
-            body
-{
-    background-image: url(https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png);
-    background-size:  1920px 1080px;
-    background-position: 60% 10%; 
-}
-
-.container_2
-{
-    padding: 1%;
-    width: 100%;
-    text-align: center;
-    position: absolute;
-    top: 25rem;
-}
-
-#frame
-{
-    margin-right: 10px;
-    margin-left: 10px;
-    padding: 1%;
-    display: flex;
-    
-}
-
-.search_container
-{
-    width: 100%;
-    padding: 2%;
-    position: relative;
-    top: 3rem;
-}
->>>>>>> Stashed changes
-
         </style>
     </head>
     <body>
@@ -103,11 +65,10 @@
 
         <div class="search_container">
             <div class="input-group mb-3" style="width: 40%; margin-left: 10rem;">
-<<<<<<< Updated upstream
                 <input type="text" class="form-control" placeholder="Search here..." aria-label="Search here" aria-describedby="basic-addon2">
-=======
+
                 <input type="text" class="form-control" placeholder="Search anything..." aria-label="Recipient's username" aria-describedby="basic-addon2">
->>>>>>> Stashed changes
+
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" type="button" style="background-color: rgb(201, 250, 8); margin-left: 1rem;">Button</button>
                 </div>

@@ -24,7 +24,6 @@
         <title>Lesson</title>
         <style>
             body
-<<<<<<< Updated upstream
             {
                 background-image: url(https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png);
                 background-size:  1920px 1080px;
@@ -62,45 +61,7 @@
             {
                 background-color: black;
             }
-=======
-{
-    background-image: url(https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png);
-    background-size:  1920px 1080px;
-    background-position: 60% 10%; 
-}
 
-.container_2
-{
-    width: 100%;
-    padding: 1%;
-    position: relative;
-    top: 10rem;
-    text-align: center;
-    height: 100%;
-}
-
-#frame
-{
-    margin-right: 10px;
-    margin-left: 10px;
-    padding: 1%;
-    margin-top: 3%;
-}
-
-.title
-{
-    width: 100%;
-    text-align: center;
-    color: white;
-    position: relative;
-    top: 10px;
-}
-
-#video
-{
-    background-color: black;
-}
->>>>>>> Stashed changes
         </style>
     </head>
     <body>
