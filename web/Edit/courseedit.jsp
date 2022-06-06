@@ -150,22 +150,16 @@ input[type=button], input[type=submit], input[type=reset]  {
                 <div class="p-3 border bg-light" >
                   
                     <div id="column_inf_2" >
-                      <label>Name: <input class="p-3 border bg-light" id="column_inf" placeholder="Name"></label>
-                     
+                      <label>Name: <input class="p-3 border bg-light" id="column_inf" placeholder="Name"></label>                     
+                    </div>                  
+                  
+                    <div id="column_inf_2">                      
+                        <label>Lesson 2: <input class="p-3 border bg-light" id="column_inf" placeholder="Lesson 2"></label>                        
                     </div>
-                  
-                  
-                    <div id="column_inf_2">
-                      
-                        <label>Lesson 2: <input class="p-3 border bg-light" id="column_inf" placeholder="Lesson 2"></label>
-                        
-                    </div>
-                    
-                  
+                                  
                 </div>
               </div>
-            </div> 
-                             
+            </div>                              
         </form> 
         <input type="submit" id="button" class="fadeIn fourth" value="Add course" style="width: 95%; height: 10%;"> 
         </div>

@@ -7,31 +7,36 @@ and open the template in the editor.
     Created on : May 30, 2022, 10:46:58 AM
     Author     : HoangMinh
 */
-
-#search_form
+           body
 {
-    width: 20%;
-    position: absolute;
-    top: 10%;
-    left: 20%;
+    background-image: url(https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png);
+    background-size:  1920px 1080px;
+    background-position: 60% 10%; 
 }
 
-#course
+.container_2
 {
+    padding: 1%;
+    width: 100%;
+    text-align: center;
     position: absolute;
-    top: 50%;
+    top: 25rem;
+}
 
-
-    left: 10%;
-
-    left: 10%;
+#frame
+{
+    margin-right: 10px;
+    margin-left: 10px;
+    padding: 1%;
+    display: flex;
 
 }
 
-#paging
+.search_container
 {
-    position: absolute;
-    top: 80%;
-    left: 44%;
+    width: 100%;
+    padding: 2%;
+    position: relative;
+    top: 3rem;
 }
 
