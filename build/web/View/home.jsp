@@ -74,6 +74,8 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">My Profile</a>
             </div>
+            
+            
             <%
                 if (request.getAttribute("ACCOUNT") == null) {
                     out.print("<div class='container-fluid'>"
@@ -81,7 +83,7 @@
                             + "</div>");
                 } else {
                     out.print("<div class='container-fluid'>"
-                            + "<a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User: ...</a>"
+                            + "<a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User: </a>"
                             + "</div>");
                 }
             %>

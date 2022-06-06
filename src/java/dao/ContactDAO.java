@@ -47,21 +47,28 @@ public class ContactDAO {
         return null;
     }
     
-    public boolean addContact(ContactDTO dto){
-        Connection con;
-        PreparedStatement stm;
+    public boolean addContact(ContactDTO dto) throws SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        int result = 0;
         String sql = "insert into dbo.Contact (Id_Student, Email_User, Parents_inf, Phone_Num, School) values (?, ?, ?, ?, ?)";
         if (dto == null) {
             return false;
         }
         try {
+            con = DBUtils.getConnection();
             stm = con.prepareStatement(sql);
             stm.setInt(1, dto.getId_Student());
             stm.setString(2, dto.getEmail_User());
             stm.setString(3, dto.getParents_inf());
-            stm.setInt(4, dto.getPhone_Num());
+            stm.setString(4, dto.getPhone_Num());
             stm.setString(5, dto.getSchool());
-        } catch ( Exception ex ) {
-            
+        } catch ( SQLException ex ) {
+            ex.printStackTrace();
+        }catch(ClassNotFoundException ex){
+            ex.printStackTrace();
+        }finally{
+            result = stm.executeUpdate();
         }
+        return (result>0);
 }
