@@ -67,27 +67,27 @@ public class MainController extends HttpServlet {
             action = action.toLowerCase();// đồng bộ parameter action kiểu chữ thường
             //use-case 1
             if("login".equals(action)){
-                url = "LoginController";
+                url = "/LoginController";
             } 
             //use-case 2
             else if("logout".equals(action)){
-                url = "LogoutController";
+                url = "/LogoutController";
             }            
             //use-case 3
             else if("register".equals(action)){
-                url = "RegisterController";
+                url = "/RegisterController";
             }
             //use-case 4_ Search tên course
             else if("search by keyword".equals(action)){
-                url = "SearchController";
+                url = "/SearchController";
             }
             //use-case 5
             else if("view course detail".equals(action)){
-                url = "ViewCourseDetailController";
+                url = "/ViewCourseDetailController";
             }
             //user-case 6
             else if("view profile".equals(action)){
-                url = "ViewUserProfileController";
+                url = "/ViewUserProfileController";
             }            
             //use-case 7
             else if("edit profile".equals(action)){

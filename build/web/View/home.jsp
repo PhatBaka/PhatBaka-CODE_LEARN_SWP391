@@ -4,6 +4,9 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dto.AdminDTO"%>
+<%@page import="dto.TeacherDTO"%>
+<%@page import="dto.StudentDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head lang="en">
@@ -75,22 +78,35 @@
                 <a class="navbar-brand" href="#">My Profile</a>
             </div>
             <%!
-                Object account = null;
+                StudentDTO stud = null;
+                TeacherDTO teach = null;
+                AdminDTO admin = null;
                 String role = "";
+                String name = "";
             %>
 
             <%
                 if (session.getAttribute("role") != null) {
                     role = session.getAttribute("role").toString();
                 }
-                account = session.getAttribute("ACCOUNT");
-                if (account == null) {
+                if  (role.equals("student")){
+                    stud = (StudentDTO)session.getAttribute("ACCOUNT");
+                    name = stud.getUsername();
+                } else if (role.equals("teacher")){
+                    teach = (TeacherDTO) session.getAttribute("ACCOUNT");
+                    name = teach.getUserName();
+                } else if (role.equals("admin")){
+                    admin = (AdminDTO) session.getAttribute("ACCOUNT");
+                    name = admin.getAdminName();
+                }
+                
+                if (stud == null && teach == null && admin == null) {
                     out.print("<div class='container-fluid'>"
                             + "<a class='navbar-brand' href='./Access/login.jsp'>Login/SignUp</a>"
                             + "</div>");
                 } else {
                     out.print("<div class='container-fluid'>"
-                            + "<a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User: " + role + " </a>"
+                            + "<a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User: " + name + " </a>"
                             + "</div>");
                 }
             %>
