@@ -71,7 +71,7 @@ public class LoginController extends HttpServlet {
                 request.setAttribute("ERROR", "User name or Password is invalid!!");
             }else{
                 session.setAttribute("ACCOUNT", acc);
-               
+                session.setAttribute("role", role);
             }
         }
         finally{

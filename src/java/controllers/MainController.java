@@ -63,31 +63,31 @@ public class MainController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String url = ERROR;
-            String action = request.getParameter("button"); 
+            String action = request.getParameter("action"); // láy parameter name action từ intput type submit 
             action = action.toLowerCase();// đồng bộ parameter action kiểu chữ thường
             //use-case 1
             if("login".equals(action)){
-                url = "/LoginController";
+                url = "LoginController";
             } 
             //use-case 2
             else if("logout".equals(action)){
-                url = "/LogoutController";
+                url = "LogoutController";
             }            
             //use-case 3
             else if("register".equals(action)){
-                url = "/RegisterController";
+                url = "RegisterController";
             }
             //use-case 4_ Search tên course
-            else if("search".equals(action)){
-                url = "/SearchController";
+            else if("search by keyword".equals(action)){
+                url = "SearchController";
             }
             //use-case 5
-            else if("/viewCourseDetail".equals(action)){
-                url = "/ViewCourseDetailController";
+            else if("view course detail".equals(action)){
+                url = "ViewCourseDetailController";
             }
             //user-case 6
-            else if("view user profile".equals(action)){
-                url = "/ViewUserProfileController";
+            else if("view profile".equals(action)){
+                url = "ViewUserProfileController";
             }            
             //use-case 7
             else if("edit profile".equals(action)){
