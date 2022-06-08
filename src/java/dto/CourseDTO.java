@@ -14,22 +14,42 @@ import java.sql.Date;
 public class CourseDTO {
     private int Id_Course;
     private int Id_Subject;
+    private int Id_Teacher;
     private String Name;
     private String Description;
     private Date Date_Open;
     private Date Date_Close;
     private int Rating;
+    private String image;
     
     public CourseDTO(){}
 
-    public CourseDTO(int Id_Course, int Id_Subject, String Name, String Description, Date Date_Open, Date Date_Close, int Rating) {
+    public CourseDTO(int Id_Course, int Id_Subject,int Id_Teacher, String Name, String Description, Date Date_Open, Date Date_Close, int Rating, String image) {
         this.Id_Course = Id_Course;
         this.Id_Subject = Id_Subject;
+        this.Id_Teacher = Id_Teacher;
         this.Name = Name;
         this.Description = Description;
         this.Date_Open = Date_Open;
         this.Date_Close = Date_Close;
         this.Rating = Rating;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getId_Teacher() {
+        return Id_Teacher;
+    }
+
+    public void setId_Teacher(int Id_Teacher) {
+        this.Id_Teacher = Id_Teacher;
     }
 
     public void setId_Course(int Id_Course) {

@@ -88,11 +88,20 @@
             </div>
           </nav>
         </div>
+        
+        <%! CourseDTO dto = null;%>
+        
+        <%
+            dto = (CourseDTO)request.getAttribute("course");
+        %>
 
         <div class="container px-4" id="detail_frame">
           <div class="row g-2">
               <div class="col-6" >
-                <div class="p-3 border bg-light" ><p id="column_inf">Teacher Name...</p></div>
+                  <div class="p-3 border bg-light" ><img src="<%= dto.getImage() %>"></div>
+              </div>
+              <div class="col-6" >
+                <div class="p-3 border bg-light" ><p id="column_inf">Teacher Name :</p></div>
               </div>
               <div class="col-6" >
                 <div class="p-3 border bg-light" >

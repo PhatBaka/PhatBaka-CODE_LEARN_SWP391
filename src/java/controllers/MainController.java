@@ -78,7 +78,7 @@ public class MainController extends HttpServlet {
                 url = "/RegisterController";
             }
             //use-case 4_ Search tên course
-            else if("search by keyword".equals(action)){
+            else if("search".equals(action)){
                 url = "/SearchController";
             }
             //use-case 5

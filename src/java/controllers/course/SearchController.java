@@ -39,11 +39,11 @@ public class SearchController extends HttpServlet {
             String Search = request.getParameter("search");
             List<CourseDTO> list = ud.search(Search);
             if (list!=null) {
-                request.setAttribute("list", list);
+                request.setAttribute("SEARCH_RESULT", list);
                 request.getRequestDispatcher(url).forward(request, response);
             }else{
                   request.setAttribute("error", Search + "Not Found ");
-                request.getRequestDispatcher("List.jsp").forward(request, response);
+                request.getRequestDispatcher(url).forward(request, response);
             }
             
         } catch (Exception e) {
