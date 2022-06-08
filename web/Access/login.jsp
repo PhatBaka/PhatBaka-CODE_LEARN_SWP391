@@ -135,7 +135,7 @@ html {
     transform: scale(0.95);
   }
   
-  input[type=text] {
+  input[type=text], input[type=password] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -156,12 +156,12 @@ html {
     border-radius: 5px 5px 5px 5px;
   }
   
-  input[type=text]:focus {
+  input[type=text]:focus, input[type=password]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
   }
   
-  input[type=text]:placeholder {
+  input[type=text]:placeholder, input[type=password]:placeholder {
     color: #cccccc;
   }
         </style>
@@ -191,7 +191,7 @@ html {
               <!-- Login Form -->
               <form>
                 <label>Username</label><input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
-                <label>Password</label><input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+                <label>Password</label><input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
                
                 <label id="option">Select:</label>
                 <select id="select">
