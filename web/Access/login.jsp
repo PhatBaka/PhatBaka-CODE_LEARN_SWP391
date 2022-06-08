@@ -205,7 +205,7 @@
                     <option value="Teacher">Teacher</option>
                     <option value="Student">Student</option>
                 </select>
-                <input type="submit" class="fadeIn fourth" value="Login" name="button" style="width: 40%;"></br>
+                <input type="submit" class="fadeIn fourth" value="Login" name="action" style="width: 40%;"></br>
 
             </form>
             <input type="button" class="fadeIn fourth" value="Forgot password" style="width: 40%; margin-top: -5%;"></br>

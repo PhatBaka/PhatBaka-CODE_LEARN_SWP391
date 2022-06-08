@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class CourseDAO implements Serializable{
 
-    public List<CourseDTO> display(int page) throws ClassNotFoundException, SQLException {
+    public static List<CourseDTO> display(int page) throws ClassNotFoundException, SQLException {
         Connection con = null;
         PreparedStatement statement = null;
         ResultSet rs = null;
@@ -34,8 +34,8 @@ public class CourseDAO implements Serializable{
 
                 String sql = "SELECT * FROM Course "
                         + "ORDER BY Id_Course "
-                        + "OFFSET (?-1)*5 ROWS "
-                        + "FETCH NEXT 5 ROWS ONLY";
+                        + "OFFSET (?-1)*3 ROWS "
+                        + "FETCH NEXT 3 ROWS ONLY";
 
                 statement = con.prepareStatement(sql);
                 statement.setInt(1, page);

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author nearl
  */
 public class SearchController extends HttpServlet {
-
+    private final String SEARCH_RESULT = "View/search.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,13 +33,14 @@ public class SearchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = SEARCH_RESULT;
         try {
             CourseDAO ud = new CourseDAO();
             String Search = request.getParameter("search");
             List<CourseDTO> list = ud.search(Search);
             if (list!=null) {
                 request.setAttribute("list", list);
-                request.getRequestDispatcher("List.jsp").forward(request, response);
+                request.getRequestDispatcher(url).forward(request, response);
             }else{
                   request.setAttribute("error", Search + "Not Found ");
                 request.getRequestDispatcher("List.jsp").forward(request, response);

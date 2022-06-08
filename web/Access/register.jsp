@@ -259,7 +259,7 @@ html {
                 <lable>username:  <input type="text" id="login" class="fadeIn second" name="username" placeholder="Username"></lable>
                 <lable>password:  <input type="password" id="login" class="fadeIn second" name="password" placeholder="Password"></lable></br>    
                 <lable>confirm :  <input type="password" id="login" class="fadeIn second" name="confirm" placeholder="Password confirm"></lable></br>
-                <input type="submit" class="fadeIn fourth" style="background-color: pink; color:black; border-radius:50px ;" value="register">
+                <input type="submit" class="fadeIn fourth" name="action" style="background-color: pink; color:black; border-radius:50px ;" value="register">
               </form>
             </div>
             
