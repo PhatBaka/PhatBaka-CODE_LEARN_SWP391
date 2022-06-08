@@ -8,6 +8,7 @@ package controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nearl
  */
+@WebServlet(name = "MainController", urlPatterns = {"/MainController"})
 public class MainController extends HttpServlet {
 /*
    *Chú ý: 
@@ -63,10 +65,9 @@ public class MainController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String url = ERROR;
-            String action = request.getParameter("action"); // láy parameter name action từ intput type submit 
-            action = action.toLowerCase();// đồng bộ parameter action kiểu chữ thường
+            String action = request.getParameter("btAction"); // láy parameter name action từ intput type submit 
             //use-case 1
-            if("login".equals(action)){
+            if(action.equals("Log In")){
                 url = "LoginController";
             } 
             //use-case 2
