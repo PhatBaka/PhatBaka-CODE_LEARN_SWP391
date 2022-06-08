@@ -133,7 +133,7 @@ html {
     transform: scale(0.95);
   }
   
-  input[type=text] {
+  input[type=text], input[type=password] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -154,12 +154,12 @@ html {
     border-radius: 5px 5px 5px 5px;
   }
   
-  input[type=text]:focus {
+  input[type=text]:focus, input[type=password]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
   }
   
-  input[type=text]:placeholder {
+  input[type=text]:placeholder, input[type=password]:placeholder {
     color: #cccccc;
   }
         </style>
@@ -188,9 +188,10 @@ html {
             <div id="formContent" style="padding:2%;">
                 <h3>Change Password</h3>
               <form action="#">
-                <lable>Old password: <input type="text" id="oldpassword" class="fadeIn second" name="oldpassword" placeholder="old password" ></lable></br>   
-                <lable>New password: <input type="text" id="password" class="fadeIn third" name="login" placeholder="new password"></lable></br>    
-                <lable>Confirm password: <input type="text" id="password" class="fadeIn third" name="login" placeholder="confirm password"></lable></br>
+                <lable>Username: <input type="text" id="username" class="fadeIn second" name="" placeholder="Username" ></lable></br>  
+                <lable>Old password: <input type="password" id="oldpassword" class="fadeIn second" name="oldpassword" placeholder="old password" ></lable></br>   
+                <lable>New password: <input type="password" id="password" class="fadeIn third" name="login" placeholder="new password"></lable></br>    
+                <lable>Confirm password: <input type="password" id="password" class="fadeIn third" name="login" placeholder="confirm password"></lable></br>
                 <input type="submit" class="fadeIn fourth" value="Change" style="width: 20%;">
               </form>
           
