@@ -199,9 +199,11 @@ html {
                 <option value="Student">Student</option>
                 </select>
                 <input type="submit" class="fadeIn fourth" value="Log In" name="btAction" style="width: 40%;"></br>
-                <input type="submit" class="fadeIn fourth" href="#" value="Forgot password" style="width: 40%; margin-top: -5%;"></br>
-                <input type="submit" class="fadeIn fourth" href="#" value="Sign up" style="width: 40%; margin-top: -5%;">
-              </form>
+                </form>
+              <a type="button" class="fadeIn fourth" href="forgotpassword.jsp" style="width: 40%; margin-top: -5%;">Forgot passoword</a></br>
+              <a type="button" class="fadeIn fourth" href="register.jsp"  style="width: 40%; margin-top: -5%;">Register</a>
+            
+              
           
               
               

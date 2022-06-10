@@ -65,7 +65,7 @@ public class MainController extends HttpServlet {
             String url = ERROR;
             String action = request.getParameter("btAction"); // láy parameter name action từ intput type submit 
             //use-case 1
-            if(action.equals("Log In")){
+            if("Log In".equals(action)){
                 url = "LoginController";
             } 
             //use-case 2
@@ -73,7 +73,7 @@ public class MainController extends HttpServlet {
                 url = "LogoutController";
             }            
             //use-case 3
-            else if("register".equals(action)){
+            else if("Register".equals(action)){
                 url = "RegisterController";
             }
             //use-case 4_ Search tên course

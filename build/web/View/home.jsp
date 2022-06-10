@@ -63,7 +63,7 @@
                 <a class="navbar-brand" href="#">Categories</a>
               </div>
               <div class="container-fluid">
-                <a class="navbar-brand" href="#">My Profile</a>
+                <a class="navbar-brand" href="contactview.jsp">My Profile</a>
               </div>
               <div class="container-fluid">
                 <span class="navbar-brand" href="#" style="cursor:pointer;">Welcome User: ...</span>
