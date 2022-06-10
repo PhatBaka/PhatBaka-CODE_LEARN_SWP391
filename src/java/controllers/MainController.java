@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nearl
  */
-@WebServlet(name = "MainController", urlPatterns = {"/MainController"})
 public class MainController extends HttpServlet {
 /*
    *Chú ý: 
@@ -63,7 +62,6 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
             String url = ERROR;
             String action = request.getParameter("btAction"); // láy parameter name action từ intput type submit 
             //use-case 1
@@ -144,7 +142,6 @@ public class MainController extends HttpServlet {
             }
             request.getRequestDispatcher(url).forward(request, response);// chuyển trang đến url đương ứng, đồng thời gửi đến trang url đương ứng với request để trang url tương ứng xử lý
         }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -26,7 +26,6 @@ import javax.servlet.http.HttpSession;
  *
  * @author nearl
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/LoginController"})
 public class LoginController extends HttpServlet {
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,7 +42,6 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR_PAGE;
-        HttpSession session = request.getSession();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
