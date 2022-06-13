@@ -102,8 +102,8 @@
                         <%= ++count %>
                     .</td>
                     <td>
-                        <a href="View/coursedetail.jsp?name=<%= dto.getName()%>">
-                            <img src="<%= dto.getImage() %>" width="100px" height="100px">
+                        <a href="MainController?action=coursedetail&name=<%= dto.getName()%>">
+                            <img src="<%= dto.getImage() %>" width="150px" height="100px">
                         </a>
                     </td>
                     <td>

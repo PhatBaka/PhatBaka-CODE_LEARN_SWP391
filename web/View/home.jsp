@@ -64,16 +64,16 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="/View/home.jsp">Home</a>
+                    <a class="navbar-brand" href="View/home.jsp">Home</a>
                 </div>
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Catalog</a>
                 </div>
-
-
+              
+                
                 <%
                     if (session.getAttribute("role") != null) {
-                        role = session.getAttribute("role").toString();
+                        role = String.valueOf(session.getAttribute("role"));
                     }
                     if (role.equals("student")) {
                         stud = (StudentDTO) session.getAttribute("ACCOUNT");
@@ -93,9 +93,11 @@
                     }
 
                     if (stud == null && teach == null && admin == null) {
-                        out.print("<div class='container-fluid'>"
-                                + "<a class='navbar-brand' href='./Access/login.jsp' >Login</a>"
-                                + "</div>");
+                        %>
+                        <div class='container-fluid'>
+                            <a class='navbar-brand' href='Access/login.jsp' >Login</a>
+                        </div>
+                <%
                     } else {
                         out.print("<div class='container-fluid'>"
                                 + "<a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User: " + name + " </a>"
@@ -172,13 +174,13 @@
                         Prev
                     </tr>
                     <tr>
-                        <a href="/View/home.jsp?pagenum=1">1</a>
+                        <a href="View/home.jsp?pagenum=1">1</a>
                     </tr>
                     <tr>
-                        <a href="/View/home.jsp?pagenum=2">2</a>
+                        <a href="View/home.jsp?pagenum=2">2</a>
                     </tr>
                     <tr>
-                        <a href="/View/home.jsp?pagenum=3">3</a>
+                        <a href="View/home.jsp?pagenum=3">3</a>
                     </tr>
                     <tr>
                         Next

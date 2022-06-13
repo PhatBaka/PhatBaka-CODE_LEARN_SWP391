@@ -246,7 +246,7 @@ html {
         <div class="wrapper fadeInDown">
             <div id="formContent" style="padding:2%;">
                 <h3>REGISTER</h3>
-              <form action="#" name="myform" method="post" onsubmit="return validateform()">
+              <form action="MainController" method="POST" onsubmit="return validateform()">
                 <lable>Username:  <input type="text" id="login" class="fadeIn second" name="username" placeholder="Username"></lable>
                 <lable>Password:  <input type="password" id="login" class="fadeIn second" name="password" placeholder="Password"></lable></br>    
                 <lable>Confirm :  <input type="password" id="login" class="fadeIn second" name="confirm" placeholder="Password confirm"></lable></br>
@@ -254,7 +254,7 @@ html {
                 <select id="select" name="role">              
                 <option value="Teacher">Teacher</option>
                 <option value="Student">Student</option> 
-                <input type="submit" class="fadeIn fourth" style=" border-radius:50px ;" value="register">
+                <input type="submit" class="fadeIn fourth" style=" border-radius:50px ;" value="Sign up" name="action">
               </form>
             </div>
             

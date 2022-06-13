@@ -74,7 +74,7 @@ public class MainController extends HttpServlet {
                 url = "/LogoutController";
             }            
             //use-case 3
-            else if("register".equals(action)){
+            else if("sign up".equals(action)){
                 url = "/RegisterController";
             }
             //use-case 4_ Search tên course
@@ -82,7 +82,7 @@ public class MainController extends HttpServlet {
                 url = "/SearchController";
             }
             //use-case 5
-            else if("view course detail".equals(action)){
+            else if("coursedetail".equals(action)){
                 url = "/ViewCourseDetailController";
             }
             //user-case 6

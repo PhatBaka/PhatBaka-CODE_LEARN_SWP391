@@ -186,21 +186,28 @@ html {
             <div id="formContent" style="padding: 2%;">
                 <h1>LOGIN</h1>
               <!-- Tabs Titles -->
-          
+               <%
+                  if(request.getAttribute("ERROR")!=null){
+                      %>
+                      <h1 text-color="red"> <%= String.valueOf(request.getAttribute("ERROR")) %> </h1>
+              <%
+                  }
+              %>
           
               <!-- Login Form -->
-              <form>
+              <form action="MainController" method="POST">
                 <label>Username</label><input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
                 <label>Password</label><input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
                
                 <label id="option">Select:</label>
-                <select id="select">
-                <option value="Admin">Admin</option>
+                <select id="select" name="role">
+                    <option value="Admin" selected="selected">Admin</option>
                 <option value="Teacher">Teacher</option>
                 <option value="Student">Student</option>
-                <input type="submit" class="fadeIn fourth" value="Log In" style="width: 40%;"></br>
-                <input type="submit" class="fadeIn fourth" href="#" value="Forgot password" style="width: 40%; margin-top: -5%;"></br>
-                <input type="submit" class="fadeIn fourth" href="#" value="Sign up" style="width: 40%; margin-top: -5%;">
+                </select>
+                <input type="submit" class="fadeIn fourth" name="action" value="Login" style="width: 40%;"></br>
+                <a class="fadeIn fourth" href="forgotpassword.jsp" style="width: 40%; margin-top: -5%;">Forgot Password</br>
+                <a class="fadeIn fourth" href="register.jsp" style="width: 40%; margin-top: -5%;">Sign up</a>
               </form>
           
               
