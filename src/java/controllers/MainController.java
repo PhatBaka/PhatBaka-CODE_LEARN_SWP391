@@ -8,6 +8,7 @@ package controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,33 +62,31 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
             String url = ERROR;
-            String action = request.getParameter("action"); // láy parameter name action từ intput type submit 
-            action = action.toLowerCase();// đồng bộ parameter action kiểu chữ thường
+            String action = request.getParameter("btAction"); // láy parameter name action từ intput type submit 
             //use-case 1
-            if("login".equals(action)){
-                url = "/LoginController";
+            if("Log In".equals(action)){
+                url = "LoginController";
             } 
             //use-case 2
             else if("logout".equals(action)){
-                url = "/LogoutController";
+                url = "LogoutController";
             }            
             //use-case 3
-            else if("sign up".equals(action)){
-                url = "/RegisterController";
+            else if("Register".equals(action)){
+                url = "RegisterController";
             }
             //use-case 4_ Search tên course
-            else if("search".equals(action)){
-                url = "/SearchController";
+            else if("search by keyword".equals(action)){
+                url = "SearchController";
             }
             //use-case 5
-            else if("coursedetail".equals(action)){
-                url = "/ViewCourseDetailController";
+            else if("view course detail".equals(action)){
+                url = "ViewCourseDetailController";
             }
             //user-case 6
             else if("view profile".equals(action)){
-                url = "/ViewUserProfileController";
+                url = "ViewUserProfileController";
             }            
             //use-case 7
             else if("edit profile".equals(action)){
@@ -143,7 +142,6 @@ public class MainController extends HttpServlet {
             }
             request.getRequestDispatcher(url).forward(request, response);// chuyển trang đến url đương ứng, đồng thời gửi đến trang url đương ứng với request để trang url tương ứng xử lý
         }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

@@ -57,7 +57,7 @@
         <div class="container">
           <nav class="navbar navbar-expand-lg bg-light" id="background">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Home</a>
+              <a class="navbar-brand" href="home.jsp">Home</a>
             </div>
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Categories</a>

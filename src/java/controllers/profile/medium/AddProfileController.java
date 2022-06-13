@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 package controllers.profile.medium;
-
+import dao.ContactDAO;
+import dto.ContactDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,14 +31,23 @@ public class AddProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = "";
         String email = request.getParameter("email");
         String phone_number = request.getParameter("phone");
         String parent_name = request.getParameter("parentinf");
         String school = request.getParameter("school");
         try {
-            
-        } finally{
-            
+            ContactDAO dao = new ContactDAO();
+            ContactDTO dto = new ContactDTO(email, parent_name, phone_number, school);
+            boolean result = dao.addContact(dto);
+            if (result) {
+                url = "";
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

@@ -18,11 +18,9 @@ import java.util.List;
  * @author nearl
  */
 public class StudentDAO {
-    
-    private static final String LOGIN = "SELECT Id_Student, Username, Password, Exam_Stats FROM Student "
-            +                           "WHERE Username = ? AND Password = ? ";
-    
-    public static StudentDTO getAccount(String studentname, String password) throws ClassNotFoundException, SQLException{
+    public static StudentDTO getAccount(String studentname, String password) 
+            throws ClassNotFoundException, SQLException{
+        String LOGIN = "SELECT Id_Student, Username, Password, Exam_Stats FROM Student WHERE Username = ? AND Password = ? ";
         StudentDTO acc = null;
         Connection conn = DBUtils.getConnection();
         if(conn != null){
@@ -105,5 +103,37 @@ public class StudentDAO {
         }
         return false;
     }
+    
+   public boolean checkLogin(String username, String password) throws SQLException {
+       Connection conn = null;
+       PreparedStatement stm = null;
+       ResultSet rs = null;
+       String sql = "select Id_Student from dbo.Student where Username = ? and Password = ?";
+       try {
+           conn = DBUtils.getConnection();
+           if (conn != null) {
+               stm = conn.prepareStatement(sql);
+               stm.setString(1, username);
+               stm.setString(2, password);
+               rs = stm.executeQuery();
+               if (rs.next()) {
+                   return true;
+               }
+           }
+       } catch (Exception ex) {
+           ex.printStackTrace();
+       } finally {
+           if (conn != null){
+               conn.close();
+           }
+           if (stm != null) {
+               stm.close();
+           }
+           if (rs != null ){
+               rs.close();
+           }
+        }
+       return false;
+   }
 }
 
