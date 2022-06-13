@@ -21,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author nguye
  */
-@WebServlet(name = "ChangPasswordController", urlPatterns = {"/ChangPasswordController"})
-public class ChangPasswordController extends HttpServlet {
+@WebServlet(name = "ChangePasswordController", urlPatterns = {"/ChangePasswordController"})
+public class ChangePasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

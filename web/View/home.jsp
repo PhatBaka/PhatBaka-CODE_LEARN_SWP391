@@ -20,8 +20,10 @@
             body
             {
                 background-image: url(https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png);
-                background-size:  1920px 1080px;
-                background-position: 60% 10%; 
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
             }
 
             .container_2
@@ -69,8 +71,8 @@
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Catalog</a>
                 </div>
-              
-                
+
+
                 <%
                     if (session.getAttribute("role") != null) {
                         role = String.valueOf(session.getAttribute("role"));
@@ -93,15 +95,15 @@
                     }
 
                     if (stud == null && teach == null && admin == null) {
-                        %>
-                        <div class='container-fluid'>
-                            <a class='navbar-brand' href='Access/login.jsp' >Login</a>
-                        </div>
+                %>
+                <div class='container-fluid'>
+                    <a class='navbar-brand' href='Access/login.jsp' >Login</a>
+                </div>
                 <%
-                    } else {
-                        out.print("<div class='container-fluid'>"
-                                + "<a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User: " + name + " </a>"
-                                + "</div>");
+                } else {
+                %><div class='container-fluid'>
+                    <a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User:  <%= name%> </a>
+                </div><%
                     }
                 %>
             </nav>
@@ -124,11 +126,11 @@
 
         <%
             int pagenum = 1;
-            if(request.getParameter("pagenum")!=null){
+            if (request.getParameter("pagenum") != null) {
                 pagenum = Integer.valueOf(request.getParameter("pagenum"));
             }
             courselist = CourseDAO.display(pagenum);
-            
+
         %>
         <div class="container_2">
             <div class="row align-items-center" >
@@ -174,17 +176,17 @@
                         Prev
                     </tr>
                     <tr>
-                        <a href="View/home.jsp?pagenum=1">1</a>
-                    </tr>
-                    <tr>
-                        <a href="View/home.jsp?pagenum=2">2</a>
-                    </tr>
-                    <tr>
-                        <a href="View/home.jsp?pagenum=3">3</a>
-                    </tr>
-                    <tr>
-                        Next
-                    </tr>
+                <a href="View/home.jsp?pagenum=1">1</a>
+                </tr>
+                <tr>
+                <a href="View/home.jsp?pagenum=2">2</a>
+                </tr>
+                <tr>
+                <a href="View/home.jsp?pagenum=3">3</a>
+                </tr>
+                <tr>
+                    Next
+                </tr>
                 </thead>
             </table>
         </div>

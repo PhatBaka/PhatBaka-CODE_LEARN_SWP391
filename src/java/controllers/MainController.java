@@ -63,26 +63,27 @@ public class MainController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
             String url = ERROR;
-            String action = request.getParameter("btAction"); // láy parameter name action từ intput type submit 
+            String action = request.getParameter("action");
+            action = action.toLowerCase();// láy parameter name action từ intput type submit 
             //use-case 1
-            if("Log In".equals(action)){
-                url = "LoginController";
+            if("login".equals(action)){
+                url = "/LoginController";
             } 
             //use-case 2
             else if("logout".equals(action)){
-                url = "LogoutController";
+                url = "/LogoutController";
             }            
             //use-case 3
-            else if("Register".equals(action)){
-                url = "RegisterController";
+            else if("register".equals(action)){
+                url = "/RegisterController";
             }
             //use-case 4_ Search tên course
-            else if("search by keyword".equals(action)){
-                url = "SearchController";
+            else if("search".equals(action)){
+                url = "/SearchController";
             }
             //use-case 5
-            else if("view course detail".equals(action)){
-                url = "ViewCourseDetailController";
+            else if("coursedetail".equals(action)){
+                url = "/ViewCourseDetailController";
             }
             //user-case 6
             else if("view profile".equals(action)){

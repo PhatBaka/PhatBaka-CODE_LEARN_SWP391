@@ -4,6 +4,9 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dto.AdminDTO"%>
+<%@page import="dto.TeacherDTO"%>
+<%@page import="dto.StudentDTO"%>
 <%@page import="dto.CourseDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,20 +22,21 @@
             body
 {
     background-image: url(https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png);
-    background-size:  1920px 1080px;
-    background-position: 60% 100%; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
 
 #detail_frame
 {
-    position: absolute;
-    top: 30%;
-    left: 16%;
+    position: relative;
+    top: 10rem;
     background-color: white;
     padding: 1%;
-
+    z-index: 1;
 }
 
 #col_1
@@ -57,9 +61,9 @@
 
 #lesson
 {
-    position: absolute;
-    top: 70%;
-    left: 16%;
+    position: relative;
+    top : 20rem;
+    z-index: 2;
 }
 
 
@@ -75,7 +79,7 @@
         <div class="container">
           <nav class="navbar navbar-expand-lg bg-light" id="background">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Home</a>
+              <a class="navbar-brand" href="View/home.jsp">Home</a>
             </div>
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Categories</a>
@@ -83,9 +87,44 @@
             <div class="container-fluid">
               <a class="navbar-brand" href="#">My Profile</a>
             </div>
-            <div class="container-fluid">
-              <span class="navbar-brand" href="#" style="cursor:pointer;">Welcome Guest</span>
-            </div>
+            <%
+                StudentDTO stud = null;
+                TeacherDTO teach = null;
+                AdminDTO admin = null;
+                String role = null;
+                String name = null;
+                    if (session.getAttribute("role") != null) {
+                        role = String.valueOf(session.getAttribute("role"));
+                    }
+                    if (role.equals("student")) {
+                        stud = (StudentDTO) session.getAttribute("ACCOUNT");
+                        name = stud.getUsername();
+                    } else if (role.equals("teacher")) {
+                        teach = (TeacherDTO) session.getAttribute("ACCOUNT");
+                        name = teach.getUserName();
+                        out.print("<div class='container-fluid'>"
+                                + "<a class='navbar-brand' href='#'>Add Course</a>"
+                                + "</div>");
+                    } else if (role.equals("admin")) {
+                        admin = (AdminDTO) session.getAttribute("ACCOUNT");
+                        name = admin.getAdminName();
+                        out.print("<div class='container-fluid'>"
+                                + "<a class='navbar-brand' href='#'>Add Course</a>"
+                                + "</div>");
+                    }
+
+                    if (stud == null && teach == null && admin == null) {
+                        %>
+                        <div class='container-fluid'>
+                            <a class='navbar-brand' href='Access/login.jsp' >Login</a>
+                        </div>
+                <%
+                    } else {
+                        %><div class='container-fluid'>
+                            <a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User:  <%= name %> </a>
+                          </div><%
+                    }
+                %>
           </nav>
         </div>
         
@@ -98,33 +137,33 @@
         <div class="container px-4" id="detail_frame">
           <div class="row g-2">
               <div class="col-6" >
-                  <div class="p-3 border bg-light" ><img src="<%= dto.getImage() %>"></div>
+                  <div class="p-3 border bg-light" ><img src="<%= dto.getImage() %>" width="150px" height="150px">Course Name : <%= dto.getName() %></div>
               </div>
               <div class="col-6" >
-                <div class="p-3 border bg-light" ><p id="column_inf">Teacher Name :</p></div>
+                <div class="p-3 border bg-light" ><p id="column_inf">Teacher Name : </p></div>
               </div>
               <div class="col-6" >
                 <div class="p-3 border bg-light" >
                   <p id="column_inf">
-                    Date Open: 
+                    Date Open: <%= dto.getDate_Open() %>
                     
                   </p>
                   <p id="column_inf">
-                    Date Close: ...
+                    Date Close: <%= dto.getDate_Close() %>
                   </p>
                 </div>
               </div>
               <div class="col-6" >
                 <div class="p-3 border bg-light" >
                   <p id="column_inf">
-                    Rating....
+                    Rating : <%= dto.getRating() %>
                   </p>
                 </div>
               </div>
               <div class="col-6" >
                 <div class="p-3 border bg-light" >
                   <p id="column_inf">
-                    Description...
+                    Description : <%= dto.getDescription() %>
                   </p>
                 </div>
               </div>

@@ -102,7 +102,7 @@
                         <%= ++count %>
                     .</td>
                     <td>
-                        <a href="MainController?action=coursedetail&name=<%= dto.getName()%>">
+                        <a href="MainController?action=coursedetail&courseName=<%= dto.getName()%>">
                             <img src="<%= dto.getImage() %>" width="150px" height="100px">
                         </a>
                     </td>

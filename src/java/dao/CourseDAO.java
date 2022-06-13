@@ -64,7 +64,7 @@ public class CourseDAO implements Serializable{
             con = DBUtils.getConnection();
             if (con != null) {
                 CourseDTO course = new CourseDTO();
-                String sql = "SELECT * FROM Course WHERE Name = '?'";
+                String sql = "SELECT * FROM Course WHERE Name = ?";
 
                 statement = con.prepareStatement(sql);
                 statement.setString(1, _courseName);
