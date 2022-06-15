@@ -62,6 +62,16 @@
     left: 16%;
 }
 
+.form
+{
+    margin-top: 3rem;
+    text-align: center;
+}
+
+#form_Content
+{
+
+}
 
   
 
@@ -89,7 +99,9 @@
           </nav>
         </div>
 
+        
         <div class="container px-4" id="detail_frame">
+            
           <div class="row g-2">
               <div class="col-6" >
                 <div class="p-3 border bg-light" ><p id="column_inf">Teacher Name...</p></div>
@@ -119,7 +131,14 @@
                   </p>
                 </div>
               </div>
-            </div>   
+            </div>
+            <div class="form">
+            <div id="form_Content">
+                <form action="#" >
+                    <button type="button" class="btn btn-primary"style="width: 20%;">Enroll Here</button>
+                </form>
+            </div>
+            </div>
         </div>
 
         <div class="container px-4" id="lesson">
