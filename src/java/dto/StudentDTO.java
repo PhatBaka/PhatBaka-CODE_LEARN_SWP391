@@ -25,12 +25,12 @@ public class StudentDTO {
         this.Exam_stats = Exam_stats;
     }
 
-    public StudentDTO(String Username, String Password, String Exam_stats) {
+    public StudentDTO(String Username, String Password) {
         this.Username = Username;
         this.Password = Password;
-        this.Exam_stats = Exam_stats;
     }
 
+    
     
     
     /**

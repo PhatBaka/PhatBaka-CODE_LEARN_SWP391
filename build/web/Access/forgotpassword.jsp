@@ -101,7 +101,7 @@ html {
   
   /* FORM TYPOGRAPHY*/
   
-  input[type=button], input[type=submit], input[type=reset]  {
+  input[type=button], input[type=submit], input[type=reset], input[type=getcode]  {
     background-color: #56baed;
     border: none;
     color: white;
@@ -123,11 +123,11 @@ html {
     transition: all 0.3s ease-in-out;
   }
   
-  input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+  input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover, input[type=getcode]:hover  {
     background-color: #39ace7;
   }
   
-  input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
+  input[type=button]:active, input[type=submit]:active, input[type=reset]:active, input[type=getcode]:active  {
     -moz-transform: scale(0.95);
     -webkit-transform: scale(0.95);
     -o-transform: scale(0.95);
@@ -187,10 +187,11 @@ html {
             <div id="formContent" style="padding:2%;">
                 <h3>Forgot Password</h3>
               <form action="#">
-                
+                <lable>Username: <input type="text" id="username" class="fadeIn second" name="username" placeholder="username" ></lable></br>   
                 <lable>New password: <input type="text" id="password" class="fadeIn third" name="newpassword" placeholder="new password"></lable></br>    
                 <lable>Confirm password: <input type="text" id="password" class="fadeIn third" name="confirmpassword" placeholder="confirm password"></lable></br>
                 <lable>Confirm code: <input type="text" id="code" class="fadeIn third" name="code" placeholder="confirm code"></lable></br>
+                <input type="submit" class="fadeIn fourth" value="GetCode" style="width: 20%; text-align: center" >
                 <input type="submit" class="fadeIn fourth" value="Change" style="width: 20%;">
               </form>
           

@@ -46,7 +46,7 @@ public class SearchController extends HttpServlet {
             }
             
         } catch (Exception e) {
-            System.out.println("Error: "+e.toString());
+            e.printStackTrace();
         }
 
     }

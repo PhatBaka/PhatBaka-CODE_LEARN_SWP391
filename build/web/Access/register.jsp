@@ -41,6 +41,11 @@
               return false;
             }
 
+            else if(password.length < 8)
+            {
+              alert("Password must at least 8 characters in lenght");
+              return false;
+            }
 
             else if(confirm != password)
             {
@@ -49,7 +54,9 @@
             }
           }
         </script>
-        
+    </head>
+
+    <body>
         <style>
             body
 {
@@ -213,15 +220,17 @@ html {
     border-radius:40px; 
     width:130px;
     position: relative;
-    top:10%;
-    left: 70%;
+    top: 5%;
+    left: 80%;
   }
 
+  
 
+
+  
+  
+  
         </style>
-    </head>
-
-    <body>
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
               <div class="container-fluid">
@@ -246,14 +255,10 @@ html {
         <div class="wrapper fadeInDown">
             <div id="formContent" style="padding:2%;">
                 <h3>REGISTER</h3>
-              <form action="#" name="myform" method="post" onsubmit="return validateform()">
+              <form action="./register" name="myform" method="POST" onsubmit="return validateform()">
                 <lable>username:  <input type="text" id="login" class="fadeIn second" name="username" placeholder="Username"></lable>
-                <lable>password:  <input type="text" id="login" class="fadeIn second" name="password" placeholder="Password"></lable></br>    
-                <lable>confirm :  <input type="text" id="login" class="fadeIn second" name="confirm" placeholder="Password confirm"></lable></br>
-                <label id="option">Select:</label>
-                <select id="select" name="role">              
-                <option value="Teacher">Teacher</option>
-                <option value="Student">Student</option> 
+                <lable>password:  <input type="password" id="login" class="fadeIn second" name="password" placeholder="Password"></lable></br>    
+                <lable>confirm :  <input type="password" id="login" class="fadeIn second" name="confirm" placeholder="Password confirm"></lable></br>
                 <input type="submit" class="fadeIn fourth" style="background-color: pink; color:black; border-radius:50px ;" value="register">
               </form>
             </div>
