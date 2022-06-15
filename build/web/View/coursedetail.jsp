@@ -18,19 +18,21 @@
             body
 {
     background-image: url(https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png);
-    background-size:  1920px 1080px;
-    background-position: 60% 100%; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
 
 #detail_frame
 {
-    position: absolute;
-    top: 30%;
-    left: 16%;
+    position: relative;
+    top: 10rem; 
     background-color: white;
     padding: 1%;
+    flex-direction: row;
 
 }
 
@@ -56,9 +58,10 @@
 
 #lesson
 {
-    position: absolute;
-    top: 70%;
-    left: 16%;
+    position: relative;
+
+    padding: 1%;
+    flex-direction: row;
 }
 
 
@@ -115,10 +118,9 @@
                   </p>
                 </div>
               </div>
-            </div>   
-        </div>
-
-        <div class="container px-4" id="lesson">
+            </div>
+            
+           <div class="container px-4" id="lesson">
           <div class="row g-2">
               <div class="col-6" >
                 <div class="p-3 border bg-light" >
@@ -149,7 +151,10 @@
                 </div>
               </div>
             </div>   
+        </div> 
         </div>
+
+
 
 
           <!-- JavaScript Bundle with Popper -->
