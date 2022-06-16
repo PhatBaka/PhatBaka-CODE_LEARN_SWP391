@@ -97,12 +97,12 @@
                     if (stud == null && teach == null && admin == null) {
                 %>
                 <div class='container-fluid'>
-                    <a class='navbar-brand' href='Access/login.jsp' >Login</a>
+                    <a class='navbar-brand' href="Access/login.jsp" >Login</a>
                 </div>
                 <%
                 } else {
                 %><div class='container-fluid'>
-                    <a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User:  <%= name%> </a>
+                    <a class='navbar-brand' href='editProfile' style='cursor:pointer;'>Welcome User:  <%= name%> </a>
                 </div><%
                     }
                 %>

@@ -198,30 +198,21 @@ html {
               <form action="MainController" method="POST">
                 <label>Username</label><input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
                 <label>Password</label><input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-               
                 <label id="option">Select:</label>
                 <select id="select" name="role">
-                    <option value="Admin" selected="selected">Admin</option>
+                <option value="Admin" selected="selected">Admin</option>
                 <option value="Teacher">Teacher</option>
                 <option value="Student">Student</option>
                 </select>
                 <input type="submit" class="fadeIn fourth" name="action" value="Login" style="width: 40%;"></br>
-                <a class="fadeIn fourth" href="forgotpassword.jsp" style="width: 40%; margin-top: -5%;">Forgot Password</br>
-                <a class="fadeIn fourth" href="register.jsp" style="width: 40%; margin-top: -5%;">Sign up</a>
-              </form>
-          
-              
-              
-                
-              
-          
+                </form>       
+                <a type="button" class="fadeIn fourth" href="forgotpassword.jsp" style="width: 40%; margin-top: -5%;">Forgot Password</a>
+                <br>
+                <a type="button" class="fadeIn fourth" href="register.jsp" style="width: 40%; margin-top: -5%;" >Register</a>
             </div>
           </div>
           <footer>
-
           </footer>
-
-
           <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

@@ -12,26 +12,15 @@ package dto;
 public class RegisterErrorDTO {
     private String usernameIsExisted;
 
-    public RegisterErrorDTO(String usernameIsExisted) {
-        this.usernameIsExisted = usernameIsExisted;
-    }
-
     public RegisterErrorDTO() {
+    
     }
 
-    /**
-     * @return the usernameIsExisted
-     */
     public String getUsernameIsExisted() {
         return usernameIsExisted;
     }
 
-    /**
-     * @param usernameIsExisted the usernameIsExisted to set
-     */
     public void setUsernameIsExisted(String usernameIsExisted) {
         this.usernameIsExisted = usernameIsExisted;
     }
-    
-    
 }
