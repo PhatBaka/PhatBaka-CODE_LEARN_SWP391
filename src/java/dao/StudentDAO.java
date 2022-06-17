@@ -37,7 +37,7 @@ public class StudentDAO {
         }
         return acc;
     }
-    public boolean createStudentAccount(StudentDTO dto) throws ClassNotFoundException, SQLException {
+    public static boolean createStudentAccount(StudentDTO dto) throws ClassNotFoundException, SQLException {
         if (dto == null){
             return false;
         }
