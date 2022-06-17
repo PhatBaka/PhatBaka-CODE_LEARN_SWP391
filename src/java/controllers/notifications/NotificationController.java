@@ -40,7 +40,7 @@ public class NotificationController extends HttpServlet {
         String message =  request.getParameter("message");
         String user = request.getParameter("user");
         String pass = request.getParameter("pass");
-        SendMail.send(to,subject, message, user, pass);
+//        SendMail.send(to,subject, message, user, pass);
         out.println("Mail send successfully");
    
     }
