@@ -79,8 +79,12 @@
                 <p class="list-group-item list-group-item-action">Parent information...</p>
                 <p class="list-group-item list-group-item-action">Phone number....</p>
                 <p class="list-group-item list-group-item-action">School....</p>
-              </div>
+                <form action="">
+                    <input type="submit" value="Edit" class="btn btn-primary btn-lg"  />
+                </form>
+            </div>
         </div>
+        
 
     <!-- ID Student, Email, Parent information, Phone Num, School-->
 
