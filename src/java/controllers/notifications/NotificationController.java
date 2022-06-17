@@ -5,8 +5,11 @@
  */
 package controllers.notifications;
 
+import dao.NotificationDAO;
+import dto.StudentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,18 +33,16 @@ public class NotificationController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet NotificationController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet NotificationController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+       PrintWriter out = response.getWriter();
+        
+        String to = request.getParameter("to");
+        String subject = request.getParameter("subject");
+        String message =  request.getParameter("message");
+        String user = request.getParameter("user");
+        String pass = request.getParameter("pass");
+        SendMail.send(to,subject, message, user, pass);
+        out.println("Mail send successfully");
+   
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

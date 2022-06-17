@@ -13,14 +13,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author This PC
  */
 public class NotificationDAO {
-     public StudentDTO GetAllNotificationForStudent() throws SQLException {
-
+     public List<StudentDTO> GetAllNotificationForStudent() throws SQLException {
+         List<StudentDTO> li = new ArrayList<>();
          Connection conn = null;
          PreparedStatement ps = null;
          ResultSet rs = null;
@@ -31,10 +33,10 @@ public class NotificationDAO {
 
              rs = ps.executeQuery();
              while (rs.next()) {
-                 return new StudentDTO(rs.getInt("Id_Student"),
+                 li.add(new StudentDTO(rs.getInt("Id_Student"),
                          rs.getString("Username"),
                          rs.getString("Password"),
-                         rs.getString("Notification"));
+                         rs.getString("Notification")));
 
              }
          } catch (Exception e) {
@@ -44,7 +46,7 @@ public class NotificationDAO {
              ps.close();
              rs.close();
          }
-         return null;
+         return li;
 
     }
 }
