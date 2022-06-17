@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author nearl
  */
 public class CourseDTO {
+
     private int Id_Course;
     private int Id_Subject;
     private int Id_Teacher;
@@ -21,10 +22,11 @@ public class CourseDTO {
     private Date Date_Close;
     private int Rating;
     private String image;
-    
-    public CourseDTO(){}
 
-    public CourseDTO(int Id_Course, int Id_Subject,int Id_Teacher, String Name, String Description, Date Date_Open, Date Date_Close, int Rating, String image) {
+    public CourseDTO() {
+    }
+
+    public CourseDTO(int Id_Course, int Id_Subject, int Id_Teacher, String Name, String Description, Date Date_Open, Date Date_Close, int Rating, String image) {
         this.Id_Course = Id_Course;
         this.Id_Subject = Id_Subject;
         this.Id_Teacher = Id_Teacher;
@@ -34,6 +36,13 @@ public class CourseDTO {
         this.Date_Close = Date_Close;
         this.Rating = Rating;
         this.image = image;
+    }
+
+    public CourseDTO(String image,String Name, String Description, int Rating) {
+        this.Name = Name;
+        this.Description = Description;
+        this.Rating = Rating;
+        this.image=image;
     }
 
     public String getImage() {
@@ -107,5 +116,5 @@ public class CourseDTO {
     public int getRating() {
         return Rating;
     }
-    
+
 }

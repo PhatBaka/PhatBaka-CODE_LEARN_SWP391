@@ -87,31 +87,31 @@ public class MainController extends HttpServlet {
             }
             //user-case 6
             else if("view profile".equals(action)){
-                url = "ViewUserProfileController";
+                url = "/ViewUserProfileController";
             }            
             //use-case 7
             else if("edit profile".equals(action)){
-                url = "EditProfileController";
+                url = "/EditProfileController";
             }
             //use-case 8
             else if("delete profile".equals(action)){
-                url = "DeleteProfileController";
+                url = "/DeleteProfileController";
             }
             //use-case 9
             else if("edit teacher profile".equals(action)){
-                url = "EditTeacheProfileController";
+                url = "/EditTeacheProfileController";
             }            
             //use-case 10
             else if("add teacher profile".equals(action)){
-                url = "AddProfileController";
+                url = "/AddProfileController";
             }
             //use-case 11
             else if("notification".equals(action)){
-                url = "NotificationController";
+                url = "/NotificationController";
             }
             //use-case 12
             else if("view exam".equals(action)){
-                url = "ViewExamController";
+                url = "/ViewExamController";
             }
             //use-case 13
             else if("add exam".equals(action)){
@@ -127,19 +127,19 @@ public class MainController extends HttpServlet {
             }
             //use-case 16
             else if("view mark".equals(action)){
-                url = "ViewMarkController";
+                url = "/ViewMarkController";
             }
             //use-case 17
             else if("add course".equals(action)){
-                url = "AddCourseController";
+                url = "/AddCourseController";
             }
             //use-case 18
             else if("edit course".equals(action)){
-                url = "EditCourseController";
+                url = "/EditCourseController";
             }
             //use-case 19
             else if("delete course".equals(action)){
-                url = "DeleteCourseController";
+                url = "/DeleteCourseController";
             }
             request.getRequestDispatcher(url).forward(request, response);// chuyển trang đến url đương ứng, đồng thời gửi đến trang url đương ứng với request để trang url tương ứng xử lý
         }

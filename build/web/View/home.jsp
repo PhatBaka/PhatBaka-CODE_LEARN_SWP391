@@ -66,7 +66,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="View/home.jsp">Home</a>
+                    <a class="navbar-brand" href="">Home</a>
                 </div>
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">Catalog</a>
@@ -112,7 +112,7 @@
         <div class="search_container">
             <div class="input-group mb-3" style="width: 40%; margin-left: 10rem;">
                 <form action="MainController">
-                    <input type="text" class="form-control" placeholder="Search anything..." aria-label="Recipient's username" aria-describedby="basic-addon2" name="search">
+                    <input type="text" class="form-control" placeholder="Search anything..." aria-label="Recipient's username" aria-describedby="basic-addon2" name="searchValue">
                     <div class="input-group-append">
                         <input class="btn btn-outline-secondary" type="submit" name="action" value="Search" style="background-color: rgb(201, 250, 8); margin-left: 1rem;">
                     </div>
@@ -125,11 +125,7 @@
 
 
         <%
-            int pagenum = 1;
-            if (request.getParameter("pagenum") != null) {
-                pagenum = Integer.valueOf(request.getParameter("pagenum"));
-            }
-            courselist = CourseDAO.display(pagenum);
+            courselist = CourseDAO.display();
 
         %>
         <div class="container_2">
@@ -137,12 +133,18 @@
                 <div class="col" id="frame">
                     <div class="card" style="width: 18rem; margin: auto;">
                         <div class="card-body">
+                            <img src="<%= courselist.get(0).getImage()%>" width="150vh" height="150vh">
                             <h5 class="card-title">
-                                Course name
+                                <%= courselist.get(0).getName()%>
                             </h5>
-                            <p class="card-text">Description</p>
+                            <p class="card-text">
+                                <%= courselist.get(0).getDescription()%>
+                            </p>
+                            <p class="card-text">
+                                Rating : <%= courselist.get(0).getRating()%>
+                            </p>
                             <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
-                                <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to Course</a>
+                                <a href="MainController?action=coursedetail&courseName=<%= courselist.get(0).getName() %>" class="card-link" style="text-decoration:none; color:black; ">Go to Course</a>
                             </button>
                         </div>
                     </div>
@@ -150,10 +152,18 @@
                 <div class="col" id="frame">
                     <div class="card" style="width: 18rem; margin: auto;">
                         <div class="card-body">
-                            <h5 class="card-title">Course name</h5>
-                            <p class="card-text">Description</p>
+                            <img src="<%= courselist.get(1).getImage()%>" width="150vh" height="150vh">
+                            <h5 class="card-title">
+                                <%= courselist.get(1).getName()%>
+                            </h5>
+                            <p class="card-text">
+                                <%= courselist.get(1).getDescription()%>
+                            </p>
+                            <p class="card-text">
+                                Rating : <%= courselist.get(1).getRating()%>
+                            </p>
                             <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
-                                <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to Course</a>
+                                <a href="MainController?action=coursedetail&courseName=<%= courselist.get(1).getName() %>" class="card-link" style="text-decoration:none; color:black; ">Go to Course</a>
                             </button>
                         </div>
                     </div>
@@ -161,34 +171,24 @@
                 <div class="col" id="frame">
                     <div class="card" style="width: 18rem; margin: auto;">
                         <div class="card-body">
-                            <h5 class="card-title">Course name</h5>
-                            <p class="card-text">Description</p>
+                            <img src="<%= courselist.get(2).getImage()%>" width="150vh" height="150vh">
+                            <h5 class="card-title">
+                                <%= courselist.get(2).getName()%>
+                            </h5>
+                            <p class="card-text">
+                                <%= courselist.get(2).getDescription()%>
+                            </p>
+                            <p class="card-text">
+                                Rating : <%= courselist.get(2).getRating()%>
+                            </p>
                             <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
-                                <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to Course</a>
+                                <a href="MainController?action=coursedetail&courseName=<%= courselist.get(2).getName() %>" class="card-link" style="text-decoration:none; color:black; ">Go to Course</a>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <table border="0.5">
-                <thead>
-                    <tr>
-                        Prev
-                    </tr>
-                    <tr>
-                <a href="View/home.jsp?pagenum=1">1</a>
-                </tr>
-                <tr>
-                <a href="View/home.jsp?pagenum=2">2</a>
-                </tr>
-                <tr>
-                <a href="View/home.jsp?pagenum=3">3</a>
-                </tr>
-                <tr>
-                    Next
-                </tr>
-                </thead>
-            </table>
+            
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
