@@ -118,7 +118,7 @@
                       <a href="#">Edit Profile</a>
                       <a href="#">Logout</a>
                     </div>
-</div>
+                </div>
                
                 </span>
               </div>
