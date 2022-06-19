@@ -4,6 +4,7 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dto.StudentDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
     <head lang="en">
@@ -54,6 +55,16 @@
     </head>
 
     <body>
+        <%!
+        StudentDTO stud = null;
+        int studentId;
+        String studentName = "";
+        %>
+                    <%
+                        stud = (StudentDTO) session.getAttribute("ACCOUNT");
+                        studentId = stud.getId_Student(); 
+                        studentName = stud.getUsername();
+                    %>
         <div class="container">
           <nav class="navbar navbar-expand-lg bg-light" id="background">
             <div class="container-fluid">
@@ -66,19 +77,21 @@
               <a class="navbar-brand" href="#">My Profile</a>
             </div>
             <div class="container-fluid">
-              <span class="navbar-brand" href="#" style="cursor:pointer;">Welcome User: ...</span>
+              <span class="navbar-brand" href="#" style="cursor:pointer;">Welcome User:<%= studentName %></span>
             </div>
           </nav>
         </div>
-
         <div class="container_2">
             <h1 class="View_font">CONTACT</h1>
             <div class="list-group" id="list_group" style="text-align:center;">
-                <p class="list-group-item list-group-item-action">Id Student...</p>
-                <p class="list-group-item list-group-item-action">Email... </p>
-                <p class="list-group-item list-group-item-action">Parent information...</p>
-                <p class="list-group-item list-group-item-action">Phone number....</p>
-                <p class="list-group-item list-group-item-action">School....</p>
+                <p class="list-group-item list-group-item-action">Id Student: <%= studentId %></p>
+                <p class="list-group-item list-group-item-action">Email: </p>
+                <p class="list-group-item list-group-item-action">Parent information: </p>
+                <p class="list-group-item list-group-item-action">Phone number: </p>
+                <p class="list-group-item list-group-item-action">School: </p>
+                <a href="../Edit/contact.jsp">Edit contact</a>
+                <br>
+                <a href="../Access/changepassword.jsp">Change password</a>
               </div>
         </div>
 

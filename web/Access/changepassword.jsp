@@ -3,7 +3,7 @@
     Created on : May 31, 2022, 8:42:08 PM
     Author     : HoangMinh
 --%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
     <head lang="en">
@@ -187,15 +187,26 @@ html {
             
             <div id="formContent" style="padding:2%;">
                 <h3>Change Password</h3>
+<<<<<<< Updated upstream
               <form action="#">
                 <lable>Old password: <input type="text" id="oldpassword" class="fadeIn second" name="oldpassword" placeholder="old password" ></lable></br>   
                 <lable>New password: <input type="text" id="password" class="fadeIn third" name="login" placeholder="new password"></lable></br>    
                 <lable>Confirm password: <input type="text" id="password" class="fadeIn third" name="login" placeholder="confirm password"></lable></br>
                 <input type="submit" class="fadeIn fourth" value="Change" style="width: 20%;">
+=======
+              <form action="MainController" method="POST">
+                <lable>Old password: <input type="password" id="oldpassword" class="fadeIn second" name="oldpassword" placeholder="old password" ></lable></br>   
+                <lable>New password: <input type="password" id="password" class="fadeIn third" name="newpassword" placeholder="new password"></lable></br>    
+                <lable>Confirm password: <input type="password" id="password" class="fadeIn third" placeholder="confirm password"></lable></br>
+                <input type="submit" class="fadeIn fourth" name="action" value="Change password" style="width: 40%;">
+>>>>>>> Stashed changes
               </form>
-          
-          
-          
+              <c:set var="errors" value="${requestScope.PASSWORDERROR}" />
+                <c:if test="${not empty errors.passwordNotMatch}">
+                <font color="red">
+                    ${errors.passwordNotMatch}
+                </font>
+                </c:if>
             </div>
           </div>
           <!-- JavaScript Bundle with Popper -->

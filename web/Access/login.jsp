@@ -191,7 +191,12 @@ html {
               <!-- Login Form -->
               <form action="MainController" method="POST">
                 <label>Username</label><input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
+<<<<<<< Updated upstream
                 <label>Password</label><input type="text" id="password" class="fadeIn third" name="password" placeholder="password">
+=======
+                <label>Password</label><input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+                <br>
+>>>>>>> Stashed changes
                 <label id="option">Select:</label>
                 <select id="select" name="role">
                 <option value="Admin">Admin</option>

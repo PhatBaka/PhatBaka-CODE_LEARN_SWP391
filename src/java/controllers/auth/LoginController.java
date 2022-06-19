@@ -41,6 +41,7 @@ public class LoginController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+<<<<<<< Updated upstream
         String url = ERROR_PAGE;
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -55,6 +56,33 @@ public class LoginController extends HttpServlet {
         } else if (role.equals("Admin")) {
             AdminDAO dao = new AdminDAO();
             valid = dao.checkLogin(username, password);
+=======
+        String url = ERROR;
+        try  {  
+            HttpSession session = request.getSession();
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String role = request.getParameter("role").toLowerCase();
+            Object acc = null;
+            
+            if(STUDENT_ROLE.equals(role)){
+                acc = (StudentDTO)StudentDAO.getAccount(username, password);
+                url = HOME; //chuyen den sau khi login
+            }else if(TEACHER_ROLE.equals(role)){
+                acc = (TeacherDTO)TeacherDAO.getAccount(username, password);
+                url = HOME; //chuyen den sau khi login
+            }else if(ADMIN_ROLE.equals(role)){
+                acc = (AdminDTO)AdminDAO.getAccount(username, password);
+                url = HOME; //chuyen den sau khi login
+            }
+            if(acc == null){
+                request.setAttribute("ERROR", "User name or Password is invalid!!");
+                url = ERROR;
+            }else{
+                session.setAttribute("ACCOUNT", acc);
+                session.setAttribute("ROLE", role);
+            }
+>>>>>>> Stashed changes
         }
         if (valid) {
             url = HOME_PAGE;

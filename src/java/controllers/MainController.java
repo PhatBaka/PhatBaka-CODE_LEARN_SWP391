@@ -47,6 +47,7 @@ public class MainController extends HttpServlet {
     17  Add course   _general(Admin/teacher)
     18  Edit course  _general(Admin/teacher)
     19  Delete Course   _general(Admin/teacher)
+    20  Change password
     
     Các cấp độ phân quyền: 
          - level 1: user(low)
@@ -139,6 +140,10 @@ public class MainController extends HttpServlet {
             //use-case 19
             else if("delete course".equals(action)){
                 url = "DeleteCourseController";
+            }
+            //use-case 20
+            else if("change password".equals(action)){
+                url = "/ChangePasswordController";
             }
             request.getRequestDispatcher(url).forward(request, response);// chuyển trang đến url đương ứng, đồng thời gửi đến trang url đương ứng với request để trang url tương ứng xử lý
         }

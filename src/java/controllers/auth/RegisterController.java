@@ -7,7 +7,7 @@ package controllers.auth;
 
 import dao.StudentDAO;
 import dao.TeacherDAO;
-import dto.RegisterErrorDTO;
+import dto.ErrorDTO;
 import dto.StudentDTO;
 import dto.TeacherDTO;
 import java.io.IOException;
@@ -43,9 +43,14 @@ public class RegisterController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
+<<<<<<< Updated upstream
         RegisterErrorDTO errors = new RegisterErrorDTO();
         boolean foundError = false;
         String url = "";
+=======
+        ErrorDTO createErrors = new ErrorDTO();
+        String url = "Access/register.jsp";
+>>>>>>> Stashed changes
         try {
                 if (role.equals("student")) {
                     StudentDAO dao = new StudentDAO();
@@ -66,8 +71,8 @@ public class RegisterController extends HttpServlet {
             String msg = ex.getMessage();
             log("CreateAccountServlet _ SQL " + ex.getMessage());
             if (msg.contains("duplicate")) {
-                errors.setUsernameIsExisted(username + " is existed.");
-                request.setAttribute("CREATEERRORS", errors);
+                createErrors.setUsernameIsExisted(username + " is existed.");
+                request.setAttribute("CREATEERRORS", createErrors);
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

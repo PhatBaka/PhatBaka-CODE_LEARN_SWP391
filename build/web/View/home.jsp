@@ -56,6 +56,7 @@
     <body>
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
+<<<<<<< Updated upstream
               <div class="container-fluid">
                 <a class="navbar-brand" href="#">Home</a>
               </div>
@@ -68,6 +69,49 @@
               <div class="container-fluid">
                 <span class="navbar-brand" href="#" style="cursor:pointer;">Welcome User: ...</span>
               </div>
+=======
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="View/home.jsp">Home</a>
+                </div>
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Catalog</a>
+                </div>
+
+
+                <%
+                    if (session.getAttribute("ROLE") != null) {
+                        role = String.valueOf(session.getAttribute("ROLE"));
+                    }
+                    if (role.equals("student")) {
+                        stud = (StudentDTO) session.getAttribute("ACCOUNT");
+                        name = stud.getUsername();
+                    } else if (role.equals("teacher")) {
+                        teach = (TeacherDTO) session.getAttribute("ACCOUNT");
+                        name = teach.getUserName();
+                        out.print("<div class='container-fluid'>"
+                                + "<a class='navbar-brand' href='#'>Add Course</a>"
+                                + "</div>");
+                    } else if (role.equals("admin")) {
+                        admin = (AdminDTO) session.getAttribute("ACCOUNT");
+                        name = admin.getAdminName();
+                        out.print("<div class='container-fluid'>"
+                                + "<a class='navbar-brand' href='#'>Add Course</a>"
+                                + "</div>");
+                    }
+
+                    if (stud == null && teach == null && admin == null) {
+                %>
+                <div class='container-fluid'>
+                    <a class='navbar-brand' href="Access/login.jsp" >Login</a>
+                </div>
+                <%
+                } else {
+                %><div class='container-fluid'>
+                    <a class='navbar-brand' href='../View/contactview.jsp' style='cursor:pointer;'>Welcome User:  <%= name %> </a>
+                </div><%
+                    }
+                %>
+>>>>>>> Stashed changes
             </nav>
         </div>
 

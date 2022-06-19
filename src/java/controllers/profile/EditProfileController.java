@@ -30,6 +30,11 @@ public class EditProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String id_teacher = request.getParameter("");
+        String username = request.getParameter("name");
+        String phonename = request.getParameter("iphonenumber");
+        String information = request.getParameter("information");
+        String avatar = request.getParameter("avatar");
         
     }
 

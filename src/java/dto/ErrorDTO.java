@@ -9,8 +9,9 @@ package dto;
  *
  * @author nguye
  */
-public class RegisterErrorDTO {
+public class ErrorDTO {
     private String usernameIsExisted;
+<<<<<<< Updated upstream:src/java/dto/RegisterErrorDTO.java
 
     public RegisterErrorDTO(String usernameIsExisted) {
         this.usernameIsExisted = usernameIsExisted;
@@ -22,6 +23,23 @@ public class RegisterErrorDTO {
     /**
      * @return the usernameIsExisted
      */
+=======
+    private String passwordNotMatch;
+    
+    public ErrorDTO() {
+    }
+
+    public String getPasswordNotMatch() {
+        return passwordNotMatch;
+    }
+
+    public void setPasswordNotMatch(String passwordNotMatch) {
+        this.passwordNotMatch = passwordNotMatch;
+    }
+    
+    
+    
+>>>>>>> Stashed changes:src/java/dto/ErrorDTO.java
     public String getUsernameIsExisted() {
         return usernameIsExisted;
     }
