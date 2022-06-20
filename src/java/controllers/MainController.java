@@ -65,8 +65,11 @@ public class MainController extends HttpServlet {
             String url = ERROR;
             String action = request.getParameter("action");
             action = action.toLowerCase();// láy parameter name action từ intput type submit 
+            if(action.isEmpty()){
+                url="View/home.jsp";
+            }
             //use-case 1
-            if("login".equals(action)){
+            else if("login".equals(action)){
                 url = "/LoginController";
             } 
             //use-case 2
@@ -140,6 +143,14 @@ public class MainController extends HttpServlet {
             //use-case 19
             else if("delete course".equals(action)){
                 url = "/DeleteCourseController";
+            }
+            //home
+            else if("home".equals(action)){
+                url = "View/home.jsp";
+            }
+            //view my courses
+            else if("my courses".equals(action)){
+                url = "View/mycourses.jsp";
             }
             request.getRequestDispatcher(url).forward(request, response);// chuyển trang đến url đương ứng, đồng thời gửi đến trang url đương ứng với request để trang url tương ứng xử lý
         }

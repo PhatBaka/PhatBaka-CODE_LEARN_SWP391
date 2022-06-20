@@ -6,12 +6,14 @@
             <file>file:/D:/SWP/SWP391_Project/src/java/controllers/MainController.java</file>
             <file>file:/D:/SWP/SWP391_Project/src/java/controllers/notifications/NotificationController.java</file>
             <file>file:/D:/SWP/SWP391_Project/web/View/home.jsp</file>
+            <file>file:/D:/SWP/SWP391_Project/web/View/viewprofile.jsp</file>
             <file>file:/D:/SWP/SWP391_Project/src/java/dto/TeacherDTO.java</file>
-            <file>file:/D:/SWP/SWP391_Project/src/java/controllers/notifications/SendMail.java</file>
             <file>file:/D:/SWP/SWP391_Project/src/java/dao/CourseDAO.java</file>
+            <file>file:/D:/SWP/SWP391_Project/src/java/controllers/exam/AddExamController.java</file>
             <file>file:/D:/SWP/SWP391_Project/src/java/controllers/profile/ViewUserProfileController.java</file>
             <file>file:/D:/SWP/SWP391_Project/src/java/dao/TeacherDAO.java</file>
             <file>file:/D:/SWP/SWP391_Project/web/View/search.jsp</file>
+            <file>file:/D:/SWP/SWP391_Project/src/java/dao/ExamDAO.java</file>
         </group>
     </open-files>
 </project-private>

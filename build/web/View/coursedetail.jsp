@@ -74,60 +74,73 @@
 </head>
 
 <body>
+    <%
+        StudentDTO stud = null;
+        TeacherDTO teac = null;
+        AdminDTO admin = null;
+        String username = "";
+        String role = "";
+
+        if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
+            role = (String) session.getAttribute("role");
+            if (role.equals("admin")) {
+                admin = (AdminDTO) session.getAttribute("ACCOUNT");
+                username = admin.getAdminName();
+            } else if (role.equals("teacher")) {
+                teac = (TeacherDTO) session.getAttribute("ACCOUNT");
+                username = teac.getName();
+            } else if (role.equals("student")) {
+                stud = (StudentDTO) session.getAttribute("ACCOUNT");
+                username = stud.getUsername();
+            }
+        }
+    %>
 
     <%! CourseDTO course;%>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg bg-light" id="background">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="View/home.jsp">Home</a>
-            </div>
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Categories</a>
-            </div>
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">My Profile</a>
-            </div>
-            <%
-                StudentDTO stud = null;
-                TeacherDTO teach = null;
-                AdminDTO admin = null;
-                String role = null;
-                String name = null;
-                if (session.getAttribute("role") != null) {
-                    role = String.valueOf(session.getAttribute("role"));
-                    if (role.equals("student")) {
-                        stud = (StudentDTO) session.getAttribute("ACCOUNT");
-                        name = stud.getUsername();
-                    } else if (role.equals("teacher")) {
-                        teach = (TeacherDTO) session.getAttribute("ACCOUNT");
-                        name = teach.getUserName();
-                        out.print("<div class='container-fluid'>"
-                                + "<a class='navbar-brand' href='#'>Add Course</a>"
-                                + "</div>");
-                    } else if (role.equals("admin")) {
-                        admin = (AdminDTO) session.getAttribute("ACCOUNT");
-                        name = admin.getAdminName();
-                        out.print("<div class='container-fluid'>"
-                                + "<a class='navbar-brand' href='#'>Add Course</a>"
-                                + "</div>");
+    <form action="MainController">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-light" id="background">
+                <div class="container-fluid">
+                    <input class="navbar-brand" type="submit" name="action" value="Home">
+                </div>
+                <%
+                    if (role.equals("student") || role.equals("teacher")) {
+                %>
+                <div class="container-fluid">
+                    <input class="navbar-brand" type="submit" name="action" value="My Courses" >
+                </div>
+                <%
                     }
+                %>
 
-                }
+                <%
+                    if (session.getAttribute("ACCOUNT") != null) {
+                %>
+                <div class="container-fluid">
+                    <span class="navbar-brand" style="cursor:pointer;">
+                        <div class="dropdown">
+                            <button class="dropbtn">Welcome, <%= username%></button>
+                            <div class="dropdown-content">
+                                <input type="submit" name="action" value="View Profile">
+                                <input type="submit" name="action" value="Edit Profile">
+                                <input type="submit" name="action" value="Logout">
+                            </div>
+                        </div>
 
-                if (stud == null && teach == null && admin == null) {
-            %>
-            <div class='container-fluid'>
-                <a class='navbar-brand' href='Access/login.jsp' >Login</a>
-            </div>
-            <%
-            } else {
-            %><div class='container-fluid'>
-                <a class='navbar-brand' href='/editProfile' style='cursor:pointer;'>Welcome User:  <%= name%> </a>
-            </div><%
-                }
-            %>
-        </nav>
-    </div>
+                    </span>
+                </div>
+                <%
+                } else {
+                %>
+                <div class="container-fluid">
+                    <a href="Access/login.jsp">Login/Signup</a>
+                </div>
+                <%
+                    }
+                %>
+            </nav>
+        </div>
+    </form>
 
     <%! CourseDTO dto = null;%>
 
@@ -203,7 +216,19 @@
             </div>
         </div>   
     </div>
-
+    <%
+        if (role.equals("teacher")) {
+    %>
+    <div class="container px-4" id="detail_frame">
+        <div class="row g-2">
+            <form action="MainController">
+                <input type="submit" value="Create Exam" name="action" />
+            </form>
+        </div>
+    </div>
+    <%
+        }
+    %>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
