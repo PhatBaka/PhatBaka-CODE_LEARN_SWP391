@@ -6,9 +6,7 @@
 package dao;
 
 import DBtills.DBUtils;
-import dto.MarkReportDTO;
-import dto.StudentDTO;
-import dto.TeacherDTO;
+import dto.ExamDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,32 +19,68 @@ import java.util.List;
  * @author This PC
  */
 public class NotificationDAO {
-     public List<StudentDTO> GetAllNotificationForStudent() throws SQLException {
-         List<StudentDTO> li = new ArrayList<>();
-         Connection conn = null;
-         PreparedStatement ps = null;
-         ResultSet rs = null;
-         try {
-             conn = DBUtils.getConnection();
-             String sql = "SELECT notification from dbo.Student";
-             ps = conn.prepareStatement(sql);
 
-             rs = ps.executeQuery();
-             while (rs.next()) {
-                 li.add(new StudentDTO(rs.getInt("Id_Student"),
-                         rs.getString("Username"),
-                         rs.getString("Password"),
-                         rs.getString("Notification")));
+    public static void InsertForNotification(ExamDTO exam) throws SQLException {
 
-             }
-         } catch (Exception e) {
-             e.printStackTrace();
-         } finally {
-             conn.close();
-             ps.close();
-             rs.close();
-         }
-         return li;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            String sql = "INSERT INTO ExamDTO (Id_Exam,Name,Question,date,Hour,Subject,Exam_Date)\n"
+                    + "VALUES (?,?,?,?,?,?,?);";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, exam.getId_Exam());
+            ps.setString(2, exam.getName());
+            ps.setString(3, exam.getQuestion());
+            ps.setDate(4, exam.getDate());
+            ps.setDate(5, exam.getHour());
+            ps.setString(6, exam.getSubject());
+            ps.setDate(7, exam.getExam_Date());
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            conn.close();
+            ps.close();
+            rs.close();
+        }
+
+    }
+
+    public static List<ExamDTO> ListNotification(int id) throws SQLException {
+        List<ExamDTO> list = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = DBUtils.getConnection();
+            String sql = "Select * from ExamDTO where Id_Student = ? ";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new ExamDTO(
+                        rs.getInt("Id_Exam"),
+                        rs.getString("Name"),
+                        rs.getString("Question"),
+                        rs.getDate("date"),
+                        rs.getDate("Hour"),
+                        rs.getString("Subject"),
+                        rs.getDate("Exam_Date")
+                ));
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            conn.close();
+            ps.close();
+            rs.close();
+        }
+        return list;
 
     }
 }
