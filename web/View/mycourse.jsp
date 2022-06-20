@@ -1,6 +1,6 @@
 <%-- 
-    Document   : home
-    Created on : May 30, 2022, 10:45:59 AM
+    Document   : mycourse
+    Created on : Jun 20, 2022, 11:41:33 AM
     Author     : HoangMinh
 --%>
 
@@ -11,7 +11,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="https://png.pngtree.com/png-vector/20190830/ourlarge/pngtree-code-lab-logo-design-inspiration-png-image_1716386.jpg">
-        <link href="/css/home.css" type="text/css" rel="stylesheet">
+        <link href="/css/mycourse.css" type="text/css" rel="stylesheet">
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <!-- JavaScript Bundle with Popper -->
@@ -42,6 +42,16 @@
     padding: 1%;
     display: flex;
 
+}
+
+#column_pos{
+    position: absolute;
+    left: 10%;
+    margin-top: 3%;
+    border: 2px solid black;
+    width: 80%;
+    height: 60%;
+    background-color: white;
 }
 
 .search_container
@@ -147,55 +157,15 @@
               </div>
             </nav>
         </div>
-   
 
-        <div class="search_container">
-            <div class="input-group mb-3" style="width: 40%; margin-left: 10rem;">
-                <input type="text" class="form-control" placeholder="Search anything..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="button" style="background-color: rgb(201, 250, 8); margin-left: 1rem;">Button</button>
-                </div>
-              </div>
-        </div>
-
-        <div class="container_2">
-            <div class="row align-items-center" >
-                <div class="col" id="frame">
-                    <div class="card" style="width: 18rem; margin: auto;">
-                        <div class="card-body">
-                          <h5 class="card-title">Course name</h5>
-                          <p class="card-text">Description</p>
-                          <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
-                            <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to lesson</a>
-                        </button>
-                        </div>
-                      </div>
-                </div>
-                <div class="col" id="frame">
-                    <div class="card" style="width: 18rem; margin: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Course name</h5>
-                            <p class="card-text">Description</p>
-                            <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
-                                <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to lesson</a>
-                            </button>
-                          </div>
-                    </div>
-                </div>
-                <div class="col" id="frame">
-                    <div class="card" style="width: 18rem; margin: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Course name</h5>
-                            <p class="card-text">Description</p>
-                              <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
-                                  <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to lesson</a>
-                              </button>
-                          </div>
-                    </div>
-                </div>
+        <h2 style="text-align: center; color: white; margin-top: 3%;">My course</h2>
+        <div class="row" id="column_pos">
+            <div class="col">
+            
             </div>
-                
         </div>
+
+        
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
