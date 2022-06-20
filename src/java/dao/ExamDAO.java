@@ -27,6 +27,7 @@ public class ExamDAO {
     
     private  static final String SEARCH_EXAM = "SELECT Id_Exam, Name, Question, Date FROM Exam WHERE Name like ?";
     
+    private  static final String LIST_EXAM = "SELECT * FROM dbo.Exam ORDER BY NEWID()";
     public static int addNewExam(ExamDTO exam) throws ClassNotFoundException, SQLException{
         int result = 0;
         Connection conn = DBUtils.getConnection();
@@ -73,6 +74,21 @@ public class ExamDAO {
         Connection conn = DBUtils.getConnection();
         if(conn != null){
             PreparedStatement ptm = conn.prepareStatement(SEARCH_EXAM);
+            ResultSet rs = ptm.executeQuery();
+            while(rs != null && rs.next()){
+                
+                list.add(new ExamDTO());
+            }
+            conn.close();
+           
+        }
+        return list;
+    }
+       public static  List<ExamDTO> ListQuizExam(int IdExam) throws SQLException, ClassNotFoundException{
+        List<ExamDTO> list = null;
+        Connection conn = DBUtils.getConnection();
+        if(conn != null){
+            PreparedStatement ptm = conn.prepareStatement(LIST_EXAM);
             ResultSet rs = ptm.executeQuery();
             while(rs != null && rs.next()){
                 

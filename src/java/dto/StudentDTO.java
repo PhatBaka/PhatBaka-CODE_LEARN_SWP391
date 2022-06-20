@@ -5,6 +5,9 @@
  */
 package dto;
 
+import dao.NotificationDAO;
+import java.util.List;
+
 /**
  *
  * @author nearl
@@ -75,19 +78,17 @@ public class StudentDTO {
         this.Password = Password;
     }   
 
-    /**
-     * @return the Exam_stats
-     */
+  
     public String getExam_stats() {
         return Exam_stats;
     }
 
-    /**
-     * @param Exam_stats the Exam_stats to set
-     */
+  
     public void setExam_stats(String Exam_stats) {
         this.Exam_stats = Exam_stats;
     }
+     
+  
     
     
 }
