@@ -19,6 +19,15 @@ public class ContactDTO {
     
     public ContactDTO(){}
 
+    public ContactDTO(String Email_User, String Parents_inf, String Phone_Num, String School) {
+        this.Email_User = Email_User;
+        this.Parents_inf = Parents_inf;
+        this.Phone_Num = Phone_Num;
+        this.School = School;
+    }
+
+    
+    
     public ContactDTO(int Id_Contact, int Id_Student, String Email_User, String Parents_inf, String Phone_Num, String School) {
         this.Id_Contact = Id_Contact;
         this.Id_Student = Id_Student;

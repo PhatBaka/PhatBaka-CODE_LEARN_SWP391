@@ -22,7 +22,7 @@ import java.util.List;
  */
 public class CourseDAO implements Serializable{
 
-    public List<CourseDTO> display(int page) throws ClassNotFoundException, SQLException {
+    public static List<CourseDTO> display() throws ClassNotFoundException, SQLException {
         Connection con = null;
         PreparedStatement statement = null;
         ResultSet rs = null;
@@ -32,14 +32,14 @@ public class CourseDAO implements Serializable{
             con = DBUtils.getConnection();
             if (con != null) {
 
-                String sql = "SELECT * FROM Course "
-                        + "ORDER BY Id_Course "
-                        + "OFFSET (?-1)*5 ROWS "
-                        + "FETCH NEXT 5 ROWS ONLY";
+                String sql = "SELECT TOP 3 Image, Name, Description, Rating FROM Course "
+                        + "ORDER BY NEWID()";
 
                 statement = con.prepareStatement(sql);
-                statement.setInt(1, page);
                 rs = statement.executeQuery();
+                while(rs.next()){
+                    list.add(new CourseDTO(rs.getString("Image"),rs.getString("Name"),rs.getString("Description"),rs.getInt("Rating")));
+                }
             }
         } finally {
             if (rs != null) {
@@ -64,14 +64,14 @@ public class CourseDAO implements Serializable{
             con = DBUtils.getConnection();
             if (con != null) {
                 CourseDTO course = new CourseDTO();
-                String sql = "SELECT * FROM Course WHERE Name = '?'";
+                String sql = "SELECT * FROM Course WHERE Name = ?";
 
                 statement = con.prepareStatement(sql);
                 statement.setString(1, _courseName);
                 rs = statement.executeQuery();
 
                 if (rs.next()) {
-                    course = new CourseDTO(rs.getInt("Id_Course"), rs.getInt("Id_Subject"), rs.getNString("Name"), rs.getNString("Description"), rs.getDate("Date_Open"), rs.getDate("Date_Close"), rs.getInt("Rating"));
+                    course = new CourseDTO(rs.getInt("Id_Course"), rs.getInt("Id_Subject"), rs.getInt("Id_Teacher") , rs.getNString("Name"), rs.getNString("Description"), rs.getDate("Date_Open"), rs.getDate("Date_Close"), rs.getInt("Rating"), rs.getString("Image"));
                 }
 
                 return course;
@@ -189,7 +189,7 @@ public class CourseDAO implements Serializable{
         return false;
     }
     
-    public List<CourseDTO> search(String courseName) throws SQLException, ClassNotFoundException{
+    public List<CourseDTO> search(String courseName,int pagenum) throws SQLException, ClassNotFoundException{
         String _courseName = courseName;
         Connection con = null;
         PreparedStatement statement = null;
@@ -198,16 +198,20 @@ public class CourseDAO implements Serializable{
         
         try{
             String sql = "SELECT * FROM Course "
-                    + "WHERE Name LIKE '?' ";
+                    + "WHERE Name LIKE ? "
+                    + "ORDER BY Id_Course "
+                    + "OFFSET (?-1)*3 ROWS "
+                    + "FETCH NEXT 3 ROWS ONLY";
             con = DBUtils.getConnection();
             if (con != null) {
                 statement = con.prepareStatement(sql);
-                statement.setString(1, _courseName);
+                statement.setString(1, "%" + _courseName + "%");
+                statement.setInt(2, pagenum);
                 
                 rs = statement.executeQuery();
 
                 while(rs.next()){
-                    list.add(new CourseDTO(rs.getInt("Id_Course"), rs.getInt("Id_Subject"), rs.getNString("Name"), rs.getNString("Description"), rs.getDate("Date_Open"), rs.getDate("Date_Close"), rs.getInt("Rating")));
+                    list.add(new CourseDTO(rs.getInt("Id_Course"), rs.getInt("Id_Subject"), rs.getInt("Id_Teacher") , rs.getNString("Name"), rs.getNString("Description"), rs.getDate("Date_Open"), rs.getDate("Date_Close"), rs.getInt("Rating"), rs.getString("Image")));
                 }
 
             }

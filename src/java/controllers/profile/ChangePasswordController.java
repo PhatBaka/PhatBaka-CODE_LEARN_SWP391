@@ -3,25 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.course;
+package controllers.profile;
 
-import dao.CourseDAO;
-import dto.CourseDTO;
+import dao.StudentDAO;
+import dto.StudentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author nearl
+ * @author nguye
  */
-public class SearchController extends HttpServlet {
-
-    private final String SEARCH_RESULT = "View/search.jsp";
+@WebServlet(name = "ChangePasswordController", urlPatterns = {"/ChangePasswordController"})
+public class ChangePasswordController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,29 +36,8 @@ public class SearchController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String Search = null;
-        int pagenum = 1;
-        String url = SEARCH_RESULT;
-        try {
-            CourseDAO ud = new CourseDAO();
-            Search = request.getParameter("searchValue");
-            if (request.getParameter("pagenum") != null) {
-                pagenum = Integer.valueOf(request.getParameter("pagenum"));
-            }
-            List<CourseDTO> list = ud.search(Search, pagenum);
-            if (list != null) {
-                request.setAttribute("SEARCH_RESULT", list);
-                request.getRequestDispatcher(url).forward(request, response);
-            } else {
-                request.setAttribute("error", Search + "Not Found ");
-                request.getRequestDispatcher(url).forward(request, response);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            
         }
-
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
