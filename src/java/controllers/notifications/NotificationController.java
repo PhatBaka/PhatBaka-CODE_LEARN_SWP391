@@ -43,20 +43,19 @@ public class NotificationController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
        
          try (PrintWriter out = response.getWriter()) {
-            String id_exa = request.getParameter("Id_stu");
+            String id_exa = request.getParameter("Id_exa");
             int id_exam = Integer.parseInt(id_exa);
             String name = request.getParameter("name");// lay ten param exam
             String question = request.getParameter("question"); // lay ten param question
-            String id_stu= request.getParameter("Id_exa");
-            int id_Stu = Integer.parseInt(id_stu);
+            
             ExamDTO exam = new ExamDTO(id_exam,name, question, Date.valueOf(LocalDate.now()),null,null,null);
             NotificationDAO.InsertForNotification(exam);
-            List<ExamDTO> List = NotificationDAO.ListNotification(id_Stu);
+            List<ExamDTO> List = NotificationDAO.ListNotification(id_exam);
             if(List!= null){
                 request.setAttribute("ListP", List);
                 request.getRequestDispatcher("").forward(request, response);
             }else{
-                
+                request.setAttribute("Error", "Not Have Yet !!");
                 request.getRequestDispatcher("").forward(request, response);
             }
             

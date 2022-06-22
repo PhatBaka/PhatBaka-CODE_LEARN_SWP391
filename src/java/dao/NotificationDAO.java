@@ -27,8 +27,7 @@ public class NotificationDAO {
         ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
-            String sql = "INSERT INTO ExamDTO (Id_Exam,Name,Question,date,Hour,Subject,Exam_Date)\n"
-                    + "VALUES (?,?,?,?,?,?,?);";
+            String sql = "INSERT INTO ExamDTO (Id_Exam,Name,Question,date,Hour,Subject,Exam_Date) VALUES (?,?,?,?,?,?,?);";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, exam.getId_Exam());
             ps.setString(2, exam.getName());
@@ -57,7 +56,7 @@ public class NotificationDAO {
         ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
-            String sql = "Select * from ExamDTO where Id_Student = ? ";
+            String sql = "Select * from ExamDTO where Id_Exam = ? ";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             rs = ps.executeQuery();

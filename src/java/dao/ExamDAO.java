@@ -112,10 +112,15 @@ public class ExamDAO {
 
                rs = ps.executeQuery();
                while (rs.next()) {
-                   return new ExamDTO(rs.getInt("Id_Exam"),
-                           rs.getString("Name"),
-                           rs.getString("Question"),
-                           rs.getDate("date"));
+                   return new ExamDTO(
+                        rs.getInt("Id_Exam"),
+                        rs.getString("Name"),
+                        rs.getString("Question"),
+                        rs.getDate("date"),
+                        rs.getDate("Hour"),
+                        rs.getString("Subject"),
+                        rs.getDate("Exam_Date")
+                );
 
                }
            } catch (Exception e) {
@@ -167,10 +172,15 @@ public class ExamDAO {
             ps.setInt(1, (Index - 1) * 6);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new ExamDTO(rs.getInt(sql), 
-                        rs.getString(sql),
-                        rs.getString(sql),
-                        rs.getDate(sql)));
+                list.add(new ExamDTO(
+                        rs.getInt("Id_Exam"),
+                        rs.getString("Name"),
+                        rs.getString("Question"),
+                        rs.getDate("date"),
+                        rs.getDate("Hour"),
+                        rs.getString("Subject"),
+                        rs.getDate("Exam_Date")
+                ));
 
             }
         } catch (Exception e) {
