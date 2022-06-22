@@ -206,7 +206,7 @@
                 </div>
             </div>
         </div> 
-            <input type="submit" class="fadeIn fourth" value="Enter course"  style="width: 20%; position: relative; margin-left: 55rem;">
+            <input type="submit" class="fadeIn fourth" value="Enroll course"  style="width: 20%; position: relative; margin-left: 55rem;">
     </div>
 
     <div class="container px-4" id="lesson">
