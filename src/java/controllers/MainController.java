@@ -144,6 +144,10 @@ public class MainController extends HttpServlet {
             else if("delete course".equals(action)){
                 url = "/DeleteCourseController";
             }
+            //use-case 20
+            else if("enroll course".equals(action)){
+                url = "/EnrollCourseController";
+            }
             //home
             else if("home".equals(action)){
                 url = "View/home.jsp";
