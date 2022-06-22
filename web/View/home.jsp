@@ -247,10 +247,10 @@
                     for(count=0;count<3;count++){ 
                 %>
                 <form action="MainController" >
-                <div class="col" id="frame">
+                <div class="col-sm" id="frame">
                     <div class="card" style="width: 18rem; margin: auto;">
                         <div class="card-body">
-                            <img src="<%= courselist.get(count).getImage() %>"/>
+                            <img src="<%= courselist.get(count).getImage() %>" style="width:40%;    "/>
                             <input type="hidden" name="courseName" value="<%= courselist.get(count).getName()%>" />
                             <h5 class="card-title"><%= courselist.get(count).getName() %></h5>
                             <p class="card-text"><%= courselist.get(count).getDescription() %></p>
