@@ -152,8 +152,6 @@
         String username = "";
         String role = "";
         List<CourseDTO> courselist = CourseDAO.display();
-        
-
         if (session.getAttribute("role") != null&&session.getAttribute("ACCOUNT")!=null) {
             role = (String) session.getAttribute("role");
             if (role.equals("admin")) {
@@ -224,7 +222,7 @@
                         }else{
                     %>
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="../Access/login.jsp">Login/Signup</a>
+                        <a class="navbar-brand" href="Access/login.jsp">Login/Signup</a>
                     </div>
                     <%
                         }
