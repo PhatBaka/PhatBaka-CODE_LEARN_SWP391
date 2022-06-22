@@ -4,6 +4,9 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dto.CourseDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="dao.CourseDAO"%>
 <%@page import="dto.StudentDTO"%>
 <%@page import="dto.AdminDTO"%>
 <%@page import="dto.TeacherDTO"%>
@@ -148,6 +151,8 @@
         AdminDTO admin = null;
         String username = "";
         String role = "";
+        List<CourseDTO> courselist = CourseDAO.display();
+        
 
         if (session.getAttribute("role") != null&&session.getAttribute("ACCOUNT")!=null) {
             role = (String) session.getAttribute("role");
@@ -219,7 +224,7 @@
                         }else{
                     %>
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="Access/login.jsp">Login/Signup</a>
+                        <a class="navbar-brand" href="../Access/login.jsp">Login/Signup</a>
                     </div>
                     <%
                         }
@@ -236,42 +241,30 @@
                 </div>
             </div>
         </div>
-
+                
         <div class="container_2">
             <div class="row align-items-center" >
+                <% 
+                    int count = 0;
+                    for(count=0;count<3;count++){ 
+                %>
+                <form action="MainController" >
                 <div class="col" id="frame">
                     <div class="card" style="width: 18rem; margin: auto;">
                         <div class="card-body">
-                            <h5 class="card-title">Course name</h5>
-                            <p class="card-text">Description</p>
-                            <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
-                                <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to lesson</a>
-                            </button>
+                            <img src="<%= courselist.get(count).getImage() %>"/>
+                            <input type="hidden" name="courseName" value="<%= courselist.get(count).getName()%>" />
+                            <h5 class="card-title"><%= courselist.get(count).getName() %></h5>
+                            <p class="card-text"><%= courselist.get(count).getDescription() %></p>
+                            <input style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;" class="btn btn-outline-secondary"
+                                   type="submit" value="Course Details" name="action" />
                         </div>
                     </div>
                 </div>
-                <div class="col" id="frame">
-                    <div class="card" style="width: 18rem; margin: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Course name</h5>
-                            <p class="card-text">Description</p>
-                            <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
-                                <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to lesson</a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col" id="frame">
-                    <div class="card" style="width: 18rem; margin: auto;">
-                        <div class="card-body">
-                            <h5 class="card-title">Course name</h5>
-                            <p class="card-text">Description</p>
-                            <button class="btn btn-outline-secondary" type="button" style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;">
-                                <a href="#" class="card-link" style="text-decoration:none; color:black; ">Go to lesson</a>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                </form>
+               <%
+                   }
+               %>
             </div>
 
         </div>
