@@ -172,13 +172,18 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg bg-light" id="background">
                     <div class="container-fluid">
-                        <input class="navbar-brand" type="submit" name="action" value="Home" style="border-radius: 25px;">
+                        <a href="/View/home.jsp">home
+<!--                            <input class="navbar-brand" type="submit" name="action" value="Home" style="border-radius: 25px;">-->
+
+                        </a>
                     </div>
                     <%
                         if(role.equals("student")||role.equals("teacher")){
-                            %>
+                    %>
                     <div class="container-fluid" >
-                        <input class="navbar-brand" type="submit" name="action" value="My Courses" style="border-radius: 25px;">
+                        <a href="mycourse.jsp">
+                            <input class="navbar-brand" type="submit" name="action" value="My Courses" style="border-radius: 25px;">
+                        </a>
                     </div>
                     <%
                         }
@@ -264,7 +269,7 @@
                    }
                %>
             </div>
-
+            
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
