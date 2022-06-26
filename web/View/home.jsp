@@ -4,6 +4,7 @@
     Author     : HoangMinh
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="dto.CourseDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.CourseDAO"%>
@@ -172,17 +173,18 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg bg-light" id="background">
                     <div class="container-fluid">
-                        <a href="/View/home.jsp">home
-<!--                            <input class="navbar-brand" type="submit" name="action" value="Home" style="border-radius: 25px;">-->
-
+                        <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                        <a href="${home}" style="text-decoration: none; color: black;">
+                            Home
                         </a>
                     </div>
                     <%
                         if(role.equals("student")||role.equals("teacher")){
                     %>
                     <div class="container-fluid" >
-                        <a href="mycourse.jsp">
-                            <input class="navbar-brand" type="submit" name="action" value="My Courses" style="border-radius: 25px;">
+                       <c:url var="mycourse" value="${requestScope.contextPath}/View/mycourse.jsp"></c:url>
+                        <a href="${mycourse}">
+                            My course
                         </a>
                     </div>
                     <%
@@ -226,8 +228,11 @@
                     <%
                         }else{
                     %>
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="Access/login.jsp">Login/Signup</a>
+                    <div class="container-fluid" >
+                       <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
+                        <a href="${login}">
+                            Login
+                        </a>
                     </div>
                     <%
                         }
