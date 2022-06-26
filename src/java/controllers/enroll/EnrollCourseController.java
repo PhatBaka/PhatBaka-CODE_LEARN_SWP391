@@ -3,15 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.course;
+package controllers.enroll;
 
+import dao.CourseDAO;
+import dao.EnrollDAO;
+import dto.CourseDTO;
+import dto.StudentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -19,6 +26,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "EnrollCourseController", urlPatterns = {"/EnrollCourseController"})
 public class EnrollCourseController extends HttpServlet {
+
+    private final String COURSE_DETAIL_PAGE = "coursedetail.jsp";
+    private final String ERROR_PAGE = "errors.html";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,10 +42,31 @@ public class EnrollCourseController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        String url = ERROR_PAGE;
+        request.setAttribute("ENROLL_STATUS", "false");
+
         try {
-            
-        } finally{
-            
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                CourseDAO coursedao = new CourseDAO();
+                StudentDTO student = (StudentDTO) session.getAttribute("ACCOUNT");
+                String courseName = request.getParameter("courseName");
+                CourseDTO coursedto = coursedao.detail(courseName);
+                boolean result = EnrollDAO.enroll(student.getId_Student(), coursedto.getId_Course());
+                if(result){
+                    url = COURSE_DETAIL_PAGE;
+                    session.setAttribute("ENROLL_STATUS", "true");
+                }
+            }
+        }catch(ClassNotFoundException ex){
+            ex.printStackTrace();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        finally {
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 
