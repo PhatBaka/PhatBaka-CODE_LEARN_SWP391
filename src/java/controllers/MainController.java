@@ -66,7 +66,7 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             action = action.toLowerCase();// láy parameter name action từ intput type submit 
             if(action.isEmpty()){
-                url="../View/home.jsp";
+                url="/View/home.jsp";
             }
             //use-case 1
             else if("login".equals(action)){
