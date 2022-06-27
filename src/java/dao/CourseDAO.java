@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author nearl
  */
-public class CourseDAO implements Serializable{
+public class CourseDAO implements Serializable {
 
     public static List<CourseDTO> display() throws ClassNotFoundException, SQLException {
         Connection con = null;
@@ -37,8 +37,8 @@ public class CourseDAO implements Serializable{
 
                 statement = con.prepareStatement(sql);
                 rs = statement.executeQuery();
-                while(rs.next()){
-                    list.add(new CourseDTO(rs.getString("Image"),rs.getString("Name"),rs.getString("Description"),rs.getInt("Rating")));
+                while (rs.next()) {
+                    list.add(new CourseDTO(rs.getString("Image"), rs.getString("Name"), rs.getString("Description"), rs.getInt("Rating")));
                 }
             }
         } finally {
@@ -53,6 +53,41 @@ public class CourseDAO implements Serializable{
             }
         }
         return list;
+    }
+
+    public String getTeacherName(String courseName) throws ClassNotFoundException, SQLException {
+        String name = "";
+        Connection con = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBUtils.getConnection();
+            if (con != null) {
+
+                String sql = "SELECT Teacher.Name "
+                        + "FROM Teacher JOIN Course "
+                        + "ON Teacher.Id_Teacher = Course.Id_Teacher "
+                        + "AND Course.Name = ?";
+
+                statement = con.prepareStatement(sql);
+                rs = statement.executeQuery();
+                if(rs.next()) {
+                    name = rs.getString("Name");
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return name;
     }
 
     public CourseDTO detail(String _courseName) throws ClassNotFoundException, SQLException {
@@ -71,7 +106,7 @@ public class CourseDAO implements Serializable{
                 rs = statement.executeQuery();
 
                 if (rs.next()) {
-                    course = new CourseDTO(rs.getInt("Id_Course"), rs.getInt("Id_Subject"), rs.getInt("Id_Teacher") , rs.getNString("Name"), rs.getNString("Description"), rs.getDate("Date_Open"), rs.getDate("Date_Close"), rs.getInt("Rating"), rs.getString("Image"));
+                    course = new CourseDTO(rs.getInt("Id_Course"), rs.getInt("Id_Subject"), rs.getInt("Id_Teacher"), rs.getNString("Name"), rs.getNString("Description"), rs.getDate("Date_Open"), rs.getDate("Date_Close"), rs.getInt("Rating"), rs.getString("Image"));
                 }
 
                 return course;
@@ -138,7 +173,7 @@ public class CourseDAO implements Serializable{
             if (con != null) {
                 statement = con.prepareStatement(sql);
                 statement.setString(1, _courseName);
-                if(statement.executeUpdate()>0){
+                if (statement.executeUpdate() > 0) {
                     return true;
                 }
             }
@@ -188,15 +223,15 @@ public class CourseDAO implements Serializable{
         }
         return false;
     }
-    
-    public List<CourseDTO> search(String courseName,int pagenum) throws SQLException, ClassNotFoundException{
+
+    public List<CourseDTO> search(String courseName, int pagenum) throws SQLException, ClassNotFoundException {
         String _courseName = courseName;
         Connection con = null;
         PreparedStatement statement = null;
         ResultSet rs = null;
         ArrayList<CourseDTO> list = new ArrayList<>();
-        
-        try{
+
+        try {
             String sql = "SELECT * FROM Course "
                     + "WHERE Name LIKE ? "
                     + "ORDER BY Id_Course "
@@ -207,16 +242,16 @@ public class CourseDAO implements Serializable{
                 statement = con.prepareStatement(sql);
                 statement.setString(1, "%" + _courseName + "%");
                 statement.setInt(2, pagenum);
-                
+
                 rs = statement.executeQuery();
 
-                while(rs.next()){
-                    list.add(new CourseDTO(rs.getInt("Id_Course"), rs.getInt("Id_Subject"), rs.getInt("Id_Teacher") , rs.getNString("Name"), rs.getNString("Description"), rs.getDate("Date_Open"), rs.getDate("Date_Close"), rs.getInt("Rating"), rs.getString("Image")));
+                while (rs.next()) {
+                    list.add(new CourseDTO(rs.getInt("Id_Course"), rs.getInt("Id_Subject"), rs.getInt("Id_Teacher"), rs.getNString("Name"), rs.getNString("Description"), rs.getDate("Date_Open"), rs.getDate("Date_Close"), rs.getInt("Rating"), rs.getString("Image")));
                 }
 
             }
-        }finally {
-            if(rs != null){
+        } finally {
+            if (rs != null) {
                 rs.close();
             }
             if (statement != null) {
