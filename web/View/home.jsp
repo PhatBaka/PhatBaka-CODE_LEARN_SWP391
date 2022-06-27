@@ -4,7 +4,7 @@
     Author     : HoangMinh
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="dto.CourseDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.CourseDAO"%>
@@ -182,10 +182,7 @@
                         if(role.equals("student")||role.equals("teacher")){
                     %>
                     <div class="container-fluid" >
-                       <c:url var="mycourse" value="${requestScope.contextPath}/View/mycourse.jsp"></c:url>
-                        <a href="${mycourse}">
-                            My course
-                        </a>
+                        <input type="submit" value="My Courses" name="action" />
                     </div>
                     <%
                         }
