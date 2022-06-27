@@ -10,6 +10,7 @@
 <%@page import="dto.StudentDTO"%>
 <%@page import="dto.CourseDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -126,7 +127,10 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
                 <div class="container-fluid">
-                    <input class="navbar-brand" type="submit" name="action" value="Home">
+                    <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                        <a href="${home}" style="text-decoration: none; color: black;">
+                            Home
+                        </a>
                 </div>
                 <%
                     if (role.equals("student") || role.equals("teacher")) {
