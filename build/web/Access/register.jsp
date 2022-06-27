@@ -5,7 +5,6 @@
 --%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -219,10 +218,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-light" id="background">
             <div class="container-fluid">
-                <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                        <a href="${home}" style="text-decoration: none; color: black;">
-                            Home
-                        </a>
+                <a class="navbar-brand" href="#">Home</a>
             </div>
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Categories</a>
