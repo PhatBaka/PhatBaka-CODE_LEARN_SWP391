@@ -230,7 +230,7 @@
                     %>
                     <div class="container-fluid" >
                        <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
-                        <a href="${login}">
+                        <a href="${login}" style="text-decoration: none; color: black;">
                             Login
                         </a>
                     </div>
