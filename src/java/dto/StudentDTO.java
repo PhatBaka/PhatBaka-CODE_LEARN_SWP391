@@ -13,17 +13,16 @@ public class StudentDTO {
     private int Id_Student;
     private String Username;
     private String Password;
-    private String Exam_stats;
+    
 
     public StudentDTO() {
     }
 
-    public StudentDTO(int Id_Student, String Username, String Password, String Exam_stats) {
+    public StudentDTO(int Id_Student, String Username, String Password) {
         this.Id_Student = Id_Student;
         this.Username = Username;
         this.Password = Password;
-        this.Exam_stats = Exam_stats;
-    }
+    }    
 
     public StudentDTO(String Username, String Password) {
         this.Username = Username;
@@ -75,19 +74,6 @@ public class StudentDTO {
         this.Password = Password;
     }   
 
-    /**
-     * @return the Exam_stats
-     */
-    public String getExam_stats() {
-        return Exam_stats;
-    }
-
-    /**
-     * @param Exam_stats the Exam_stats to set
-     */
-    public void setExam_stats(String Exam_stats) {
-        this.Exam_stats = Exam_stats;
-    }
-    
+   
     
 }
