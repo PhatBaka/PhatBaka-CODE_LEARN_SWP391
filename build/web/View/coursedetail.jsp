@@ -4,6 +4,7 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dao.CourseDAO"%>
 <%@page import="dto.AdminDTO"%>
 <%@page import="dto.TeacherDTO"%>
 <%@page import="dto.StudentDTO"%>
@@ -103,6 +104,7 @@
         AdminDTO admin = null;
         String username = "";
         String role = "";
+        CourseDAO dao = new CourseDAO();
 
         if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
             role = (String) session.getAttribute("role");
@@ -177,7 +179,7 @@
                 <div class="p-3 border bg-light" ><img src="<%= dto.getImage()%>" width="150px" height="150px">Course Name : <%= dto.getName()%></div>
             </div>
             <div class="col-6" >
-                <div class="p-3 border bg-light" ><p id="column_inf">Teacher Name : </p></div>
+                <div class="p-3 border bg-light" ><p id="column_inf">Teacher Name :<%= dao.getTeacherName(dto.getName()) %> </p></div>
             </div>
             <div class="col-6" >
                 <div class="p-3 border bg-light" >
