@@ -21,4 +21,32 @@ import java.util.List;
  * @author This PC
  */
 public class NotificationDAO {
+     public List<StudentDTO> GetAllNotificationForStudent() throws SQLException {
+         List<StudentDTO> li = new ArrayList<>();
+         Connection conn = null;
+         PreparedStatement ps = null;
+         ResultSet rs = null;
+         try {
+             conn = DBUtils.getConnection();
+             String sql = "SELECT notification from dbo.Student";
+             ps = conn.prepareStatement(sql);
+
+             rs = ps.executeQuery();
+             while (rs.next()) {
+                 li.add(new StudentDTO(rs.getInt("Id_Student"),
+                         rs.getString("Username"),
+                         rs.getString("Password"),
+                         rs.getString("Notification")));
+
+             }
+         } catch (Exception e) {
+             e.printStackTrace();
+         } finally {
+             conn.close();
+             ps.close();
+             rs.close();
+         }
+         return li;
+
+    }
 }

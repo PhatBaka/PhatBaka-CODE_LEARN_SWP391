@@ -20,7 +20,7 @@ import java.util.List;
 public class StudentDAO {
     public static StudentDTO getAccount(String studentname, String password) 
             throws ClassNotFoundException, SQLException{
-        String LOGIN = "SELECT Id_Student, Username, Password FROM Student WHERE Username = ? AND Password = ? ";
+        String LOGIN = "SELECT Id_Student, Username, Password, Exam_Stats FROM Student WHERE Username = ? AND Password = ? ";
         StudentDTO acc = null;
         Connection conn = DBUtils.getConnection();
         if(conn != null){
@@ -30,7 +30,8 @@ public class StudentDAO {
             ResultSet rs = ptm.executeQuery();
             if(rs != null && rs.next()){
                 int id_student = rs.getInt("Id_Student");
-                acc = new StudentDTO(id_student, studentname, password);
+                String exam_starts = rs.getString("Exam_Stats");
+                acc = new StudentDTO(id_student, studentname, password, exam_starts);
             }
             conn.close();
         }
