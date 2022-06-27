@@ -133,15 +133,15 @@
               <div class="container-fluid">
                 <a class="navbar-brand" href="#">Categories</a>
               </div>
-              <div class="container-fluid">
+               <div class="container-fluid">
                 <span class="navbar-brand" href="#" style="cursor:pointer;">
                     <div class="dropdown">
                           
                     <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
                     <div class="dropdown-content" id="drop-info">
-                      <a href="#">Profile</a>
-                      <a href="#">Edit Profile</a>
-                      <a href="#">Logout</a>
+                      <a href="#">Exam</a>
+                      <a href="#">Exam</a>
+                      <a href="#">Exam</a>
                     </div>
                 </div>               
                 </span>

@@ -60,87 +60,60 @@
             }
 
             /* Dropdown Button */
-            .dropbtn {
-                background-color: #04AA6D;
-                color: white;
-                padding: 16px;
-                font-size: 16px;
-                border: none;
-            }
+           /* Dropdown Button */
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+}
 
-            /* The container <div> - needed to position the dropdown content */
-            .dropdown {
-                position: relative;
-                display: inline-block;
-            }
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
-            /* Dropdown Content (Hidden by Default) */
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f1f1f1;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
 
-            /* Links inside the dropdown */
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
 
-            /* Change color of dropdown links on hover */
-            .dropdown-content a:hover {background-color: #ddd;}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
 
-            /* Show the dropdown menu on hover */
-            .dropdown:hover .dropdown-content {display: block;}
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
 
-            /* Change the background color of the dropdown button when the dropdown content is shown */
-            .dropdown:hover .dropbtn {background-color: #3e8e41;}
-            
-                        .dropbicon {
-                background-color: #04AA6D;
-                color: white;
-                padding: 16px;
-                font-size: 16px;
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.dropdown:hover .icon {background-color: #3e8e41;}
+
+.icon{
+    border: none;
+    width: 200%;
+    border-radius: 20px;
+    height: 3em;
+    margin-left: 200%;
+}
               
-            }
-
-            /* The container <div> - needed to position the dropdown content */
-            .dropdown {
-                position: relative;
-                display: inline-block;
-            }
-
-            /* Dropdown Content (Hidden by Default) */
-            .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f1f1f1;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-            }
-
-            /* Links inside the dropdown */
-            .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-            }
-
-            /* Change color of dropdown links on hover */
-            .dropdown-content a:hover {background-color: #ddd;}
-
-            /* Show the dropdown menu on hover */
-            .dropdown:hover .dropdown-content {display: block;}
-
-            /* Change the background color of the dropdown button when the dropdown content is shown */
-            .dropdown:hover .dropicon {background-color: #3e8e41;}
+           
         </style>
 
 
@@ -183,29 +156,26 @@
                     %>
                     <div class="container-fluid" >
                        <c:url var="mycourse" value="${requestScope.contextPath}/View/mycourse.jsp"></c:url>
-                        <a href="${mycourse}">
+                        <a href="${mycourse}" style="text-decoration: none; color: black;">
                             My course
                         </a>
                     </div>
                     <%
                         }
                     %>
-                    <div class="container-fluid">
-                        <span class="navbar-brand" style="cursor:pointer;">
-                            <div class="dropdown">
-                                <button class="dropicon" style="border-radius: 25px; width: 5rem;">
-                                    <ion-icon name="notifications-outline""></ion-icon>
-                                </button>
-                                <div class="dropdown-content" >
-                                    <input type="hidden" name="profileName" value="<%= username %>" />
-                                    <input type="submit" name="action" value="View Profile">
-                                    <input type="submit" name="action" value="Edit Profile">
-                                    <input type="submit" name="action" value="Logout">
-                                </div>
-                            </div>
-
-                        </span>
+                         <div class="container-fluid">
+                <span class="navbar-brand" href="#" style="cursor:pointer;">
+                    <div class="dropdown">
+                          
+                    <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
+                    <div class="dropdown-content" id="drop-info">
+                      <a href="#">Profile</a>
+                      <a href="#">Edit Profile</a>
+                      <a href="#">Logout</a>
                     </div>
+                </div>               
+                </span>
+              </div>
                     
                     
                     <%                       
@@ -219,7 +189,7 @@
                                     <input type="hidden" name="profileName" value="<%= username %>" />
                                     <input type="submit" name="action" value="View Profile">
                                     <input type="submit" name="action" value="Edit Profile">
-                                    <input type="submit" name="action" value="Logout">
+                                    <input type="submit" name="action" value="logout">
                                 </div>
                             </div>
 
