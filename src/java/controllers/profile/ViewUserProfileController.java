@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ViewUserProfileController extends HttpServlet {
 
+    private final String VIEW_PROFILE_PAGE = "View/viewprofile.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,10 +32,15 @@ public class ViewUserProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = "";
-        RequestDispatcher rd = request.getRequestDispatcher(url);
-        rd.forward(request, response);
+        String url = VIEW_PROFILE_PAGE;
+        try {
+            
+        } finally {
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
+        }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

@@ -12,11 +12,12 @@ import dto.AdminDTO;
 import dto.StudentDTO;
 import dto.TeacherDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,7 @@ import javax.servlet.http.HttpSession;
  * @author nearl
  */
 public class LoginController extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,29 +38,18 @@ public class LoginController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR_PAGE = "Access/login.jsp";// trang login
-    private static final String HOME_PAGE = "View/home.jsp";
+    private static final String TEACHER_ROLE = "teacher";
+    private static final String STUDENT_ROLE = "student";
+    private static final String ADMIN_ROLE = "admin";
+    private static final String ERROR = "Access/login.jsp";// trang login
+    private static final String HOME = "View/home.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-<<<<<<< Updated upstream
-        String url = ERROR_PAGE;
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String role = request.getParameter("role");
-        boolean valid = false;
-        if (role.equals("Student")) {
-            StudentDAO dao = new StudentDAO();
-            valid =dao.checkLogin(username, password);
-        } else if (role.equals("Teacher")) {
-            TeacherDAO dao = new TeacherDAO();
-            valid = dao.checkLogin(username, password);
-        } else if (role.equals("Admin")) {
-            AdminDAO dao = new AdminDAO();
-            valid = dao.checkLogin(username, password);
-=======
         String url = ERROR;
-        try  {  
+        
+        try  {
+            
             HttpSession session = request.getSession();
             String username = request.getParameter("username");
             String password = request.getParameter("password");
@@ -74,20 +65,20 @@ public class LoginController extends HttpServlet {
             }else if(ADMIN_ROLE.equals(role)){
                 acc = (AdminDTO)AdminDAO.getAccount(username, password);
                 url = HOME; //chuyen den sau khi login
+                
             }
             if(acc == null){
                 request.setAttribute("ERROR", "User name or Password is invalid!!");
                 url = ERROR;
             }else{
                 session.setAttribute("ACCOUNT", acc);
-                session.setAttribute("ROLE", role);
+                session.setAttribute("role", role);
             }
->>>>>>> Stashed changes
         }
-        if (valid) {
-            url = HOME_PAGE;
+        finally{
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
-        response.sendRedirect(url);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

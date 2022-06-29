@@ -7,7 +7,7 @@ package controllers.auth;
 
 import dao.StudentDAO;
 import dao.TeacherDAO;
-import dto.ErrorDTO;
+import dto.RegisterErrorDTO;
 import dto.StudentDTO;
 import dto.TeacherDTO;
 import java.io.IOException;
@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author nearl
  */
 public class RegisterController extends HttpServlet {
-
+    private final String LOGIN_PAGE = "Access/login.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,36 +43,28 @@ public class RegisterController extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
-<<<<<<< Updated upstream
         RegisterErrorDTO errors = new RegisterErrorDTO();
-        boolean foundError = false;
-        String url = "";
-=======
-        ErrorDTO createErrors = new ErrorDTO();
-        String url = "Access/register.jsp";
->>>>>>> Stashed changes
+        String url = "/Access/register.jsp";
         try {
                 if (role.equals("student")) {
-                    StudentDAO dao = new StudentDAO();
                     StudentDTO dto = new StudentDTO(username, password);
-                    boolean result = dao.createStudentAccount(dto);
+                    boolean result = StudentDAO.createStudentAccount(dto);
                     if (result) {
-                        url = "LOGIN_PAGE";
+                        url = LOGIN_PAGE;
                     }
                 } else if (role.equals("teacher")) {
-                    TeacherDAO dao = new TeacherDAO();
                     TeacherDTO dto = new TeacherDTO(username, password);
-                    boolean result = dao.createTeacherAccount(dto);
+                    boolean result = TeacherDAO.createTeacherAccount(dto);
                     if (result) {
-                        url = "LOGGIN_PAGE";
+                        url = LOGIN_PAGE;
                     }
                 }
         } catch (SQLException ex) {
             String msg = ex.getMessage();
             log("CreateAccountServlet _ SQL " + ex.getMessage());
             if (msg.contains("duplicate")) {
-                createErrors.setUsernameIsExisted(username + " is existed.");
-                request.setAttribute("CREATEERRORS", createErrors);
+                errors.setUsernameIsExisted(username + " is existed.");
+                request.setAttribute("CREATEERRORS", errors);
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

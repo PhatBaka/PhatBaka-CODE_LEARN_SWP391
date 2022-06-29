@@ -10,7 +10,6 @@ package dto;
  * @author nearl
  */
 public class ContactDTO {
-    private int Id_Contact;
     private int Id_Student;
     private String Email_User;
     private String Parents_inf;
@@ -25,11 +24,9 @@ public class ContactDTO {
         this.Phone_Num = Phone_Num;
         this.School = School;
     }
-
     
     
-    public ContactDTO(int Id_Contact, int Id_Student, String Email_User, String Parents_inf, String Phone_Num, String School) {
-        this.Id_Contact = Id_Contact;
+    public ContactDTO(int Id_Student, String Email_User, String Parents_inf, String Phone_Num, String School) {
         this.Id_Student = Id_Student;
         this.Email_User = Email_User;
         this.Parents_inf = Parents_inf;
@@ -37,9 +34,6 @@ public class ContactDTO {
         this.School = School;
     }
 
-    public void setId_Contact(int Id_Contact) {
-        this.Id_Contact = Id_Contact;
-    }
 
     public void setId_Student(int Id_Student) {
         this.Id_Student = Id_Student;
@@ -59,10 +53,6 @@ public class ContactDTO {
 
     public void setSchool(String School) {
         this.School = School;
-    }
-
-    public int getId_Contact() {
-        return Id_Contact;
     }
 
     public int getId_Student() {

@@ -4,8 +4,8 @@
     Author     : HoangMinh
 --%>
 
-<%@page import="dto.StudentDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
     <head lang="en">
         <meta charset="UTF-8">
@@ -50,25 +50,59 @@
     font-weight: bolder;
     text-shadow: 10px 10px 10px 10px red;
 }
+  /* Dropdown Button */
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
         </style>
     
     </head>
 
     <body>
-        <%!
-        StudentDTO stud = null;
-        int studentId;
-        String studentName = "";
-        %>
-                    <%
-                        stud = (StudentDTO) session.getAttribute("ACCOUNT");
-                        studentId = stud.getId_Student(); 
-                        studentName = stud.getUsername();
-                    %>
         <div class="container">
           <nav class="navbar navbar-expand-lg bg-light" id="background">
             <div class="container-fluid">
-              <a class="navbar-brand" href="home.jsp">Home</a>
+              <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                        <a href="${home}" style="text-decoration: none; color: black;">
+                            Home
+                        </a>
             </div>
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Categories</a>
@@ -77,23 +111,32 @@
               <a class="navbar-brand" href="#">My Profile</a>
             </div>
             <div class="container-fluid">
-              <span class="navbar-brand" href="#" style="cursor:pointer;">Welcome User:<%= studentName %></span>
+               <div class="dropdown">
+                    <button class="dropbtn">Welcome User</button>
+                    <div class="dropdown-content">
+                      <a href="#">Profile</a>
+                      <a href="#">Edit Profile</a>
+                      <a href="#">Logout</a>
+                    </div>
+                </div>
             </div>
           </nav>
         </div>
+
         <div class="container_2">
             <h1 class="View_font">CONTACT</h1>
             <div class="list-group" id="list_group" style="text-align:center;">
-                <p class="list-group-item list-group-item-action">Id Student: <%= studentId %></p>
-                <p class="list-group-item list-group-item-action">Email: </p>
-                <p class="list-group-item list-group-item-action">Parent information: </p>
-                <p class="list-group-item list-group-item-action">Phone number: </p>
-                <p class="list-group-item list-group-item-action">School: </p>
-                <a href="../Edit/contact.jsp">Edit contact</a>
-                <br>
-                <a href="../Access/changepassword.jsp">Change password</a>
-              </div>
+                <p class="list-group-item list-group-item-action">Id Student...</p>
+                <p class="list-group-item list-group-item-action">Email... </p>
+                <p class="list-group-item list-group-item-action">Parent information...</p>
+                <p class="list-group-item list-group-item-action">Phone number....</p>
+                <p class="list-group-item list-group-item-action">School....</p>
+                <form action="">
+                    <input type="submit" value="Edit" class="btn btn-primary btn-lg"  />
+                </form>
+            </div>
         </div>
+        
 
     <!-- ID Student, Email, Parent information, Phone Num, School-->
 

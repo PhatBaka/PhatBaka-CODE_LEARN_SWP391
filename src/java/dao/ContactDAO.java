@@ -18,19 +18,18 @@ import java.sql.SQLException;
  */
 public class ContactDAO {
 
-    public ContactDTO SearchingContact(String Search) throws SQLException {
+    public static ContactDTO SearchingContact(int studentID) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
             conn = DBUtils.getConnection();
-            String sql = "SELECT * from dbo.Contact where Name like ?  ";
+            String sql = "SELECT * from dbo.Contact where Id_Student = ?";
             ps = conn.prepareStatement(sql);
-            ps.setString(1, "%" + Search + "%");
-
+            ps.setInt(1, studentID);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return new ContactDTO(rs.getInt("Id_Contact"),
+                return new ContactDTO(
                         rs.getInt("Id_Student"),
                         rs.getString("Email_User"),
                         rs.getString("Parents_inf"),
@@ -47,7 +46,7 @@ public class ContactDAO {
         return null;
     }
     
-    public boolean addContact(ContactDTO dto) throws SQLException{
+    public static boolean addContact(ContactDTO dto) throws SQLException{
         Connection con = null;
         PreparedStatement stm = null;
         String sql = "insert into dbo.Contact (Id_Student, Email_User, Parents_inf, Phone_Num, School) values (?, ?, ?, ?, ?)";
@@ -55,6 +54,7 @@ public class ContactDAO {
             return false;
         }
         try {
+            con = DBUtils.getConnection();
             stm = con.prepareStatement(sql);
             stm.setInt(1, dto.getId_Student());
             stm.setString(2, dto.getEmail_User());
@@ -74,6 +74,33 @@ public class ContactDAO {
             if (stm!=null) {
                 stm.close();
             }
+        }
+        return false;
+    }
+    
+    public static boolean editContact(ContactDTO dto) throws SQLException{
+        Connection con = null;
+        PreparedStatement stm = null;
+        String sql = "UPDATE dbo.Contact SET Email_User = ?, Parents_inf= ?, Phone_num= ?, School= ? WHERE Id_Student= ?";
+        if(dto != null){
+            return false;
+        }
+        try{
+            stm = con.prepareStatement(sql);
+            stm.setString(1, dto.getEmail_User());
+            stm.setString(2, dto.getParents_inf());
+            stm.setString(3, dto.getPhone_Num());
+            stm.setString(4, dto.getSchool());
+            stm.setInt(5, dto.getId_Student());
+            int effectedRow = stm.executeUpdate();
+            if (effectedRow > 0){
+                return true;
+            } else{
+                addContact(dto);
+                return true;
+            }
+        } catch (Exception ex){
+            ex.printStackTrace();
         }
         return false;
     }

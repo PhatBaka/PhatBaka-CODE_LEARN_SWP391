@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
     <head lang="en">
         <meta charset="UTF-8">
@@ -162,6 +163,47 @@ html {
   input[type=text]:placeholder {
     color: #cccccc;
   }
+  /* Dropdown Button */
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
         </style>
     </head>
 
@@ -169,7 +211,10 @@ html {
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
               <div class="container-fluid">
-                <a class="navbar-brand" href="#">Home</a>
+                <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                        <a href="${home}" style="text-decoration: none; color: black;">
+                            Home
+                        </a>
               </div>
               <div class="container-fluid">
                 <a class="navbar-brand" href="#">Categories</a>
@@ -178,20 +223,32 @@ html {
                 <a class="navbar-brand" href="#">About Us</a>
               </div>
               <div class="container-fluid">
-                <a class="navbar-brand" href="#">Login/Sign Up</a>
-              </div>
+                <span class="navbar-brand" href="#" style="cursor:pointer;">
+                    <div class="dropdown">
+                    <button class="dropbtn">Welcome User</button>
+                    <div class="dropdown-content">
+                      <a href="#">Profile</a>
+                      <a href="#">Edit Profile</a>
+                      <a href="#">Logout</a>
+                    </div>
+                </div>
             </nav>
         </div>
+
         <div class="wrapper fadeInDown">
+            
             <div id="formContent" style="padding:2%;">
                 <h3>Teacher Profile</h3>
-              <form action="MainController">
-                <lable>Full name <input type="text" id="name" class="fadeIn second" name="name" placeholder="Full Name" style="width: 50%"></lable></br>   
-                <lable>Phone number <input type="text" id="phonenumber" class="fadeIn third" name="phonenumber" placeholder="Phonenumber" style="width: 50%"></lable></br>    
-                <lable>Information <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email" style="width: 50%"></lable></br>
-                <lable>Avatar <input type="text" id="email" class="fadeIn third" name="degree" placeholder="Degree" style="width: 50%"></lable></br>
-                <input type="submit" class="fadeIn fourth" value="edit profile" style="width: 20%;">
-              </form>          
+              <form action="#">
+                <lable>Full name<input type="text" id="name" class="fadeIn second" name="name" placeholder="Full Name" style="width: 50%"></lable></br>   
+                <lable>Phonenumber<input type="text" id="phonenumber" class="fadeIn third" name="phonenumber" placeholder="Phonenumber" style="width: 50%"></lable></br>    
+                <lable>Email <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email" style="width: 50%"></lable></br>
+                <lable>Degree <input type="text" id="email" class="fadeIn third" name="degree" placeholder="Degree" style="width: 50%"></lable></br>
+                <input type="submit" class="fadeIn fourth" value="submit" style="width: 20%;">
+              </form>
+          
+    
+          
             </div>
           </div>
           <!-- JavaScript Bundle with Popper -->
@@ -199,6 +256,8 @@ html {
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </body>
+
     <footer>
+
     </footer>
 </html>

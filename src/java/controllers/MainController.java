@@ -47,7 +47,6 @@ public class MainController extends HttpServlet {
     17  Add course   _general(Admin/teacher)
     18  Edit course  _general(Admin/teacher)
     19  Delete Course   _general(Admin/teacher)
-    20  Change password
     
     Các cấp độ phân quyền: 
          - level 1: user(low)
@@ -64,54 +63,58 @@ public class MainController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
             String url = ERROR;
-            String action = request.getParameter("btAction"); // láy parameter name action từ intput type submit 
+            String action = request.getParameter("action");
+            action = action.toLowerCase();// láy parameter name action từ intput type submit 
+            if(action.isEmpty()){
+                url="/View/home.jsp";
+            }
             //use-case 1
-            if("Log In".equals(action)){
-                url = "LoginController";
+            else if("login".equals(action)){
+                url = "/LoginController";
             } 
             //use-case 2
             else if("logout".equals(action)){
-                url = "LogoutController";
+                url = "/LogoutController";
             }            
             //use-case 3
-            else if("Register".equals(action)){
-                url = "RegisterController";
+            else if("register".equals(action)){
+                url = "/RegisterController";
             }
             //use-case 4_ Search tên course
-            else if("search by keyword".equals(action)){
-                url = "SearchController";
+            else if("search".equals(action)){
+                url = "/SearchController";
             }
             //use-case 5
-            else if("view course detail".equals(action)){
-                url = "ViewCourseDetailController";
+            else if("course details".equals(action)){
+                url = "/ViewCourseDetailController";
             }
             //user-case 6
             else if("view profile".equals(action)){
-                url = "ViewUserProfileController";
+                url = "/ViewUserProfileController";
             }            
             //use-case 7
             else if("edit profile".equals(action)){
-                url = "EditProfileController";
+                url = "/EditProfileController";
             }
             //use-case 8
             else if("delete profile".equals(action)){
-                url = "DeleteProfileController";
+                url = "/DeleteProfileController";
             }
             //use-case 9
             else if("edit teacher profile".equals(action)){
-                url = "EditTeacheProfileController";
+                url = "/EditTeacheProfileController";
             }            
             //use-case 10
             else if("add teacher profile".equals(action)){
-                url = "AddProfileController";
+                url = "/AddProfileController";
             }
             //use-case 11
             else if("notification".equals(action)){
-                url = "NotificationController";
+                url = "/NotificationController";
             }
             //use-case 12
             else if("view exam".equals(action)){
-                url = "ViewExamController";
+                url = "/ViewExamController";
             }
             //use-case 13
             else if("add exam".equals(action)){
@@ -127,23 +130,31 @@ public class MainController extends HttpServlet {
             }
             //use-case 16
             else if("view mark".equals(action)){
-                url = "ViewMarkController";
+                url = "/ViewMarkController";
             }
             //use-case 17
             else if("add course".equals(action)){
-                url = "AddCourseController";
+                url = "/AddCourseController";
             }
             //use-case 18
             else if("edit course".equals(action)){
-                url = "EditCourseController";
+                url = "/EditCourseController";
             }
             //use-case 19
             else if("delete course".equals(action)){
-                url = "DeleteCourseController";
+                url = "/DeleteCourseController";
             }
             //use-case 20
-            else if("change password".equals(action)){
-                url = "/ChangePasswordController";
+            else if("enroll course".equals(action)){
+                url = "/EnrollCourseController";
+            }
+            //home
+            else if("home".equals(action)){
+                url = "View/home.jsp";
+            }
+            //view my courses
+            else if("my courses".equals(action)){
+                url = "View/mycourses.jsp";
             }
             request.getRequestDispatcher(url).forward(request, response);// chuyển trang đến url đương ứng, đồng thời gửi đến trang url đương ứng với request để trang url tương ứng xử lý
         }

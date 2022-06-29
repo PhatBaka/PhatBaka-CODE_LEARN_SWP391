@@ -3,8 +3,9 @@
     Created on : May 31, 2022, 8:42:08 PM
     Author     : HoangMinh
 --%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
     <head lang="en">
         <meta charset="UTF-8">
@@ -133,7 +134,7 @@ html {
     transform: scale(0.95);
   }
   
-  input[type=text] {
+  input[type=text], input[type=password] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -154,12 +155,12 @@ html {
     border-radius: 5px 5px 5px 5px;
   }
   
-  input[type=text]:focus {
+  input[type=text]:focus, input[type=password]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
   }
   
-  input[type=text]:placeholder {
+  input[type=text]:placeholder, input[type=password]:placeholder {
     color: #cccccc;
   }
         </style>
@@ -169,7 +170,10 @@ html {
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
               <div class="container-fluid">
-                <a class="navbar-brand" href="#">Home</a>
+                <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                        <a href="${home}" style="text-decoration: none; color: black;">
+                            Home
+                        </a>
               </div>
               <div class="container-fluid">
                 <a class="navbar-brand" href="#">Categories</a>
@@ -187,26 +191,16 @@ html {
             
             <div id="formContent" style="padding:2%;">
                 <h3>Change Password</h3>
-<<<<<<< Updated upstream
               <form action="#">
-                <lable>Old password: <input type="text" id="oldpassword" class="fadeIn second" name="oldpassword" placeholder="old password" ></lable></br>   
-                <lable>New password: <input type="text" id="password" class="fadeIn third" name="login" placeholder="new password"></lable></br>    
-                <lable>Confirm password: <input type="text" id="password" class="fadeIn third" name="login" placeholder="confirm password"></lable></br>
-                <input type="submit" class="fadeIn fourth" value="Change" style="width: 20%;">
-=======
-              <form action="MainController" method="POST">
+                <lable>Username: <input type="text" id="username" class="fadeIn second" name="" placeholder="Username" ></lable></br>  
                 <lable>Old password: <input type="password" id="oldpassword" class="fadeIn second" name="oldpassword" placeholder="old password" ></lable></br>   
-                <lable>New password: <input type="password" id="password" class="fadeIn third" name="newpassword" placeholder="new password"></lable></br>    
-                <lable>Confirm password: <input type="password" id="password" class="fadeIn third" placeholder="confirm password"></lable></br>
-                <input type="submit" class="fadeIn fourth" name="action" value="Change password" style="width: 40%;">
->>>>>>> Stashed changes
+                <lable>New password: <input type="password" id="password" class="fadeIn third" name="login" placeholder="new password"></lable></br>    
+                <lable>Confirm password: <input type="password" id="password" class="fadeIn third" name="login" placeholder="confirm password"></lable></br>
+                <input type="submit" class="fadeIn fourth" value="Change" style="width: 20%;">
               </form>
-              <c:set var="errors" value="${requestScope.PASSWORDERROR}" />
-                <c:if test="${not empty errors.passwordNotMatch}">
-                <font color="red">
-                    ${errors.passwordNotMatch}
-                </font>
-                </c:if>
+          
+          
+          
             </div>
           </div>
           <!-- JavaScript Bundle with Popper -->

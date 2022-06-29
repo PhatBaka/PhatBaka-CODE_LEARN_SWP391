@@ -3,8 +3,9 @@
     Created on : May 30, 2022, 10:55:02 AM
     Author     : HoangMinh
 --%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -218,7 +219,10 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-light" id="background">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Home</a>
+                <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                        <a href="${home}" style="text-decoration: none; color: black;">
+                            Home
+                        </a>
             </div>
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Categories</a>
@@ -239,20 +243,25 @@
     <div class="wrapper fadeInDown">
         <div id="formContent" style="padding:2%;">
             <h3>REGISTER</h3>
-            <form action="MainController" name="myform" method="post" onsubmit="return validateform()">
-                <lable>username:  <input type="text" id="login" class="fadeIn second" name="username" placeholder="Username"></lable>
-                <lable>password:  <input type="text" id="login" class="fadeIn second" name="password" placeholder="Password"></lable></br>    
-                <lable>confirm :  <input type="text" id="login" class="fadeIn second" name="confirm" placeholder="Password confirm"></lable></br>
+            <form action="MainController" name="myform" method="POST" onsubmit="return validateform()">
+                <lable>Username:  <input type="text" id="login" class="fadeIn second" name="username" placeholder="Username"></lable>
+                <lable>Password:  <input type="text" id="login" class="fadeIn second" name="password" placeholder="Password"></lable></br>    
+                <lable>Confirm :  <input type="text" id="login" class="fadeIn second" name="confirm" placeholder="Password confirm"></lable></br>
                 <label id="option">Select:</label>
                 <select id="select" name="role">              
-                    <option value="Teacher">Teacher</option>
-                    <option value="Student">Student</option> 
+                    <option value="teacher">Teacher</option>
+                    <option value="student">Student</option>
                 </select>
-                <input type="submit" class="fadeIn fourth" style="background-color: pink; color:black; border-radius:50px ;" value="Register" name="btAction">
+                <input type="submit" class="fadeIn fourth" style="background-color: pink; color:black; border-radius:50px;" value="register" name="action">
+                <c:set var="errors" value="${requestScope.CREATEERRORS}" />
+                <c:if test="${not empty errors.usernameIsExisted}">
+                <font color="red">
+                    ${errors.usernameIsExisted}
+                </font>
+                </c:if>
             </form>
         </div>
     </div>
-
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

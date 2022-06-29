@@ -5,8 +5,13 @@
  */
 package controllers.profile;
 
+import dao.ContactDAO;
+import dto.ContactDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,14 +33,19 @@ public class EditProfileController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        String id_teacher = request.getParameter("");
-        String username = request.getParameter("name");
-        String phonename = request.getParameter("iphonenumber");
-        String information = request.getParameter("information");
-        String avatar = request.getParameter("avatar");
-        
+        int studentID = new Integer(request.getParameter("idstudent"));
+        String email_user = request.getParameter("email");
+        String parentinf = request.getParameter("parentinf");
+        String phone = request.getParameter("phone");
+        String school = request.getParameter("school");
+        ContactDTO dto = new ContactDTO(studentID, email_user, parentinf, phone, school);
+        boolean success = ContactDAO.editContact(dto);
+        String url = "";
+        if (success){
+            url = "View/";
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -50,7 +60,11 @@ public class EditProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -64,7 +78,11 @@ public class EditProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
