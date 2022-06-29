@@ -105,7 +105,6 @@
         AdminDTO admin = null;
         String username = "";
         String role = "";
-        ContactDTO contact = null;
         if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
             role = (String) session.getAttribute("role");
             if (role.equals("admin")) {
@@ -117,7 +116,6 @@
             } else if (role.equals("student")) {
                 stud = (StudentDTO) session.getAttribute("ACCOUNT");
                 username = stud.getUsername();
-                ContactDAO.SearchingContact(stud.getId_Student());
             }
         }
     %>
@@ -148,7 +146,8 @@
                         <div class="dropdown">
                             <button class="dropbtn">Welcome, <%= username%></button>
                             <div class="dropdown-content">
-                                <input type="hidden" name="profileName" value="<%= username %>" />
+                                <input type="hidden" name="profileName" value="<%= username %>">
+                                <input type="hidden" name="txtStudentID" value="<%= stud.getId_Student() %>"
                                 <input type="submit" name="action" value="View Profile">
                                 <input type="submit" name="action" value="Edit Profile">
                                 <input type="submit" name="action" value="Logout">
@@ -175,24 +174,25 @@
             
             <ul class="list-group">
                 <li class="list-group-item">Teacher name: <%= teac.getName() %></li>
-                <li class="list-group-item">Phonenumber: <%= teac.getPhone_Num() %> </li>
+                <li class="list-group-item">Phone number: <%= teac.getPhone_Num() %> </li>
                 <li class="list-group-item">Email: <%= teac.getEmail() %> </li>
                 <li class="list-group-item">Information: <%= teac.getInformation() %></li>
             </ul>
         </div>
         <%
         } else if (role.equals("student")) {
+            ContactDTO contact = (ContactDTO) session.getAttribute("CONTACT");
         %>
+            
         <div id="formContent" style="padding:2%;">
             <h3>My Profile</h3>
-            
             <ul class="list-group">
                 <li class="list-group-item">Id: <%= stud.getId_Student() %></li>
                 <li class="list-group-item">Username: <%= stud.getUsername() %></li>
-                <li class="list-group-item">Phone number: <%=  %></li>
-                <li class="list-group-item">Email: </li>
-                <li class="list-group-item">School: </li>
-                <li class="list-group-item">Parent_info: </li>
+                <li class="list-group-item">Phone number: <%= contact.getPhone_Num() %></li>
+                <li class="list-group-item">Email: <%= contact.getEmail_User() %></li>
+                <li class="list-group-item">School: <%= contact.getSchool() %></li>
+                <li class="list-group-item">Parent_info: <%= contact.getParents_inf() %></li>
 
             </ul>
         </div>
