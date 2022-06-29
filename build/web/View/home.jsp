@@ -4,7 +4,7 @@
     Author     : HoangMinh
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="dto.CourseDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.CourseDAO"%>
@@ -60,60 +60,87 @@
             }
 
             /* Dropdown Button */
-           /* Dropdown Button */
-.dropbtn {
-  background-color: #04AA6D;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  border-radius: 20px;
-}
+            .dropbtn {
+                background-color: #04AA6D;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+            }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
+            /* The container <div> - needed to position the dropdown content */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f1f1f1;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
+            /* Dropdown Content (Hidden by Default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
+            /* Links inside the dropdown */
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
 
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #ddd;}
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {background-color: #ddd;}
 
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block;}
+            /* Show the dropdown menu on hover */
+            .dropdown:hover .dropdown-content {display: block;}
 
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+            /* Change the background color of the dropdown button when the dropdown content is shown */
+            .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-.dropdown:hover .icon {background-color: #3e8e41;}
+            .dropbicon {
+                background-color: #04AA6D;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
 
-.icon{
-    border: none;
-    width: 200%;
-    border-radius: 20px;
-    height: 3em;
-    margin-left: 200%;
-}
-              
-           
+            }
+
+            /* The container <div> - needed to position the dropdown content */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* Dropdown Content (Hidden by Default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            /* Links inside the dropdown */
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content a:hover {background-color: #ddd;}
+
+            /* Show the dropdown menu on hover */
+            .dropdown:hover .dropdown-content {display: block;}
+
+            /* Change the background color of the dropdown button when the dropdown content is shown */
+            .dropdown:hover .dropicon {background-color: #3e8e41;}
         </style>
 
 
@@ -126,7 +153,7 @@
         String username = "";
         String role = "";
         List<CourseDTO> courselist = CourseDAO.display();
-        if (session.getAttribute("role") != null&&session.getAttribute("ACCOUNT")!=null) {
+        if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
             role = (String) session.getAttribute("role");
             if (role.equals("admin")) {
                 admin = (AdminDTO) session.getAttribute("ACCOUNT");
@@ -142,74 +169,76 @@
     %>
 
     <body>
-        <form action="MainController">
-            <div class="container">
-                <nav class="navbar navbar-expand-lg bg-light" id="background">
-                    <div class="container-fluid">
-                        <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                        <a href="${home}" style="text-decoration: none; color: black;">
-                            Home
-                        </a>
-                    </div>
-                    <%
-                        if(role.equals("student")||role.equals("teacher")){
-                    %>
-                    <div class="container-fluid" >
-                       <c:url var="mycourse" value="${requestScope.contextPath}/View/mycourse.jsp"></c:url>
-                        <a href="${mycourse}" style="text-decoration: none; color: black;">
-                            My course
-                        </a>
-                    </div>
-                    <%
-                        }
-                    %>
-                         <div class="container-fluid">
-                <span class="navbar-brand" href="#" style="cursor:pointer;">
-                    <div class="dropdown">
-                          
-                    <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
-                    <div class="dropdown-content" id="drop-info">
-                      <a href="#">Profile</a>
-                      <a href="#">Edit Profile</a>
-                      <a href="#">Logout</a>
-                    </div>
-                </div>               
-                </span>
-              </div>
-                    
-                    
-                    <%                       
-                        if (session.getAttribute("ACCOUNT") != null) {
-                    %>
-                    <div class="container-fluid">
-                        <span class="navbar-brand" style="cursor:pointer;">
-                            <div class="dropdown">
-                                <button class="dropbtn" style="border-radius: 25px;">Welcome, <%= username%></button>
-                                <div class="dropdown-content">
-                                    <input type="hidden" name="profileName" value="<%= username %>" />
-                                    <input type="submit" name="action" value="View Profile">
-                                    <input type="submit" name="action" value="Edit Profile">
-                                    <input type="submit" name="action" value="logout">
-                                </div>
-                            </div>
 
-                        </span>
-                    </div>
-                    <%
-                        }else{
-                    %>
-                    <div class="container-fluid" >
-                       <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
-                        <a href="${login}" style="text-decoration: none; color: black;">
-                            Login
-                        </a>
-                    </div>
-                    <%
-                        }
-                    %>
-                </nav>
-            </div>
-        </form>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-light" id="background">
+                <div class="container-fluid">
+                    <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                    <a href="${home}" style="text-decoration: none; color: black;">
+                        Home
+                    </a>
+                </div>
+                <%
+                    if (role.equals("student") || role.equals("teacher")) {
+                %>
+                <div class="container-fluid" >
+                    <input type="submit" value="My Courses" name="action" />
+                </div>
+                <%
+                    }
+                %>
+                <div class="container-fluid">
+                    <span class="navbar-brand" style="cursor:pointer;">
+                        <div class="dropdown">
+                            <button class="dropicon" style="border-radius: 25px; width: 5rem;">
+                                <ion-icon name="notifications-outline""></ion-icon>
+                            </button>
+                            <div class="dropdown-content" >
+                                <input type="hidden" name="profileName" value="<%= username%>" />
+                                <form action="MainController">
+                                    <input type="submit" name="action" value="Exam 1"> </br>
+                                    <input type="submit" name="action" value="Exam 2"> </br>
+                                    <input type="submit" name="action" value="Exam 3"> </br>
+                                </form>
+                            </div>
+                        </div>
+
+                    </span>
+                </div>
+
+
+                <%
+                    if (session.getAttribute("ACCOUNT") != null) {
+                %>
+                <div class="container-fluid">
+                    <span class="navbar-brand" style="cursor:pointer;">
+                        <div class="dropdown">
+                            <button class="dropbtn" style="border-radius: 25px;">Welcome, <%= username%></button>
+                            <div class="dropdown-content">
+                                <input type="hidden" name="profileName" value="<%= username%>" />
+                                <input type="submit" name="action" value="View Profile">
+                                <input type="submit" name="action" value="Edit Profile">
+                                <input type="submit" name="action" value="Logout">
+                            </div>
+                        </div>
+
+                    </span>
+                </div>
+                <%
+                } else {
+                %>
+                <div class="container-fluid" >
+                    <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
+                    <a href="${login}">
+                        Login
+                    </a>
+                </div>
+                <%
+                    }
+                %>
+            </nav>
+        </div>
+
 
         <div class="search_container">
             <div class="input-group mb-3" style="width: 40%; margin-left: 10rem;">
@@ -219,32 +248,32 @@
                 </div>
             </div>
         </div>
-                
+
         <div class="container_2">
             <div class="row align-items-center" >
-                <% 
+                <%
                     int count = 0;
-                    for(count=0;count<3;count++){ 
+                    for (count = 0; count < 3; count++) {
                 %>
                 <form action="MainController" >
-                <div class="col-sm" id="frame">
-                    <div class="card" style="width: 18rem; margin: auto;">
-                        <div class="card-body">
-                            <img src="<%= courselist.get(count).getImage() %>" style="width:40%;    "/>
-                            <input type="hidden" name="courseName" value="<%= courselist.get(count).getName()%>" />
-                            <h5 class="card-title"><%= courselist.get(count).getName() %></h5>
-                            <p class="card-text"><%= courselist.get(count).getDescription() %></p>
-                            <input style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;" class="btn btn-outline-secondary"
-                                   type="submit" value="Course Details" name="action" />
+                    <div class="col-sm" id="frame">
+                        <div class="card" style="width: 18rem; margin: auto;">
+                            <div class="card-body">
+                                <img src="<%= courselist.get(count).getImage()%>" style="width:40%;    "/>
+                                <input type="hidden" name="courseName" value="<%= courselist.get(count).getName()%>" />
+                                <h5 class="card-title"><%= courselist.get(count).getName()%></h5>
+                                <p class="card-text"><%= courselist.get(count).getDescription()%></p>
+                                <input style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;" class="btn btn-outline-secondary"
+                                       type="submit" value="Course Details" name="action" />
+                            </div>
                         </div>
                     </div>
-                </div>
                 </form>
-               <%
-                   }
-               %>
+                <%
+                    }
+                %>
             </div>
-            
+
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
