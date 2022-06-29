@@ -155,10 +155,7 @@
                         if(role.equals("student")||role.equals("teacher")){
                     %>
                     <div class="container-fluid" >
-                       <c:url var="mycourse" value="${requestScope.contextPath}/View/mycourse.jsp"></c:url>
-                        <a href="${mycourse}" style="text-decoration: none; color: black;">
-                            My course
-                        </a>
+                        <input type="submit" value="My Courses" name="action" style="border: none; background-color: inherit"/>
                     </div>
                     <%
                         }
@@ -186,10 +183,12 @@
                             <div class="dropdown">
                                 <button class="dropbtn" style="border-radius: 25px;">Welcome, <%= username%></button>
                                 <div class="dropdown-content">
-                                    <input type="hidden" name="profileName" value="<%= username %>" />
-                                    <input type="submit" name="action" value="View Profile">
-                                    <input type="submit" name="action" value="Edit Profile">
-                                    <input type="submit" name="action" value="logout">
+                                    <form action="MainController">
+                                        <input type="hidden" name="profileName" value="<%= username %>" />
+                                        <input type="submit" name="action" value="View Profile">
+                                        <input type="submit" name="action" value="Edit Profile">
+                                        <input type="submit" name="action" value="logout">
+                                    </form>
                                 </div>
                             </div>
 

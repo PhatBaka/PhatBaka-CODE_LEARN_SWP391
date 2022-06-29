@@ -187,7 +187,7 @@
                 <li class="list-group-item">Phonenumber: <%= teac.getPhone_Num() %> </li>
                 <li class="list-group-item">Email: <%= teac.getEmail() %> </li>
                 <li class="list-group-item">Information: <%= teac.getInformation() %></li>
-                 <li class="list-group-item">Degree: Muốn bằng nào t cũng có</li>
+                 <li class="list-group-item">Degree: Các em muốn bằng nào tui cũng có</li>
             </ul>
         </div>
         <%
