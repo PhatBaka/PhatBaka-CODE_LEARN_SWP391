@@ -159,6 +159,37 @@ public class CourseDAO implements Serializable {
         }
         return false;
     }
+    
+    public boolean enroll(int studentId, String courseName) throws ClassNotFoundException, SQLException {
+        /* Get Parameters from HTML Forms from View files (.jsp,.html) */
+        Connection con = null;
+        PreparedStatement statement = null;
+        int _studentId = studentId;
+        String _courseName = courseName;
+        try {
+            con = DBUtils.getConnection();
+
+            String sql = "INSERT INTO Enroll (Id_Student,Id_Course) "
+                    + "VALUES (1,(SELECT Id_Course "
+                    + "FROM Course "
+                    + "WHERE Name = 'CSharp by Manh'))";
+
+            statement = con.prepareStatement(sql);
+            statement.setInt(1, _studentId);
+            statement.setString(2, _courseName);
+            if (statement.executeUpdate() > 0) {
+                return true;
+            }
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return false;
+    }
 
     public boolean delete(String courseName) throws ClassNotFoundException, SQLException {
         String _courseName = courseName;
@@ -247,6 +278,43 @@ public class CourseDAO implements Serializable {
 
                 while (rs.next()) {
                     list.add(new CourseDTO(rs.getInt("Id_Course"), rs.getInt("Id_Subject"), rs.getInt("Id_Teacher"), rs.getNString("Name"), rs.getNString("Description"), rs.getDate("Date_Open"), rs.getDate("Date_Close"), rs.getInt("Rating"), rs.getString("Image")));
+                }
+
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
+    }
+    
+    public List<CourseDTO> teacherCourse(String teacherName) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        ArrayList<CourseDTO> list = new ArrayList<>();
+
+        try {
+            String sql = "SELECT Course.Image , Course.Name, Course.Description "
+                    + "FROM Course JOIN Teacher "
+                    + "ON Course.Id_Teacher = Teacher.Id_Teacher "
+                    + "AND Teacher.Name = ?";
+            con = DBUtils.getConnection();
+            if (con != null) {
+                statement = con.prepareStatement(sql);
+                statement.setString(1, teacherName);
+
+                rs = statement.executeQuery();
+
+                while (rs.next()) {
+                    list.add(new CourseDTO(0, 0, 0, rs.getNString("Name"), rs.getNString("Description"), null, null, 0 , rs.getString("Image")));
                 }
 
             }

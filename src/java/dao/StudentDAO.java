@@ -30,7 +30,6 @@ public class StudentDAO {
             ResultSet rs = ptm.executeQuery();
             if(rs != null && rs.next()){
                 int id_student = rs.getInt("Id_Student");
-                
                 acc = new StudentDTO(id_student, studentname, password);
             }
             conn.close();
