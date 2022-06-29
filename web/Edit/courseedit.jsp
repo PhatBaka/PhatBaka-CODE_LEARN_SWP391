@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
     <head lang="en">
         <meta charset="UTF-8">
@@ -76,7 +77,47 @@ input[type=button], input[type=submit], input[type=reset]  {
     -ms-transform: scale(0.95);
     transform: scale(0.95);
   }
+/* Dropdown Button */
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
 
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
         </style>
     </head>
 
@@ -84,7 +125,10 @@ input[type=button], input[type=submit], input[type=reset]  {
       <div class="container">
           <nav class="navbar navbar-expand-lg bg-light" id="background">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Home</a>
+              <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                        <a href="${home}" style="text-decoration: none; color: black;">
+                            Home
+                        </a>
             </div>
             <div class="container-fluid">
               <a class="navbar-brand" href="#">Categories</a>
@@ -93,8 +137,15 @@ input[type=button], input[type=submit], input[type=reset]  {
               <a class="navbar-brand" href="#">About Us</a>
             </div>
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">Login/SignUp</a>
-            </div>
+                <span class="navbar-brand" href="#" style="cursor:pointer;">
+                    <div class="dropdown">
+                    <button class="dropbtn">Welcome User</button>
+                    <div class="dropdown-content">
+                      <a href="#">Profile</a>
+                      <a href="#">Edit Profile</a>
+                      <a href="#">Logout</a>
+                    </div>
+                </div>
           </nav>
         </div>
         

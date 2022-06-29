@@ -68,4 +68,32 @@ public class AdminDAO {
         return null;
 
     }
+    
+       public boolean checkLogin(String username, String password) throws SQLException {
+       Connection conn = null;
+       PreparedStatement stm = null;
+       String sql = "select Id_Admin from dbo.Admin where AdminName = ? and Password = ?";
+       try {
+           conn = DBUtils.getConnection();
+           if (conn != null) {
+               stm = conn.prepareStatement(sql);
+               stm.setString(1, username);
+               stm.setString(2, password);
+               int effectedRows = stm.executeUpdate();
+               if (effectedRows>0){
+                   return true;
+               }
+           }
+       } catch (Exception ex) {
+           ex.printStackTrace();
+       } finally {
+           if (conn != null){
+               conn.close();
+           }
+           if (stm != null) {
+               stm.close();
+           }
+        }
+       return false;
+   }
 }

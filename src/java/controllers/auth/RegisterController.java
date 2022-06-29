@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author nearl
  */
 public class RegisterController extends HttpServlet {
-    private final String LOGIN_PAGE = "/Access/login.jsp";
+    private final String LOGIN_PAGE = "Access/login.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,20 +44,17 @@ public class RegisterController extends HttpServlet {
         String password = request.getParameter("password");
         String role = request.getParameter("role");
         RegisterErrorDTO errors = new RegisterErrorDTO();
-        boolean foundError = false;
-        String url = "";
+        String url = "/Access/register.jsp";
         try {
                 if (role.equals("student")) {
-                    StudentDAO dao = new StudentDAO();
                     StudentDTO dto = new StudentDTO(username, password);
-                    boolean result = dao.createStudentAccount(dto);
+                    boolean result = StudentDAO.createStudentAccount(dto);
                     if (result) {
                         url = LOGIN_PAGE;
                     }
                 } else if (role.equals("teacher")) {
-                    TeacherDAO dao = new TeacherDAO();
                     TeacherDTO dto = new TeacherDTO(username, password);
-                    boolean result = dao.createTeacherAccount(dto);
+                    boolean result = TeacherDAO.createTeacherAccount(dto);
                     if (result) {
                         url = LOGIN_PAGE;
                     }

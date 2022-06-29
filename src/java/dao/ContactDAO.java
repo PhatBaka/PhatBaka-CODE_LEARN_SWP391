@@ -50,26 +50,31 @@ public class ContactDAO {
     public boolean addContact(ContactDTO dto) throws SQLException{
         Connection con = null;
         PreparedStatement stm = null;
-        int result = 0;
         String sql = "insert into dbo.Contact (Id_Student, Email_User, Parents_inf, Phone_Num, School) values (?, ?, ?, ?, ?)";
         if (dto == null) {
             return false;
         }
         try {
-            con = DBUtils.getConnection();
             stm = con.prepareStatement(sql);
             stm.setInt(1, dto.getId_Student());
             stm.setString(2, dto.getEmail_User());
             stm.setString(3, dto.getParents_inf());
             stm.setString(4, dto.getPhone_Num());
             stm.setString(5, dto.getSchool());
-        } catch ( SQLException ex ) {
-            ex.printStackTrace();
-        }catch(ClassNotFoundException ex){
-            ex.printStackTrace();
-        }finally{
-            result = stm.executeUpdate();
+            int effectedRows = stm.executeUpdate();
+            if (effectedRows>0) {
+                return true;
+            }
+        } catch ( Exception ex ) {
+            
+        } finally {
+            if (con!=null) {
+                con.close();
+            } 
+            if (stm!=null) {
+                stm.close();
+            }
         }
-        return (result>0);
+        return false;
     }
 }

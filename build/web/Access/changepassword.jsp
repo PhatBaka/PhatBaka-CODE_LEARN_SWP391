@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
     <head lang="en">
         <meta charset="UTF-8">
@@ -133,7 +134,7 @@ html {
     transform: scale(0.95);
   }
   
-  input[type=text] {
+  input[type=text], input[type=password] {
     background-color: #f6f6f6;
     border: none;
     color: #0d0d0d;
@@ -154,14 +155,67 @@ html {
     border-radius: 5px 5px 5px 5px;
   }
   
-  input[type=text]:focus {
+  input[type=text]:focus, input[type=password]:focus {
     background-color: #fff;
     border-bottom: 2px solid #5fbae9;
   }
   
-  input[type=text]:placeholder {
+  input[type=text]:placeholder, input[type=password]:placeholder {
     color: #cccccc;
+    
   }
+  /* Dropdown Button */
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 20px;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.dropdown:hover .icon {background-color: #3e8e41;}
+
+.icon{
+    border: none;
+    width: 200%;
+    border-radius: 20px;
+    height: 3em;
+    margin-left: 200%;
+}
         </style>
     </head>
 
@@ -169,13 +223,24 @@ html {
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
               <div class="container-fluid">
-                <a class="navbar-brand" href="#">Home</a>
+                <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                        <a href="${home}" style="text-decoration: none; color: black;">
+                            Home
+                        </a>
               </div>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">Categories</a>
-              </div>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">About Us</a>
+              
+                       <div class="container-fluid">
+                <span class="navbar-brand" href="#" style="cursor:pointer;">
+                    <div class="dropdown">
+                          
+                    <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
+                    <div class="dropdown-content" id="drop-info">
+                      <a href="#">Exam</a>
+                      <a href="#">Exam</a>
+                      <a href="#">Exam</a>
+                    </div>
+                </div>               
+                </span>
               </div>
               <div class="container-fluid">
                 <a class="navbar-brand" href="#">Login/SignUp</a>
@@ -188,9 +253,10 @@ html {
             <div id="formContent" style="padding:2%;">
                 <h3>Change Password</h3>
               <form action="#">
-                <lable>Old password: <input type="text" id="oldpassword" class="fadeIn second" name="oldpassword" placeholder="old password" ></lable></br>   
-                <lable>New password: <input type="text" id="password" class="fadeIn third" name="login" placeholder="new password"></lable></br>    
-                <lable>Confirm password: <input type="text" id="password" class="fadeIn third" name="login" placeholder="confirm password"></lable></br>
+                <lable>Username: <input type="text" id="username" class="fadeIn second" name="" placeholder="Username" ></lable></br>  
+                <lable>Old password: <input type="password" id="oldpassword" class="fadeIn second" name="oldpassword" placeholder="old password" ></lable></br>   
+                <lable>New password: <input type="password" id="password" class="fadeIn third" name="login" placeholder="new password"></lable></br>    
+                <lable>Confirm password: <input type="password" id="password" class="fadeIn third" name="login" placeholder="confirm password"></lable></br>
                 <input type="submit" class="fadeIn fourth" value="Change" style="width: 20%;">
               </form>
           
@@ -202,6 +268,8 @@ html {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     </body>
 
     <footer>

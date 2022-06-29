@@ -18,7 +18,7 @@ import java.sql.SQLException;
  */
 public class TeacherDAO {
 
-    private static final String LOGIN = "SELECT Id_Teacher, Username, Password, Name, Phone_Num, Information FROM Teacher "
+    private static final String LOGIN = "SELECT Id_Teacher, Username, Password, Name, Phone_Num, Information,Email,Avatar FROM Teacher "
             + "WHERE Username = ? AND Password = ?";
 
     public static TeacherDTO getAccount(String teachername, String password) throws ClassNotFoundException, SQLException {
@@ -34,7 +34,9 @@ public class TeacherDAO {
                 String name = rs.getString("Name");
                 String phone_num = rs.getString("Phone_Num");
                 String information = rs.getString("Information");
-                acc = new TeacherDTO(id_teacher, teachername, password, name, phone_num, information);
+                String email = rs.getString("Email");
+                String avatar = rs.getString("Avatar");
+                acc = new TeacherDTO(id_teacher, teachername, password, name, phone_num, information,email,avatar);
             }
             conn.close();
         }
@@ -50,13 +52,10 @@ public class TeacherDAO {
         try {
             con = DBUtils.getConnection();
             if (con != null) {
-                String sql = "Insert Into Student("
-                        + "Username, Password, Exam_Stats"
-                        + ") values(?, ?, ?)";
+                String sql = "insert into dbo.Teacher (Username, Password) values (?, ?)";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, dto.getUserName());
                 stm.setString(2, dto.getPassword());
-                stm.setString(3, "0");
                 int effectRows = stm.executeUpdate();
                 if (effectRows > 0) {
                     return true;
@@ -72,7 +71,7 @@ public class TeacherDAO {
         }
         return false;
     }
-
+    
     public boolean changePassword(TeacherDTO dto, String newPassword, String oldPassword) throws ClassNotFoundException, SQLException {
         if (dto == null) {
             return false;
