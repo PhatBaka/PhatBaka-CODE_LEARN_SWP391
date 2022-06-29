@@ -130,9 +130,9 @@
                 <%
                     if (role.equals("student") || role.equals("teacher")) {
                 %>
-                <div class="container-fluid">
-                    <input class="navbar-brand" type="submit" name="action" value="My Courses" >
-                </div>
+                <div class="container-fluid" >
+                        <input type="submit" value="My Courses" name="action" style="border: none; background-color: inherit"/>
+                    </div>
                 <%
                     }
                 %>
