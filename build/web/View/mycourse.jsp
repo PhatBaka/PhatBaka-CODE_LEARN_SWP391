@@ -162,9 +162,11 @@
 
                             <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
                             <div class="dropdown-content" id="drop-info">
-                                <a href="#">Profile</a>
-                                <a href="#">Edit Profile</a>
-                                <a href="#">Logout</a>
+                                <form action="MainController">
+                                    <input type="submit" name="action" value="Exam 1"> </br>
+                                    <input type="submit" name="action" value="Exam 2"> </br>
+                                    <input type="submit" name="action" value="Exam 3"> </br>
+                                </form>
                             </div>
                         </div>               
                     </span>
@@ -174,10 +176,12 @@
                         <div class="dropdown">
                             <button class="dropbtn" style="border-radius: 25px;">Welcome, <%= username%></button>
                             <div class="dropdown-content">
-                                <input type="hidden" name="profileName" value="<%= username%>" />
-                                <input type="submit" name="action" value="View Profile">
-                                <input type="submit" name="action" value="Edit Profile">
-                                <input type="submit" name="action" value="Logout">
+                                <form action="MainController">
+                                    <input type="hidden" name="profileName" value="<%= username%>" />
+                                    <input type="submit" name="action" value="View Profile">
+                                    <input type="submit" name="action" value="Edit Profile">
+                                    <input type="submit" name="action" value="Logout">
+                                </form>
                             </div>
                         </div>
 
@@ -207,18 +211,18 @@
                             for (CourseDTO dto : list) {
                         %>
                         <tr>
-                            <th>
+                            <td>
                                 <%= ++count%>.
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 <img src="<%= dto.getImage()%>" width="150px" height="100px"/>
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 <%= dto.getName()%>
-                            </th>
-                            <th>
+                            </td>
+                            <td>
                                 <%= dto.getDescription()%>
-                            </th>
+                            </td>
                         </tr>
                         <%
                             }

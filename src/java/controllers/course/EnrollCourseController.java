@@ -56,7 +56,7 @@ public class EnrollCourseController extends HttpServlet {
                 if (result) {
                     if (course != null) {
                         request.setAttribute("course", course);
-                        request.setAttribute("ENROLL", "TRUE");
+                        session.setAttribute("ENROLL", course.getName());
                         url = ENROLL_SUCCESS_PAGE;
                     }
                 }

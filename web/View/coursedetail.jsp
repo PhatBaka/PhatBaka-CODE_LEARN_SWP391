@@ -212,10 +212,17 @@
                     </div>
                 </div>
             </div>
+            <%
+                if (role.equals("student")) {
+                    String enrollStatus = (String) session.getAttribute("ENROLL");
+            %>
             <form action="MainController">
-                <input type="hidden" name="courseName" value="<%= dto.getName() %>" />
-                <input type="submit" class="fadeIn fourth" value="Enroll Course"  style="width: 20%; position: relative; margin-left: 55rem;">
+                <input type="hidden" name="courseName" value="<%= dto.getName()%>" />
+                <input type="submit" name="action" class="fadeIn fourth" value="Enroll Course"  style="width: 20%; position: relative; margin-left: 55rem;">
             </form>
+            <%
+                }
+            %>
         </div>
 
         <div class="container px-4" id="lesson">
