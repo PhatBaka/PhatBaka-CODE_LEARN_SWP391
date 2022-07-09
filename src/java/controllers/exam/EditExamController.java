@@ -43,7 +43,7 @@ public class EditExamController extends HttpServlet {
             int id = new Integer(request.getParameter("id")); // id cua exam
             String name = request.getParameter("name");
             String question = request.getParameter("question");
-            ExamDTO exam = new ExamDTO(id, name, question, Date.valueOf(LocalDate.now()));
+            ExamDTO exam = new ExamDTO(id, name, null, url, question, id);
             int result = ExamDAO.updateExam(exam);
            if(result > 0){
                request.setAttribute("MESSAGE", "The haviour is SUCCESS!");

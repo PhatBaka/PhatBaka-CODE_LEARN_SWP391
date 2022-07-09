@@ -34,7 +34,7 @@ public class ExamDAO {
             PreparedStatement ptm = conn.prepareStatement(ADD_EXAM);
             ptm.setString(1, exam.getName());
             ptm.setString(2, exam.getQuestion());
-            ptm.setDate(3, exam.getDate());
+            ptm.setDate(3, exam.getExam_Date());
             result = ptm.executeUpdate();
             conn.close();
         }     
@@ -60,7 +60,7 @@ public class ExamDAO {
             PreparedStatement ptm = conn.prepareStatement(EDIT_EXAM);
             ptm.setString(1, exam.getName());
             ptm.setString(2, exam.getQuestion());
-            ptm.setDate(3, exam.getDate());
+            ptm.setDate(3, exam.getExam_Date());
             ptm.setInt(4, exam.getId_Exam());
             result = ptm.executeUpdate();
             conn.close();
@@ -96,10 +96,12 @@ public class ExamDAO {
 
                rs = ps.executeQuery();
                while (rs.next()) {
-                   return new ExamDTO(rs.getInt("Id_Exam"),
-                           rs.getString("Name"),
-                           rs.getString("Question"),
-                           rs.getDate("date"));
+                   return new ExamDTO( rs.getInt("Id_Exam"),
+                        rs.getString("Name"),
+                        rs.getDate("Exam_Date"),
+                        rs.getString("Hour"),
+                        rs.getString("question"),
+                        rs.getInt("Id_Course"));
 
                }
            } catch (Exception e) {
@@ -151,10 +153,12 @@ public class ExamDAO {
             ps.setInt(1, (Index - 1) * 6);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new ExamDTO(rs.getInt(sql), 
-                        rs.getString(sql),
-                        rs.getString(sql),
-                        rs.getDate(sql)));
+                list.add(new ExamDTO( rs.getInt("Id_Exam"),
+                        rs.getString("Name"),
+                        rs.getDate("Exam_Date"),
+                        rs.getString("Hour"),
+                        rs.getString("question"),
+                        rs.getInt("Id_Course")));
 
             }
         } catch (Exception e) {

@@ -3,27 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.exam;
+package controllers.enroll;
 
-import dao.ExamDAO;
-import dto.ExamDTO;
+import dao.CourseDAO;
+import dao.EnrollDAO;
+import dto.CourseDTO;
+import dto.StudentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author nearl
+ * @author Dell G7 7590
  */
-public class AddExamController extends HttpServlet {
+@WebServlet(name = "EnrollCourseController", urlPatterns = {"/EnrollCourseController"})
+public class EnrollCourseController extends HttpServlet {
+
+    private final String COURSE_DETAIL_PAGE = "coursedetail.jsp";
+    private final String ERROR_PAGE = "errors.html";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,24 +39,34 @@ public class AddExamController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String DISPLAY = "";//trang co form add_exam
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = DISPLAY;
-        try (PrintWriter out = response.getWriter()) {
-            String name = request.getParameter("name");// lay ten param exam
-            String question = request.getParameter("question"); // lay ten param question
-            ExamDTO exam = new ExamDTO(name, question, null);
-            int result = ExamDAO.addNewExam(exam);
-            if(result > 0){
-                request.setAttribute("MESSAGE", "The behavior is SUCCESS!");
-                url = "SearchExamController";
-            }else{
-                request.setAttribute("MESSAGE", "The behavior is failed!");
+
+        String url = ERROR_PAGE;
+        request.setAttribute("ENROLL_STATUS", "false");
+
+        try {
+            HttpSession session = request.getSession(false);
+            if (session != null) {
+                CourseDAO coursedao = new CourseDAO();
+                StudentDTO student = (StudentDTO) session.getAttribute("ACCOUNT");
+                String courseName = request.getParameter("courseName");
+                CourseDTO coursedto = coursedao.detail(courseName);
+                boolean result = EnrollDAO.enroll(student.getId_Student(), coursedto.getId_Course());
+                if(result){
+                    url = COURSE_DETAIL_PAGE;
+                    session.setAttribute("ENROLL_STATUS", "true");
+                }
             }
-            request.getRequestDispatcher(url).forward(request, response);
-            
+        }catch(ClassNotFoundException ex){
+            ex.printStackTrace();
+        }catch(SQLException ex){
+            ex.printStackTrace();
+        }
+        finally {
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 
@@ -67,13 +82,7 @@ public class AddExamController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddExamController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddExamController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -87,13 +96,7 @@ public class AddExamController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AddExamController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(AddExamController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

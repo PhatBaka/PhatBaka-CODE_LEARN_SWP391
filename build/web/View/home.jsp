@@ -160,20 +160,32 @@
                     <%
                         }
                     %>
+                       <%
+                        if (role.equals("student") ) {
+                    %>
                     <div class="container-fluid">
                         <span class="navbar-brand" href="#" style="cursor:pointer;">
                             <div class="dropdown">
 
                                 <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
+                             
+                                    
+                               
                                 <div class="dropdown-content" id="drop-info">
-                                    <a href="#">Profile</a>
+                                   <c:forEach items="${listP}" var="o">
+                                    <a href="#">${o.getName}</a>
+                                    </c:forEach>
                                     <a href="#">Edit Profile</a>
                                     <a href="#">Logout</a>
+                                    
                                 </div>
+                                     
                             </div>               
                         </span>
                     </div>
-
+ <%
+                        }
+                    %>
 
                     <%
                         if (session.getAttribute("ACCOUNT") != null) {
