@@ -12,55 +12,24 @@ import java.sql.Date;
  * @author nearl
  */
 public class ExamDTO {
-
     private int Id_Exam;
     private String Name;
-    private Date Exam_Date;
-    private String Hour;
-    private String question;
+    private String Question;
+    private Date date;
+    
+    public ExamDTO(){}
 
-    private int Id_Course;
-
-    public ExamDTO() {
-    }
-
-    public ExamDTO(String Name, String question, String Hour) {
+    public ExamDTO(String Name, String Question, Date date) {
         this.Name = Name;
-        this.question = question;
-        this.Hour = Hour;
+        this.Question = Question;
+        this.date = date;
     }
-
-    public ExamDTO(int Id_Exam, String Name, Date Exam_Date, String Hour, String question, int Id_Course) {
+   
+    public ExamDTO(int Id_Exam, String Name, String Question, Date date) {
         this.Id_Exam = Id_Exam;
         this.Name = Name;
-        this.Exam_Date = Exam_Date;
-        this.Hour = Hour;
-        this.question = question;
-        this.Id_Course = Id_Course;
-    }
-
-    public String getHour() {
-        return Hour;
-    }
-
-    public void setHour(String Hour) {
-        this.Hour = Hour;
-    }
-
-    public int getId_Course() {
-        return Id_Course;
-    }
-
-    public void setId_Course(int Id_Course) {
-        this.Id_Course = Id_Course;
-    }
-
-    public Date getExam_Date() {
-        return Exam_Date;
-    }
-
-    public void setExam_Date(Date Exam_Date) {
-        this.Exam_Date = Exam_Date;
+        this.Question = Question;
+        this.date = date;
     }
 
     public void setId_Exam(int Id_Exam) {
@@ -69,6 +38,14 @@ public class ExamDTO {
 
     public void setName(String Name) {
         this.Name = Name;
+    }
+
+    public void setQuestion(String Question) {
+        this.Question = Question;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getId_Exam() {
@@ -80,10 +57,11 @@ public class ExamDTO {
     }
 
     public String getQuestion() {
-        return question;
+        return Question;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public Date getDate() {
+        return date;
     }
+    
 }
