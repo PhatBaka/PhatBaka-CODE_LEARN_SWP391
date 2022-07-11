@@ -66,7 +66,7 @@ public class MainController extends HttpServlet {
             String action = request.getParameter("action");
             action = action.toLowerCase();// láy parameter name action từ intput type submit 
             if(action.isEmpty()){
-                url="../View/home.jsp";
+                url="/View/home.jsp";
             }
             //use-case 1
             else if("login".equals(action)){
@@ -118,15 +118,15 @@ public class MainController extends HttpServlet {
             }
             //use-case 13
             else if("add exam".equals(action)){
-                url = "AddExamController";
+                url = "/AddExamController";
             }
             //use-case 14
             else if("edit exam".equals(action)){
-                url = "EditExamController";
+                url = "/EditExamController";
             }
             //use-case 15
             else if("delete exam".equals(action)){
-                url = "DeleteExamController";
+                url = "/DeleteExamController";
             }
             //use-case 16
             else if("view mark".equals(action)){
@@ -154,7 +154,7 @@ public class MainController extends HttpServlet {
             }
             //view my courses
             else if("my courses".equals(action)){
-                url = "View/mycourses.jsp";
+                url = "/MyCourseController";
             }
             request.getRequestDispatcher(url).forward(request, response);// chuyển trang đến url đương ứng, đồng thời gửi đến trang url đương ứng với request để trang url tương ứng xử lý
         }

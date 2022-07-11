@@ -4,11 +4,13 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dao.CourseDAO"%>
 <%@page import="dto.AdminDTO"%>
 <%@page import="dto.TeacherDTO"%>
 <%@page import="dto.StudentDTO"%>
 <%@page import="dto.CourseDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -103,7 +105,7 @@
             AdminDTO admin = null;
             String username = "";
             String role = "";
-            String enroll = "";
+            CourseDAO dao = new CourseDAO();
 
             if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
                 role = (String) session.getAttribute("role");
@@ -116,7 +118,6 @@
                 } else if (role.equals("student")) {
                     stud = (StudentDTO) session.getAttribute("ACCOUNT");
                     username = stud.getUsername();
-                    enroll = (String)request.getAttribute("ENROLL_STATUS");
                 }
             }
         %>
@@ -126,7 +127,10 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg bg-light" id="background">
                     <div class="container-fluid">
-                        <input class="navbar-brand" type="submit" name="action" value="Home">
+                        <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                        <a href="${home}" style="text-decoration: none; color: black;">
+                            Home
+                        </a>
                     </div>
                     <%
                         if (role.equals("student") || role.equals("teacher")) {
@@ -172,49 +176,55 @@
         <%
             dto = (CourseDTO) request.getAttribute("course");
         %>
-        <form action="MainController">
-            <div class="container px-4" id="detail_frame">
-                <div class="row g-2">
-                    <div class="col-6" >
-                        <div class="p-3 border bg-light" >
-                            <img src="<%= dto.getImage()%>" width="150px" height="150px">
-                            Course Name : <%= dto.getName()%>
-                            <input type="hidden" name="courseName" value="<%= dto.getName()%>" />
-                        </div>
-                    </div>
-                    <div class="col-6" >
-                        <div class="p-3 border bg-light" ><p id="column_inf">Teacher Name : </p></div>
-                    </div>
-                    <div class="col-6" >
-                        <div class="p-3 border bg-light" >
-                            <p id="column_inf">
-                                Date Open: <%= dto.getDate_Open()%>
 
-                            </p>
-                            <p id="column_inf">
-                                Date Close: <%= dto.getDate_Close()%>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-6" >
-                        <div class="p-3 border bg-light" >
-                            <p id="column_inf">
-                                Rating : <%= dto.getRating()%>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-6" >
-                        <div class="p-3 border bg-light" >
-                            <p id="column_inf">
-                                Description : <%= dto.getDescription()%> </br>
-                            </p>
-                        </div>
-                    </div>
-                </div> 
+        <div class="container px-4" id="detail_frame">
+            <div class="row g-2">
+                <div class="col-6" >
+                    <div class="p-3 border bg-light" ><img src="<%= dto.getImage()%>" width="150px" height="150px">Course Name : <%= dto.getName()%></div>
+                </div>
+                <div class="col-6" >
+                    <div class="p-3 border bg-light" ><p id="column_inf">Teacher Name :<%= dao.getTeacherName(dto.getName())%> </p></div>
+                </div>
+                <div class="col-6" >
+                    <div class="p-3 border bg-light" >
+                        <p id="column_inf">
+                            Date Open: <%= dto.getDate_Open()%>
 
-                <input type="submit" class="fadeIn fourth" value="Enroll course"  style="width: 20%; position: relative; margin-left: 55rem;">
+                        </p>
+                        <p id="column_inf">
+                            Date Close: <%= dto.getDate_Close()%>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-6" >
+                    <div class="p-3 border bg-light" >
+                        <p id="column_inf">
+                            Rating : <%= dto.getRating()%>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-6" >
+                    <div class="p-3 border bg-light" >
+                        <p id="column_inf">
+                            Description : <%= dto.getDescription()%> </br>
+                            Exam date: 
+                        </p>
+                    </div>
+                </div>
             </div>
-        </form>
+            <%
+                if (role.equals("student")) {
+                    String enrollStatus = (String) session.getAttribute("ENROLL");
+            %>
+            <form action="MainController">
+                <input type="hidden" name="courseName" value="<%= dto.getName()%>" />
+                <input type="submit" name="action" class="fadeIn fourth" value="Enroll Course"  style="width: 20%; position: relative; margin-left: 55rem;">
+            </form>
+            <%
+                }
+            %>
+        </div>
+
         <div class="container px-4" id="lesson">
             <div class="row g-2">
                 <div class="col-6" >

@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.enroll;
+package controllers.course;
 
 import dao.CourseDAO;
-import dao.EnrollDAO;
 import dto.CourseDTO;
 import dto.StudentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,8 +25,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "EnrollCourseController", urlPatterns = {"/EnrollCourseController"})
 public class EnrollCourseController extends HttpServlet {
 
-    private final String COURSE_DETAIL_PAGE = "coursedetail.jsp";
-    private final String ERROR_PAGE = "errors.html";
+    private final String ENROLL_SUCCESS_PAGE = "View/coursedetail.jsp";
+    private final String ERROR_PAGE = "";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,29 +42,31 @@ public class EnrollCourseController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         String url = ERROR_PAGE;
-        request.setAttribute("ENROLL_STATUS", "false");
+        String courseName = "";
+        boolean result = false;
 
         try {
             HttpSession session = request.getSession(false);
             if (session != null) {
-                CourseDAO coursedao = new CourseDAO();
-                StudentDTO student = (StudentDTO) session.getAttribute("ACCOUNT");
-                String courseName = request.getParameter("courseName");
-                CourseDTO coursedto = coursedao.detail(courseName);
-                boolean result = EnrollDAO.enroll(student.getId_Student(), coursedto.getId_Course());
-                if(result){
-                    url = COURSE_DETAIL_PAGE;
-                    session.setAttribute("ENROLL_STATUS", "true");
+                StudentDTO dto = (StudentDTO) session.getAttribute("ACCOUNT");
+                courseName = request.getParameter("courseName");
+                CourseDAO dao = new CourseDAO();
+                CourseDTO course = dao.detail(courseName);
+                result = dao.enroll(dto.getId_Student(), courseName);
+                if (result) {
+                    if (course != null) {
+                        request.setAttribute("course", course);
+                        session.setAttribute("ENROLL", course.getName());
+                        url = ENROLL_SUCCESS_PAGE;
+                    }
                 }
             }
-        }catch(ClassNotFoundException ex){
+        } catch (SQLException ex) {
             ex.printStackTrace();
-        }catch(SQLException ex){
+        } catch (ClassNotFoundException ex) {
             ex.printStackTrace();
-        }
-        finally {
-            RequestDispatcher rd = request.getRequestDispatcher(url);
-            rd.forward(request, response);
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
