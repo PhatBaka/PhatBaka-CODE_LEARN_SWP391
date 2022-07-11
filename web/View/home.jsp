@@ -32,6 +32,11 @@
                 background-size:  1920px 1080px;
                 background-position: 60% 10%; 
             }
+            
+            #background
+            {
+                text-align: right;
+            }
 
             .container_2
             {
@@ -163,10 +168,10 @@
                     <span class="navbar-brand" style="cursor:pointer;">
                         <div class="dropdown">
                             <button class="icon">
-                                <ion-icon name="notifications-outline""></ion-icon>
+                                <ion-icon name="notifications-outline"></ion-icon>
                             </button>
                             <div class="dropdown-content" id="drop-info">
-                                <form action="MainController">
+                                <form action="MainController">  
                                     <input type="hidden" name="profileName" value="<%= username%>" />
                                     <input type="submit" name="action" value="Exam 1"> </br>
                                     <input type="submit" name="action" value="Exam 2"> </br>
@@ -203,7 +208,7 @@
                 %>
                 <div class="container-fluid" >
                     <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
-                    <a href="${login}">
+                    <a href="${login}" style="text-decoration: none; color: black;">
                         Login
                     </a>
                 </div>
