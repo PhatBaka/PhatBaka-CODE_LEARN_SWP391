@@ -7,7 +7,6 @@ package controllers.course;
 
 import dao.CourseDAO;
 import dto.CourseDTO;
-import dto.StudentDTO;
 import dto.TeacherDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -40,7 +39,7 @@ public class MyCourseController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private final String MY_COURSE_PAGE = "View/mycourse.jsp";
-    private final String ERROR = "errors.html";
+    private final String ERROR = "";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,13 +56,6 @@ public class MyCourseController extends HttpServlet {
                 if (role.equals("teacher")) {
                     TeacherDTO dto = (TeacherDTO) session.getAttribute("ACCOUNT");
                     List<CourseDTO> list = dao.teacherCourse(dto.getName());
-                    if (list != null) {
-                        request.setAttribute("myCourse", list);
-                        url = MY_COURSE_PAGE;
-                    }
-                }else if (role.equals("student")) {
-                    StudentDTO dto = (StudentDTO) session.getAttribute("ACCOUNT");
-                    List<CourseDTO> list = dao.studentCourse(dto.getId_Student());
                     if (list != null) {
                         request.setAttribute("myCourse", list);
                         url = MY_COURSE_PAGE;

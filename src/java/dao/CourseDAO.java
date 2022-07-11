@@ -71,7 +71,6 @@ public class CourseDAO implements Serializable {
                         + "AND Course.Name = ?";
 
                 statement = con.prepareStatement(sql);
-                statement.setString(1, courseName);
                 rs = statement.executeQuery();
                 if(rs.next()) {
                     name = rs.getString("Name");
@@ -171,9 +170,9 @@ public class CourseDAO implements Serializable {
             con = DBUtils.getConnection();
 
             String sql = "INSERT INTO Enroll (Id_Student,Id_Course) "
-                    + "VALUES (?,(SELECT Id_Course "
+                    + "VALUES (1,(SELECT Id_Course "
                     + "FROM Course "
-                    + "WHERE Name = ?))";
+                    + "WHERE Name = 'CSharp by Manh'))";
 
             statement = con.prepareStatement(sql);
             statement.setInt(1, _studentId);
@@ -311,44 +310,6 @@ public class CourseDAO implements Serializable {
             if (con != null) {
                 statement = con.prepareStatement(sql);
                 statement.setString(1, teacherName);
-
-                rs = statement.executeQuery();
-
-                while (rs.next()) {
-                    list.add(new CourseDTO(0, 0, 0, rs.getNString("Name"), rs.getNString("Description"), null, null, 0 , rs.getString("Image")));
-                }
-
-            }
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (statement != null) {
-                statement.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-        return list;
-    }
-    
-    public List<CourseDTO> studentCourse(int studentId) throws SQLException, ClassNotFoundException {
-        Connection con = null;
-        PreparedStatement statement = null;
-        ResultSet rs = null;
-        ArrayList<CourseDTO> list = new ArrayList<>();
-
-        try {
-            String sql = "SELECT Course.Image , Course.Name, Course.Description "
-                    + "FROM Course JOIN Enroll "
-                    + "ON Course.Id_Course = Enroll.Id_Course "
-                    + "JOIN Student "
-                    + "ON Enroll.Id_Student = Student.Id_Student AND Student.Id_Student = ?";
-            con = DBUtils.getConnection();
-            if (con != null) {
-                statement = con.prepareStatement(sql);
-                statement.setInt(1, studentId);
 
                 rs = statement.executeQuery();
 
