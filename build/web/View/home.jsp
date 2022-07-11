@@ -147,14 +147,17 @@
             <nav class="navbar navbar-expand-lg bg-light" id="background">
                 <div class="container-fluid">
                     <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                    <a href="${home}" style="text-decoration: none; color: black;">
-                        Home
+                    <a href="${home}" style="text-decoration: none; color: black;"> 
+                        <button class="icon">
+                            <ion-icon name="home-outline"></ion-icon></br>
+                            <span>Home</span>
+                        </button>
                     </a>
                 </div>
                 <%
                     if (role.equals("student") || role.equals("teacher")) {
                 %>
-                <div class="container-fluid" >
+                <div class="container-fluid">
                     <form action="MainController">
                         <input type="submit" value="My Courses" name="action" />
                     </form>
@@ -166,7 +169,8 @@
                     <span class="navbar-brand" style="cursor:pointer;">
                         <div class="dropdown">
                             <button class="icon">
-                                <ion-icon name="notifications-outline""></ion-icon>
+                                <ion-icon name="notifications-outline"></ion-icon></br>
+                                <span>Noti</span>
                             </button>
                             <div class="dropdown-content" id="drop-info">
                                 
@@ -214,8 +218,11 @@
                 %>
                 <div class="container-fluid" >
                     <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
-                    <a href="${login}">
-                        Login
+                    <a href="${login}" style="text-decoration: none; color: black;">
+                        <button class="icon">
+                            <ion-icon name="log-in-outline"></ion-icon></br>
+                            <span syle="padding: 5px">Login</span>
+                        </button>
                     </a>
                 </div>
                 <%
