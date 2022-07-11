@@ -33,7 +33,7 @@ public class ViewExamController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String search = request.getParameter("search");
-            
+            out.print("success");
         }
     }
 

@@ -4,6 +4,8 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dto.ExamDTO"%>
+<%@page import="dao.ExamDAO"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="dto.CourseDTO"%>
 <%@page import="java.util.List"%>
@@ -122,6 +124,7 @@
         AdminDTO admin = null;
         String username = "";
         String role = "";
+        List<ExamDTO> examlist = ExamDAO.getNotiExam();
         List<CourseDTO> courselist = CourseDAO.display();
         if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
             role = (String) session.getAttribute("role");
@@ -166,12 +169,20 @@
                                 <ion-icon name="notifications-outline""></ion-icon>
                             </button>
                             <div class="dropdown-content" id="drop-info">
+                                
+                                <%
+                                    if (role.equals("student") && examlist != null) {
+                                        for (ExamDTO exam : examlist) {
+                                %>
                                 <form action="MainController">
                                     <input type="hidden" name="profileName" value="<%= username%>" />
-                                    <input type="submit" name="action" value="Exam 1"> </br>
-                                    <input type="submit" name="action" value="Exam 2"> </br>
-                                    <input type="submit" name="action" value="Exam 3"> </br>
+                                    <input type="text" name="examName" value="<%= exam.getName()%>" /> 
+                                    <input type="submit" name="action" value="View Exam"> </br>
                                 </form>
+                                <%
+                                        }
+                                    }
+                                %>
                             </div>
                         </div>
 
