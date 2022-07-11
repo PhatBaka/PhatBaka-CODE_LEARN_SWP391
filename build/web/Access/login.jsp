@@ -215,6 +215,7 @@
             </form>       
             <a type="button" class="fadeIn fourth" href="forgotpassword.jsp" style="width: 40%; margin-top: -5%;">Forgot Password</a>
             <br>
+            
             <a type="button" class="fadeIn fourth" href="register.jsp" style="width: 40%; margin-top: -5%;" >Register</a>
         </div>
     </div>
