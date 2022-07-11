@@ -181,6 +181,7 @@
                                 <form action="MainController">
                                     <input type="hidden" name="profileName" value="<%= username%>" />
                                     <input type="text" name="examName" value="<%= exam.getName()%>" /> 
+                                    <input type="text" name="examDate" value="<%= String.valueOf(exam.getDate()) %>" />
                                     <input type="submit" name="action" value="View Exam"> </br>
                                 </form>
                                 <%
