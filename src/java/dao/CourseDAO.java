@@ -331,4 +331,42 @@ public class CourseDAO implements Serializable {
         }
         return list;
     }
+    
+    public List<CourseDTO> studentCourse(int studentId) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        ArrayList<CourseDTO> list = new ArrayList<>();
+
+        try {
+            String sql = "SELECT Course.Image , Course.Name, Course.Description "
+                    + "FROM Course JOIN Enroll "
+                    + "ON Course.Id_Course = Enroll.Id_Course "
+                    + "JOIN Student "
+                    + "ON Enroll.Id_Student = Student.Id_Student AND Student.Id_Student = ?";
+            con = DBUtils.getConnection();
+            if (con != null) {
+                statement = con.prepareStatement(sql);
+                statement.setInt(1, studentId);
+
+                rs = statement.executeQuery();
+
+                while (rs.next()) {
+                    list.add(new CourseDTO(0, 0, 0, rs.getNString("Name"), rs.getNString("Description"), null, null, 0 , rs.getString("Image")));
+                }
+
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (statement != null) {
+                statement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return list;
+    }
 }
