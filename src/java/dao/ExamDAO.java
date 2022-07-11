@@ -8,9 +8,12 @@ package dao;
 import DBtills.DBUtils;
 import dto.ExamDTO;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +22,15 @@ import java.util.List;
  * @author nearl
  */
 public class ExamDAO {
-    private static final String ADD_EXAM = "INSERT INTO Exam(Id_Exam,  Name, Question, Date) VALUES (?,?,?,?)";
+    private static final String ADD_EXAM = "INSERT INTO Exam(Id_Exam,  Name, Question, Exam_Date) VALUES (?,?,?,?)";
     
     private static final String DELETE_EXAM = "";// sua sau
     
-    private static final String EDIT_EXAM = "UPDATE Exam SET Name = ?, Question = ?, Date = ? WHERE Id_Exam = ?"; // 
+    private static final String EDIT_EXAM = "UPDATE Exam SET Name = ?, Question = ?, Exam_Date = ? WHERE Id_Exam = ?"; // 
     
-    private  static final String SEARCH_EXAM = "SELECT Id_Exam, Name, Question, Date FROM Exam WHERE Name like ?";
+    private  static final String SEARCH_EXAM = "SELECT Id_Exam, Name, Question, Exam_Date FROM Exam WHERE Name like ?";
+    
+    private  static final String NOTI_EXAM = "SELECT Id_Exam, Name, Question, Exam_Date FROM Exam WHERE Exam_Date = ?";
     
     public static int addNewExam(ExamDTO exam) throws ClassNotFoundException, SQLException{
         int result = 0;
@@ -73,9 +78,9 @@ public class ExamDAO {
         Connection conn = DBUtils.getConnection();
         if(conn != null){
             PreparedStatement ptm = conn.prepareStatement(SEARCH_EXAM);
+            ptm.setString(1, search);
             ResultSet rs = ptm.executeQuery();
             while(rs != null && rs.next()){
-                
                 list.add(new ExamDTO());
             }
             conn.close();
@@ -83,6 +88,25 @@ public class ExamDAO {
         }
         return list;
     }
+    
+    public static  List<ExamDTO> getNotiExam() throws SQLException, ClassNotFoundException{
+        List<ExamDTO> list = new ArrayList<>();
+        Connection conn = DBUtils.getConnection();
+        if(conn != null){
+            LocalDate date = java.time.LocalDate.now();
+            Date today = Date.valueOf(date);
+            PreparedStatement ptm = conn.prepareStatement(NOTI_EXAM);
+            ptm.setDate(1, today);
+            ResultSet rs = ptm.executeQuery();
+            while(rs.next()){
+                list.add(new ExamDTO(rs.getInt("Id_Exam"),rs.getString("Name"),null,rs.getDate("Exam_Date")));
+            }
+            conn.close();
+           
+        }
+        return list;
+    }
+    
     public ExamDTO SearchingExam(String Search) throws SQLException {
 
         Connection conn = null;
@@ -99,7 +123,7 @@ public class ExamDAO {
                    return new ExamDTO(rs.getInt("Id_Exam"),
                            rs.getString("Name"),
                            rs.getString("Question"),
-                           rs.getDate("date"));
+                           rs.getDate("Exam_Date"));
 
                }
            } catch (Exception e) {

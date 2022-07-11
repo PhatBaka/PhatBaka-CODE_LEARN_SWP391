@@ -4,7 +4,9 @@
     Author     : HoangMinh
 --%>
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="dto.ExamDTO"%>
+<%@page import="dao.ExamDAO"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="dto.CourseDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="dao.CourseDAO"%>
@@ -60,7 +62,6 @@
             }
 
             /* Dropdown Button */
-            /* Dropdown Button */
             .dropbtn {
                 background-color: #04AA6D;
                 color: white;
@@ -87,7 +88,7 @@
             }
 
             /* Links inside the dropdown */
-            .dropdown-content a {
+            .dropdown-content input {
                 color: black;
                 padding: 12px 16px;
                 text-decoration: none;
@@ -95,7 +96,7 @@
             }
 
             /* Change color of dropdown links on hover */
-            .dropdown-content a:hover {background-color: #ddd;}
+            .dropdown-content input:hover {background-color: #ddd;}
 
             /* Show the dropdown menu on hover */
             .dropdown:hover .dropdown-content {display: block;}
@@ -112,8 +113,6 @@
                 height: 3em;
                 margin-left: 200%;
             }
-
-
         </style>
 
 
@@ -125,6 +124,7 @@
         AdminDTO admin = null;
         String username = "";
         String role = "";
+        List<ExamDTO> examlist = ExamDAO.getNotiExam();
         List<CourseDTO> courselist = CourseDAO.display();
         if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
             role = (String) session.getAttribute("role");
@@ -142,73 +142,88 @@
     %>
 
     <body>
-        <form action="MainController">
-            <div class="container">
-                <nav class="navbar navbar-expand-lg bg-light" id="background">
-                    <div class="container-fluid">
-                        <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                        <a href="${home}" style="text-decoration: none; color: black;">
-                            Home
-                        </a>
-                    </div>
-                    <%
-                        if (role.equals("student") || role.equals("teacher")) {
-                    %>
-                    <div class="container-fluid" >
-                        <input type="submit" value="My Courses" name="action" style="border: none; background-color: inherit"/>
-                    </div>
-                    <%
-                        }
-                    %>
-                    <div class="container-fluid">
-                        <span class="navbar-brand" href="#" style="cursor:pointer;">
-                            <div class="dropdown">
 
-                                <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
-                                <div class="dropdown-content" id="drop-info">
-                                    <a href="#">Profile</a>
-                                    <a href="#">Edit Profile</a>
-                                    <a href="#">Logout</a>
-                                </div>
-                            </div>               
-                        </span>
-                    </div>
-
-
-                    <%
-                        if (session.getAttribute("ACCOUNT") != null) {
-                    %>
-                    <div class="container-fluid">
-                        <span class="navbar-brand" style="cursor:pointer;">
-                            <div class="dropdown">
-                                <button class="dropbtn" style="border-radius: 25px;">Welcome, <%= username%></button>
-                                <div class="dropdown-content">
-                                    <form action="MainController">
-                                        <input type="hidden" name="profileName" value="<%= username%>" />
-                                        <input type="submit" name="action" value="View Profile">
-                                        <input type="submit" name="action" value="Edit Profile">
-                                        <input type="submit" name="action" value="logout">
-                                    </form>
-                                </div>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg bg-light" id="background">
+                <div class="container-fluid">
+                    <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                    <a href="${home}" style="text-decoration: none; color: black;">
+                        Home
+                    </a>
+                </div>
+                <%
+                    if (role.equals("student") || role.equals("teacher")) {
+                %>
+                <div class="container-fluid" >
+                    <form action="MainController">
+                        <input type="submit" value="My Courses" name="action" />
+                    </form>
+                </div>
+                <%
+                    }
+                %>
+                <div class="container-fluid">
+                    <span class="navbar-brand" style="cursor:pointer;">
+                        <div class="dropdown">
+                            <button class="icon">
+                                <ion-icon name="notifications-outline""></ion-icon>
+                            </button>
+                            <div class="dropdown-content" id="drop-info">
+                                
+                                <%
+                                    if (role.equals("student") && examlist != null) {
+                                        for (ExamDTO exam : examlist) {
+                                %>
+                                <form action="MainController">
+                                    <input type="hidden" name="profileName" value="<%= username%>" />
+                                    <input type="text" name="examName" value="<%= exam.getName()%>" /> 
+                                    <input type="submit" name="action" value="View Exam"> </br>
+                                </form>
+                                <%
+                                        }
+                                    }
+                                %>
                             </div>
+                        </div>
 
-                        </span>
-                    </div>
-                    <%
-                    } else {
-                    %>
-                    <div class="container-fluid" >
-                        <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
-                        <a href="${login}" style="text-decoration: none; color: black;">
-                            Login
-                        </a>
-                    </div>
-                    <%
-                        }
-                    %>
-                </nav>
-            </div>
-        </form>
+                    </span>
+                </div>
+
+
+                <%
+                    if (session.getAttribute("ACCOUNT") != null) {
+                %>
+                <div class="container-fluid">
+                    <span class="navbar-brand" style="cursor:pointer;">
+                        <div class="dropdown">
+                            <button class="dropbtn" style="border-radius: 25px;">Welcome, <%= username%></button>
+                            <div class="dropdown-content">
+                                <form action="MainController">
+                                    <input type="hidden" name="profileName" value="<%= username%>" />
+                                    <input type="submit" name="action" value="View Profile">
+                                    <input type="submit" name="action" value="Edit Profile">
+                                    <input type="submit" name="action" value="Logout">
+                                </form>
+                            </div>
+                        </div>
+
+                    </span>
+                </div>
+                <%
+                } else {
+                %>
+                <div class="container-fluid" >
+                    <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
+                    <a href="${login}">
+                        Login
+                    </a>
+                </div>
+                <%
+                    }
+                %>
+            </nav>
+        </div>
+
 
         <div class="search_container">
             <div class="input-group mb-3" style="width: 40%; margin-left: 10rem;">
