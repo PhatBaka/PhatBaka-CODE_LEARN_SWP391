@@ -193,7 +193,7 @@ html {
                <%
                   if(request.getAttribute("ERROR")!=null){
                       %>
-                      <h1 text-color="red"> <%= String.valueOf(request.getAttribute("ERROR")) %> </h1>
+                      <font color="red"> <%= String.valueOf(request.getAttribute("ERROR")) %> </font>
               <%
                   }
               %>
@@ -204,9 +204,10 @@ html {
                 <label>Password</label><input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
                 <label id="option">Select:</label>
                 <select id="select" name="role">
-                <option value="Admin" selected="selected">Admin</option>
-                <option value="Teacher">Teacher</option>
-                <option value="Student">Student</option>
+                    <option value="Admin" selected="selected">Admin</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Student">Student</option>
+                    
                 </select>
                 <input type="submit" class="fadeIn fourth" name="action" value="Login" style="width: 40%;"></br>
                 </form>       
