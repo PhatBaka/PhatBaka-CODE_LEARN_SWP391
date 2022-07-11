@@ -27,13 +27,13 @@ public class ViewExamController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String ERROR = "";// //trang o lai
+    private static final String ERROR = "home.jsp";// //trang o lai
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String search = request.getParameter("search");
-            
+            out.print("success");
         }
     }
 

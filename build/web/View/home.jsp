@@ -4,6 +4,8 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dto.ExamDTO"%>
+<%@page import="dao.ExamDAO"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="dto.CourseDTO"%>
 <%@page import="java.util.List"%>
@@ -31,11 +33,6 @@
                 background-image: url(https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png);
                 background-size:  1920px 1080px;
                 background-position: 60% 10%; 
-            }
-            
-            #background
-            {
-                text-align: right;
             }
 
             .container_2
@@ -127,6 +124,7 @@
         AdminDTO admin = null;
         String username = "";
         String role = "";
+        List<ExamDTO> examlist = ExamDAO.getNotiExam();
         List<CourseDTO> courselist = CourseDAO.display();
         if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
             role = (String) session.getAttribute("role");
@@ -168,15 +166,23 @@
                     <span class="navbar-brand" style="cursor:pointer;">
                         <div class="dropdown">
                             <button class="icon">
-                                <ion-icon name="notifications-outline"></ion-icon>
+                                <ion-icon name="notifications-outline""></ion-icon>
                             </button>
                             <div class="dropdown-content" id="drop-info">
-                                <form action="MainController">  
+                                
+                                <%
+                                    if (role.equals("student") && examlist != null) {
+                                        for (ExamDTO exam : examlist) {
+                                %>
+                                <form action="MainController">
                                     <input type="hidden" name="profileName" value="<%= username%>" />
-                                    <input type="submit" name="action" value="Exam 1"> </br>
-                                    <input type="submit" name="action" value="Exam 2"> </br>
-                                    <input type="submit" name="action" value="Exam 3"> </br>
+                                    <input type="text" name="examName" value="<%= exam.getName()%>" /> 
+                                    <input type="submit" name="action" value="View Exam"> </br>
                                 </form>
+                                <%
+                                        }
+                                    }
+                                %>
                             </div>
                         </div>
 
@@ -208,7 +214,7 @@
                 %>
                 <div class="container-fluid" >
                     <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
-                    <a href="${login}" style="text-decoration: none; color: black;">
+                    <a href="${login}">
                         Login
                     </a>
                 </div>

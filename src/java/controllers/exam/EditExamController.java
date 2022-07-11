@@ -34,7 +34,7 @@ public class EditExamController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    private static final String DISPLAY = "";// trang  hien thi
+    private static final String DISPLAY = "home.jsp";// trang  hien thi
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
@@ -47,7 +47,7 @@ public class EditExamController extends HttpServlet {
             int result = ExamDAO.updateExam(exam);
            if(result > 0){
                request.setAttribute("MESSAGE", "The haviour is SUCCESS!");
-               url = "SearchExamController";
+               url = "ViewExamController";
            }else{
                request.setAttribute("MESSAGE", "The haviour is FAIL!");
            }
