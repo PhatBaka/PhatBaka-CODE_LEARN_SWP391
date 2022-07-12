@@ -50,30 +50,33 @@ public class LoginController extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
-        
+                   
+
         try  {
-            
+              List List = NotificationDAO.ListNotification(1);
             HttpSession session = request.getSession();
             String username = request.getParameter("username");
             String password = request.getParameter("password");
             String role = request.getParameter("role").toLowerCase();
             Object acc = null;
-            
             if(STUDENT_ROLE.equals(role)){
              acc = (StudentDTO)StudentDAO.getAccount(username, password);
                 url = HOME; //chuyen den sau khi login
+                  
             }else if(TEACHER_ROLE.equals(role)){
                 acc = (TeacherDTO)TeacherDAO.getAccount(username, password);
                 url = HOME; //chuyen den sau khi login
+               
             }else if(ADMIN_ROLE.equals(role)){
                 acc = (AdminDTO)AdminDAO.getAccount(username, password);
                 url = HOME; //chuyen den sau khi login
-                
+                 
             }
             if(acc == null){
                 request.setAttribute("ERROR", "User name or Password is invalid!!");
                 url = ERROR;
-            }else{
+            }else if(acc !=null && List!= null ){
+                request.setAttribute("listP", List);
                 session.setAttribute("ACCOUNT", acc);
                 session.setAttribute("role", role);
             }

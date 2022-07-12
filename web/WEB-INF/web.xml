@@ -33,10 +33,6 @@
         <servlet-class>controllers.profile.ViewUserProfileController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>NotificationController</servlet-name>
-        <servlet-class>controllers.notifications.NotificationController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>ViewExamController</servlet-name>
         <servlet-class>controllers.exam.ViewExamController</servlet-class>
     </servlet>
@@ -80,10 +76,6 @@
         <servlet-name>EditTeacheProfileController</servlet-name>
         <servlet-class>controllers.profile.medium.EditTeacheProfileController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>NotificationsController</servlet-name>
-        <servlet-class>controllers.notifications.NotificationsController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/</url-pattern>
@@ -115,10 +107,6 @@
     <servlet-mapping>
         <servlet-name>ViewUserProfileController</servlet-name>
         <url-pattern>/ViewUserProfileController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>NotificationController</servlet-name>
-        <url-pattern>/NotificationController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewExamController</servlet-name>
@@ -163,10 +151,6 @@
     <servlet-mapping>
         <servlet-name>EditTeacheProfileController</servlet-name>
         <url-pattern>/EditTeacheProfileController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>NotificationsController</servlet-name>
-        <url-pattern>/NotificationsController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
