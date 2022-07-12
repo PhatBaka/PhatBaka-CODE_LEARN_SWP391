@@ -27,7 +27,6 @@ public class ExamDAO {
     
     private  static final String SEARCH_EXAM = "SELECT Id_Exam, Name, Question, Date FROM Exam WHERE Name like ?";
     
-    private  static final String LIST_EXAM = "SELECT * FROM dbo.Exam ORDER BY NEWID()";
     public static int addNewExam(ExamDTO exam) throws ClassNotFoundException, SQLException{
         int result = 0;
         Connection conn = DBUtils.getConnection();
@@ -35,7 +34,7 @@ public class ExamDAO {
             PreparedStatement ptm = conn.prepareStatement(ADD_EXAM);
             ptm.setString(1, exam.getName());
             ptm.setString(2, exam.getQuestion());
-            ptm.setDate(3, exam.getDate());
+            ptm.setDate(3, exam.getExam_Date());
             result = ptm.executeUpdate();
             conn.close();
         }     
@@ -61,7 +60,7 @@ public class ExamDAO {
             PreparedStatement ptm = conn.prepareStatement(EDIT_EXAM);
             ptm.setString(1, exam.getName());
             ptm.setString(2, exam.getQuestion());
-            ptm.setDate(3, exam.getDate());
+            ptm.setDate(3, exam.getExam_Date());
             ptm.setInt(4, exam.getId_Exam());
             result = ptm.executeUpdate();
             conn.close();
@@ -74,21 +73,6 @@ public class ExamDAO {
         Connection conn = DBUtils.getConnection();
         if(conn != null){
             PreparedStatement ptm = conn.prepareStatement(SEARCH_EXAM);
-            ResultSet rs = ptm.executeQuery();
-            while(rs != null && rs.next()){
-                
-                list.add(new ExamDTO());
-            }
-            conn.close();
-           
-        }
-        return list;
-    }
-       public static  List<ExamDTO> ListQuizExam(int IdExam) throws SQLException, ClassNotFoundException{
-        List<ExamDTO> list = null;
-        Connection conn = DBUtils.getConnection();
-        if(conn != null){
-            PreparedStatement ptm = conn.prepareStatement(LIST_EXAM);
             ResultSet rs = ptm.executeQuery();
             while(rs != null && rs.next()){
                 
@@ -112,15 +96,12 @@ public class ExamDAO {
 
                rs = ps.executeQuery();
                while (rs.next()) {
-                   return new ExamDTO(
-                        rs.getInt("Id_Exam"),
+                   return new ExamDTO( rs.getInt("Id_Exam"),
                         rs.getString("Name"),
-                        rs.getString("Question"),
-                        rs.getDate("date"),
-                        rs.getDate("Hour"),
-                        rs.getString("Subject"),
-                        rs.getDate("Exam_Date")
-                );
+                        rs.getDate("Exam_Date"),
+                        rs.getString("Hour"),
+                        rs.getString("question"),
+                        rs.getInt("Id_Course"));
 
                }
            } catch (Exception e) {
@@ -172,15 +153,12 @@ public class ExamDAO {
             ps.setInt(1, (Index - 1) * 6);
             rs = ps.executeQuery();
             while (rs.next()) {
-                list.add(new ExamDTO(
-                        rs.getInt("Id_Exam"),
+                list.add(new ExamDTO( rs.getInt("Id_Exam"),
                         rs.getString("Name"),
-                        rs.getString("Question"),
-                        rs.getDate("date"),
-                        rs.getDate("Hour"),
-                        rs.getString("Subject"),
-                        rs.getDate("Exam_Date")
-                ));
+                        rs.getDate("Exam_Date"),
+                        rs.getString("Hour"),
+                        rs.getString("question"),
+                        rs.getInt("Id_Course")));
 
             }
         } catch (Exception e) {

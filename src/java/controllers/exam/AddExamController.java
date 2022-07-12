@@ -42,7 +42,7 @@ public class AddExamController extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String name = request.getParameter("name");// lay ten param exam
             String question = request.getParameter("question"); // lay ten param question
-            ExamDTO exam = new ExamDTO(name, question, Date.valueOf(LocalDate.now()));
+            ExamDTO exam = new ExamDTO(name, question, null);
             int result = ExamDAO.addNewExam(exam);
             if(result > 0){
                 request.setAttribute("MESSAGE", "The behavior is SUCCESS!");

@@ -5,9 +5,9 @@
  */
 package controllers.notifications;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import dao.NotificationDAO;
 import dto.ExamDTO;
+import dto.StudentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
@@ -16,8 +16,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author nearl
  */
+//@WebServlet(name = "NotificationController", urlPatterns = {"/NotificationController"})
 public class NotificationController extends HttpServlet {
 
     /**
@@ -37,34 +38,31 @@ public class NotificationController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-      
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, MessagingException, ClassNotFoundException, SQLException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-       
          try (PrintWriter out = response.getWriter()) {
             String id_exa = request.getParameter("Id_exa");
             int id_exam = Integer.parseInt(id_exa);
             String name = request.getParameter("name");// lay ten param exam
             String question = request.getParameter("question"); // lay ten param question
             
-            ExamDTO exam = new ExamDTO(id_exam,name, question, Date.valueOf(LocalDate.now()),null,null,null);
+           ExamDTO exam = new ExamDTO(id_exam, name, null, null, question, 1);
             NotificationDAO.InsertForNotification(exam);
-            List<ExamDTO> List = NotificationDAO.ListNotification(id_exam);
+            
+            List<ExamDTO> List = NotificationDAO.ListNotification(1);
             if(List!= null){
-                request.setAttribute("ListP", List);
-                request.getRequestDispatcher("").forward(request, response);
+                request.setAttribute("listP", List);
+                request.getRequestDispatcher("home.jsp").forward(request, response);
             }else{
                 request.setAttribute("Error", "Not Have Yet !!");
-                request.getRequestDispatcher("").forward(request, response);
+                request.getRequestDispatcher("home.jsp").forward(request, response);
             }
             
             
         }
-       
-        
-        
-       
+   
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -81,10 +79,6 @@ public class NotificationController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (MessagingException ex) {
-            Logger.getLogger(NotificationController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(NotificationController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(NotificationController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -103,10 +97,6 @@ public class NotificationController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (MessagingException ex) {
-            Logger.getLogger(NotificationController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(NotificationController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(NotificationController.class.getName()).log(Level.SEVERE, null, ex);
         }

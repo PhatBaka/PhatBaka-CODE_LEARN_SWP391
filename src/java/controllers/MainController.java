@@ -8,6 +8,7 @@ package controllers;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -61,89 +62,105 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
             String url = ERROR;
-            String action = request.getParameter("action"); // láy parameter name action từ intput type submit 
-            action = action.toLowerCase();// đồng bộ parameter action kiểu chữ thường
+            String action = request.getParameter("action");
+            action = action.toLowerCase();// láy parameter name action từ intput type submit 
+            if(action.isEmpty()){
+                url="/View/home.jsp";
+            }
             //use-case 1
-            if("login".equals(action)){
-                url = "LoginController";
+            else if("login".equals(action)){
+                url = "/LoginController";
             } 
+             else if("noti".equals(action)){
+                url = "/NotificationsController";
+            }
             //use-case 2
             else if("logout".equals(action)){
-                url = "LogoutController";
+                url = "/LogoutController";
             }            
             //use-case 3
             else if("register".equals(action)){
-                url = "RegisterController";
+                url = "/RegisterController";
             }
             //use-case 4_ Search tên course
-            else if("search by keyword".equals(action)){
-                url = "SearchController";
+            else if("search".equals(action)){
+                url = "/SearchController";
             }
             //use-case 5
-            else if("view course detail".equals(action)){
-                url = "ViewCourseDetailController";
+            else if("course details".equals(action)){
+                url = "/ViewCourseDetailController";
             }
             //user-case 6
-            else if("view user profile".equals(action)){
-                url = "ViewUserProfileController";
+            else if("view profile".equals(action)){
+                url = "/ViewUserProfileController";
             }            
             //use-case 7
             else if("edit profile".equals(action)){
-                url = "EditProfileController";
+                url = "/EditProfileController";
             }
             //use-case 8
             else if("delete profile".equals(action)){
-                url = "DeleteProfileController";
+                url = "/DeleteProfileController";
             }
             //use-case 9
             else if("edit teacher profile".equals(action)){
-                url = "EditTeacheProfileController";
+                url = "/EditTeacheProfileController";
             }            
             //use-case 10
             else if("add teacher profile".equals(action)){
-                url = "AddProfileController";
+                url = "/AddProfileController";
             }
             //use-case 11
             else if("notification".equals(action)){
-                url = "NotificationController";
+                url = "/NotificationController";
             }
             //use-case 12
             else if("view exam".equals(action)){
-                url = "ViewExamController";
+                url = "/ViewExamController";
             }
             //use-case 13
             else if("add exam".equals(action)){
-                url = "AddExamController";
+                url = "/AddExamController";
             }
             //use-case 14
             else if("edit exam".equals(action)){
-                url = "EditExamController";
+                url = "/EditExamController";
             }
             //use-case 15
             else if("delete exam".equals(action)){
-                url = "DeleteExamController";
+                url = "/DeleteExamController";
             }
             //use-case 16
             else if("view mark".equals(action)){
-                url = "ViewMarkController";
+                url = "/ViewMarkController";
             }
             //use-case 17
             else if("add course".equals(action)){
-                url = "AddCourseController";
+                url = "/AddCourseController";
             }
             //use-case 18
             else if("edit course".equals(action)){
-                url = "EditCourseController";
+                url = "/EditCourseController";
             }
             //use-case 19
             else if("delete course".equals(action)){
-                url = "DeleteCourseController";
+                url = "/DeleteCourseController";
+            }
+            //use-case 20
+            else if("enroll course".equals(action)){
+                url = "/EnrollCourseController";
+            }
+            //home
+            else if("home".equals(action)){
+                url = "View/home.jsp";
+            }
+            //view my courses
+            else if("my courses".equals(action)){
+                url = "/MyCourseController";
             }
             request.getRequestDispatcher(url).forward(request, response);// chuyển trang đến url đương ứng, đồng thời gửi đến trang url đương ứng với request để trang url tương ứng xử lý
         }
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

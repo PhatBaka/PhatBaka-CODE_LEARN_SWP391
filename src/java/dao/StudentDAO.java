@@ -11,16 +11,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
  * @author nearl
  */
 public class StudentDAO {
-    private static final String LOGIN = "SELECT Id_Student, Username, Password, Exam_Stats FROM Student "
-            +                           "WHERE Username = ? AND Password = ? ";
-    
-    public static StudentDTO getAccount(String studentname, String password) throws ClassNotFoundException, SQLException{
+    public static StudentDTO getAccount(String studentname, String password) 
+            throws ClassNotFoundException, SQLException{
+        String LOGIN = "SELECT Id_Student, Username, Password FROM Student WHERE Username = ? AND Password = ? ";
         StudentDTO acc = null;
         Connection conn = DBUtils.getConnection();
         if(conn != null){
@@ -30,14 +30,13 @@ public class StudentDAO {
             ResultSet rs = ptm.executeQuery();
             if(rs != null && rs.next()){
                 int id_student = rs.getInt("Id_Student");
-                String exam_starts = rs.getString("Exam_Stats");
-                acc = new StudentDTO(id_student, studentname, password, exam_starts);
+                acc = new StudentDTO(id_student, studentname, password);
             }
             conn.close();
         }
         return acc;
     }
-    public static boolean createNewAccount(StudentDTO dto) throws ClassNotFoundException, SQLException {
+    public static boolean createStudentAccount(StudentDTO dto) throws ClassNotFoundException, SQLException {
         if (dto == null){
             return false;
         }
@@ -46,13 +45,10 @@ public class StudentDAO {
         try {
             con = DBUtils.getConnection();
             if (con != null) {
-                String sql = "Insert Into Student("
-                        + "Username, Password, Exam_Stats"
-                        + ") values(?, ?, ?)";
+                String sql = "insert into dbo.Student (Username, Password) values (?, ?)";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, dto.getUsername());
                 stm.setString(2, dto.getPassword());
-                stm.setString(3, "0");
                 int effectRows = stm.executeUpdate();
                 if (effectRows > 0) {
                     return true;
@@ -68,35 +64,75 @@ public class StudentDAO {
         }
         return false;
     }
-    public StudentDTO SearchingStudent(String Search) throws SQLException {
-
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+    
+    public boolean changePassword(StudentDTO dto, String newPassword, String oldPassword) throws ClassNotFoundException, SQLException {
+        if (dto == null) {
+            return false;
+        }
+        Connection con = null;
+        PreparedStatement stm = null;
+        String validAccSQL = "select Id_Student from dbo.Student where Username = ? and Password = ?";
+        String changePassSQL = "update dbo.Student set Password = ? where Username = ?";
         try {
-               conn = DBUtils.getConnection();
-               String sql = "SELECT * from dbo.student where Name like ?  ";
-               ps = conn.prepareStatement(sql);
-               ps.setString(1, "%" + Search + "%");
+            con = DBUtils.getConnection();
+            if (con != null) {
+                stm = con.prepareStatement(validAccSQL);
+                stm.setString(1, dto.getUsername());
+                stm.setString(2, oldPassword);
+                int effectedRows = stm.executeUpdate();
+                if (effectedRows > 0) {
+                    stm = con.prepareStatement(changePassSQL);
+                    stm.setString(1, newPassword);
+                    stm.setString(2, dto.getUsername());
+                    stm.executeUpdate();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } catch (Exception ex) {
 
-               rs = ps.executeQuery();
-               while (rs.next()) {
-                   return new StudentDTO(rs.getInt("Id_Student"),
-                           rs.getString("Username"), 
-                           rs.getString("Password"), 
-                           rs.getString("Notification"));
-
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                con.close();
+            }
+        }
+        return false;
+    }
+    
+   public boolean checkLogin(String username, String password) throws SQLException {
+       Connection conn = null;
+       PreparedStatement stm = null;
+       ResultSet rs = null;
+       String sql = "select Id_Student from dbo.Student where Username = ? and Password = ?";
+       try {
+           conn = DBUtils.getConnection();
+           if (conn != null) {
+               stm = conn.prepareStatement(sql);
+               stm.setString(1, username);
+               stm.setString(2, password);
+               rs = stm.executeQuery();
+               if (rs.next()) {
+                   return true;
                }
-           } catch (Exception e) {
-               e.printStackTrace();
-           } finally {
+           }
+       } catch (Exception ex) {
+           ex.printStackTrace();
+       } finally {
+           if (conn != null){
                conn.close();
-               ps.close();
+           }
+           if (stm != null) {
+               stm.close();
+           }
+           if (rs != null ){
                rs.close();
            }
-           return null;
-
-    }
-
+        }
+       return false;
+   }
 }
 
