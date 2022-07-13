@@ -134,12 +134,14 @@
 	margin: 0 0 0 -400px;
 	position: relative;
 	width: 800px;
+        
 }
 
 .webdesigntuts-workshop:before {
 	background: #444;
 	background: linear-gradient(left, #151515, #444, #151515);
 	top: 192px;
+        
 }
 
 .webdesigntuts-workshop:after {
@@ -179,10 +181,12 @@
 	padding: 0 10px;
 	text-shadow: 0 -1px 0 #000;
 	width: 200px;
+        
 }
 
 .ie .webdesigntuts-workshop input {
 	line-height: 40px;
+        
 }
 
 .webdesigntuts-workshop input::-webkit-input-placeholder {
@@ -387,19 +391,12 @@
                     }
                 %>
             </nav>
+            
         </div>
-
-
         <div class="search_container">
-<!--            <div class="input-group mb-3" style="width: 40%; margin-left: 10rem;">
-                <input type="text" class="form-control" placeholder="Search anything..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" style="background-color: rgb(201, 250, 8); margin-left: 1rem;">Button</button>
-                </div>
-            </div>-->
 
             <section class="webdesigntuts-workshop">
-                <form action="" method="" style="position: relative;  top: -5rem; right: 20rem;">		    
+                <form action="" method="" style="position: relative;  top: -3rem; right: 10rem;">		    
                         <input type="search" placeholder="What are you looking for?">		    	
                         <button><ion-icon name="search"></ion-icon></button>
                 </form>
