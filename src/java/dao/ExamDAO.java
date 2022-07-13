@@ -30,7 +30,7 @@ public class ExamDAO {
     
     private  static final String SEARCH_EXAM = "SELECT Id_Exam, Name, Question, Exam_Date FROM Exam WHERE Name like ?";
     
-    private  static final String NOTI_EXAM = "SELECT Id_Exam, Name, Question, Exam_Date FROM Exam WHERE Exam_Date = ?";
+    private  static final String NOTI_EXAM = "SELECT Id_Exam, Name, Question, Exam_Date FROM Exam WHERE Exam_Date BETWEEN ? AND ?";
     
     public static int addNewExam(ExamDTO exam) throws ClassNotFoundException, SQLException{
         int result = 0;
@@ -94,9 +94,13 @@ public class ExamDAO {
         Connection conn = DBUtils.getConnection();
         if(conn != null){
             LocalDate date = java.time.LocalDate.now();
-            Date today = Date.valueOf(date);
+            Date startDate = Date.valueOf(date);
+            Date endDate = new Date(1997,3,10);
+            long time = startDate.getTime() + (7*24*60*60*1000);
+            endDate.setTime(time);
             PreparedStatement ptm = conn.prepareStatement(NOTI_EXAM);
-            ptm.setDate(1, today);
+            ptm.setDate(1, startDate);
+            ptm.setDate(2, endDate);
             ResultSet rs = ptm.executeQuery();
             while(rs.next()){
                 list.add(new ExamDTO(rs.getInt("Id_Exam"),rs.getString("Name"),null,rs.getDate("Exam_Date")));
