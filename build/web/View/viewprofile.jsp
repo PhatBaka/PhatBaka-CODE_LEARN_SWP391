@@ -93,6 +93,99 @@
 
             /* Change the background color of the dropdown button when the dropdown content is shown */
             .dropdown:hover .dropbtn {background-color: #3e8e41;}
+            
+            /*
+                Card
+            */
+            
+            * {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    background-color: #000
+}
+
+.card {
+    width: 350px;
+    background-color: #efefef;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.image img {
+    transition: all 0.5s
+}
+
+.card:hover .image img {
+    transform: scale(1.5)
+}
+
+.btn {
+    height: 140px;
+    width: 140px;
+    border-radius: 50%
+}
+
+.name {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.idd {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.idd1 {
+    font-size: 12px
+}
+
+.number {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.follow {
+    font-size: 12px;
+    font-weight: 500;
+    color: #444444
+}
+
+.btn1 {
+    height: 40px;
+    width: 150px;
+    border: none;
+    background-color: #000;
+    color: #aeaeae;
+    font-size: 15px
+}
+
+.text span {
+    font-size: 13px;
+    color: #545454;
+    font-weight: 500
+}
+
+.icons i {
+    font-size: 19px
+}
+
+hr .new1 {
+    border: 1px solid
+}
+
+.join {
+    font-size: 14px;
+    color: #a0a0a0;
+    font-weight: bold
+}
+
+.date {
+    background-color: #ccc
+}
         </style>
 </head>
 
@@ -122,10 +215,16 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
                 <div class="container-fluid">
-                    <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                    
+                        <span class="navbar-brand" style="cursor:pointer;">
+                        <div class="dropdown">
+                            <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
                         <a href="${home}" style="text-decoration: none; color: black;">
-                            Home
+                            <span>Home</span>
                         </a>
+                            </a>
+                        </div>
+                    </span>
                 </div>
                 <%
                     if (role.equals("student") || role.equals("teacher")) {
@@ -139,8 +238,7 @@
                  <div class="container-fluid">
                 <span class="navbar-brand" href="#" style="cursor:pointer;">
                     <div class="dropdown">
-                          
-                    <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
+                    <button class="icon">Notification</ion-icon></button>
                     <div class="dropdown-content" id="drop-info">
                       <a href="#">Exam</a>
                       <a href="#">Exam</a>
@@ -180,16 +278,39 @@
         <div id="formContent" style="padding:2%;">
             <h3 style="color: white; text-align: center">My Profile</h3>
 
-            <img height="250vh" width="250vh" style="border-radius: 50%; display: block; margin-left: auto; margin-right: auto" src="<%= teac.getAvatar() %>">
-            
-            <ul class="list-group" style="padding: 3%; text-align: center; width: 50%; margin-left: 23rem;">
-                <li class="list-group-item" >Teacher name: <%= teac.getName() %></li>
-                <li class="list-group-item">Phonenumber: <%= teac.getPhone_Num() %> </li>
-                <li class="list-group-item">Email: <%= teac.getEmail() %> </li>
-                <li class="list-group-item">Information: <%= teac.getInformation() %></li>
-                 <li class="list-group-item">Degree: Các em muốn bằng nào tui cũng có</li>
-            </ul>
+
+            <div class="container mt-4 mb-4 p-3 d-flex justify-content-center"> 
+            <div class="card p-4"> 
+                <div class=" image d-flex flex-column justify-content-center align-items-center"> 
+                    <button class="btn btn-secondary"> 
+                        <img src="<%= teac.getAvatar() %>" height="100" width="100" style="border-radius: 50%;"/>
+                    </button> 
+                    <span class="name mt-3">Teacher Information</span> 
+                    <span class="idd"><%= teac.getName() %></span> 
+                    <div class="d-flex flex-row justify-content-center align-items-center gap-2"> 
+                        <span class="idd1">Phone Number: <%= teac.getPhone_Num() %></span> 
+                        <span><i class="fa fa-copy"></i></span> 
+                    </div> 
+                    <div class="d-flex flex-row justify-content-center align-items-center mt-3"> 
+                        <span class="number" style="text-align: center;">
+                            <div class="text mt-3"> 
+                        <span> <%= teac.getInformation() %>
+                            <br>
+                            Degree: Các em muốn bằng nào tui cũng có
+                        </span> 
+                    </div> 
+                        </span> 
+                    </div> 
+                    <div class=" d-flex mt-2">
+                        <button class="btn1 btn-dark">Edit Profile</button> 
+                    </div> 
+                     
+                        <span class="join">Joined May,2021</span> 
+                    </div> 
+                </div> 
+            </div>
         </div>
+    </div>
         <%
         } else if (role.equals("student")) {
         %>
@@ -225,6 +346,9 @@
             }
         %>
     </div>
+    
+    
+    
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
