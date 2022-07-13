@@ -4,6 +4,7 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dto.ContactDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -51,12 +52,14 @@
     text-shadow: 10px 10px 10px 10px red;
 }
   /* Dropdown Button */
+/* Dropdown Button */
 .dropbtn {
   background-color: #04AA6D;
   color: white;
   padding: 16px;
   font-size: 16px;
   border: none;
+  border-radius: 20px;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -91,6 +94,16 @@
 
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.dropdown:hover .icon {background-color: #3e8e41;}
+
+.icon{
+    border: none;
+    width: 200%;
+    border-radius: 20px;
+    height: 3em;
+    margin-left: 200%;
+}
         </style>
     
     </head>
@@ -104,12 +117,20 @@
                             Home
                         </a>
             </div>
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Categories</a>
-            </div>
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">My Profile</a>
-            </div>
+          
+                  <div class="container-fluid">
+                <span class="navbar-brand" href="#" style="cursor:pointer;">
+                    <div class="dropdown">
+                          
+                    <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
+                    <div class="dropdown-content" id="drop-info">
+                      <a href="#">Exam</a>
+                      <a href="#">Exam</a>
+                      <a href="#">Exam</a>
+                    </div>
+                </div>               
+                </span>
+              </div>
             <div class="container-fluid">
                <div class="dropdown">
                     <button class="dropbtn">Welcome User</button>
@@ -122,17 +143,19 @@
             </div>
           </nav>
         </div>
-
+<%
+    ContactDTO contact = (ContactDTO) session.getAttribute("CONTACT");
+%>
         <div class="container_2">
             <h1 class="View_font">CONTACT</h1>
             <div class="list-group" id="list_group" style="text-align:center;">
-                <p class="list-group-item list-group-item-action">Id Student...</p>
-                <p class="list-group-item list-group-item-action">Email... </p>
-                <p class="list-group-item list-group-item-action">Parent information...</p>
-                <p class="list-group-item list-group-item-action">Phone number....</p>
-                <p class="list-group-item list-group-item-action">School....</p>
-                <form action="">
-                    <input type="submit" value="Edit" class="btn btn-primary btn-lg"  />
+                <p class="list-group-item list-group-item-action">Id Student: <%= contact.getId_Student() %></p>
+                <p class="list-group-item list-group-item-action">Email: <%= contact.getEmail_User() %> </p>
+                <p class="list-group-item list-group-item-action">Parent information: <%= contact.getParents_inf() %> </p>
+                <p class="list-group-item list-group-item-action">Phone number: <%= contact.getPhone_Num() %> </p>
+                <p class="list-group-item list-group-item-action">School: <%= contact.getSchool() %> </p>
+                <form action="MainController">
+                    <input type="submit" value="Edit Profile" class="btn btn-primary btn-lg"  />
                 </form>
             </div>
         </div>
@@ -142,7 +165,9 @@
 
           <!-- JavaScript Bundle with Popper -->
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-          <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-          <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     </body>
 </html>

@@ -1,7 +1,12 @@
 <%-- 
-    Document   : markview
-    Created on : Jun 1, 2022, 10:52:07 AM
-    Author     : HoangMinh
+<<<<<<< Updated upstream
+    Document   : lesson
+    Created on : Jun 3, 2022, 6:00:35 PM
+=======
+    Document   : Lesson
+    Created on : Jun 6, 2022, 10:42:21 AM
+>>>>>>> Stashed changes
+    Author     : Hai Trieu
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,46 +16,53 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="/css/markview.css" type="text/css" rel="stylesheet">
+        <link rel="icon" href="https://png.pngtree.com/png-vector/20190830/ourlarge/pngtree-code-lab-logo-design-inspiration-png-image_1716386.jpg">
+        <link href="/CSS/Lesson.css" type="text/css" rel="stylesheet">
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <title>Lesson</title>
         <style>
             body
-{
-    background-image: url(https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png);
-    background-size:  1920px 1080px;
-    background-position: 60% 100%; 
-}
+            {
+                background-image: url(https://i.pinimg.com/originals/1c/54/f7/1c54f7b06d7723c21afc5035bf88a5ef.png);
+                background-size:  1920px 1080px;
+                background-position: 60% 10%; 
+            }
 
+            .container_2
+            {
+                width: 100%;
+                padding: 1%;
+                position: relative;
+                top: 10rem;
+                text-align: center;
+                height: 100%;
+            }
 
-.container_2
-{
-    padding: 1%;
-    margin: 20px;
-    position: relative;
-    background-color: rgb(237, 217, 217);
-    top: 300px;
-    left: 23%;
-    text-align: center;
-    width: 50%;
-    cursor: pointer;
-    opacity: 0.9;
-    border-radius: 10px;
-}
+            #frame
+            {
+                margin-right: 10px;
+                margin-left: 10px;
+                padding: 1%;
+                margin-top: 3%;
+            }
 
-.title
-{
-    color: rgb(0, 0, 0);
-}
+            .title
+            {
+                width: 100%;
+                text-align: center;
+                color: white;
+                position: relative;
+                top: 10px;
+            }
 
-li
-{
-    margin-bottom: 1%;
-}
-
-/* Dropdown Button */
+            #video
+            {
+                background-color: black;
+            }
+            /* Dropdown Button */
 .dropbtn {
   background-color: #04AA6D;
   color: white;
@@ -102,9 +114,7 @@ li
     height: 3em;
     margin-left: 200%;
 }
-
         </style>
-    
     </head>
     <body>
         <div class="container">
@@ -115,7 +125,7 @@ li
                             Home
                         </a>
               </div>
-              
+             
                     <div class="container-fluid">
                 <span class="navbar-brand" href="#" style="cursor:pointer;">
                     <div class="dropdown">
@@ -134,23 +144,23 @@ li
               </div>
             </nav>
         </div>
-
+        
         <div class="container_2">
-            <h1 class="title">
-                Mark Report
-            </h1>
-            <ul class="list-group">
-                <li class="list-group-item">ID_Exam...</li>
-                <li class="list-group-item">ID_Student ...</li>
-                <li class="list-group-item">Mark</li>
-                
-                <!-- STATUS Á ĐƯỢC CODE TRONG BACKEND KHI NHẬP ĐIỂM >=5 HOẶC BAO NHIÊU TÙY MNG THÌ 
-                    STATUS ĐƯỢC SET THÀNH "PASSED" CMT LẠI CHO MNG NHỚ, KHI NÀO LÀM XONG THÌ XÓA DÒNG NÀY ĐI NHA
-                    :)))) -->
-              </ul>
-        </div>
+          <h1 class="title">NAME ...</h1>
+          <div class="row align-items-center" >
+              <div class="col" id="frame">
+                  <div class="card" style="width: 50%; margin: auto;">
+                     <video class="img-fluid" controls>
+                        <source src="/CSS/videoplayback.mp4" type="video/mp4">
+                     </video>
+                  </div>
+              </div>
+          </div>
+              
+      </div>
 
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+            
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

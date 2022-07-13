@@ -25,11 +25,6 @@ public class ContactDTO {
         this.School = School;
     }
 
-    public ContactDTO(int Id_Student) {
-        this.Id_Student = Id_Student;
-    }
-    
-    
     
     
     public ContactDTO(int Id_Student, String Email_User, String Parents_inf, String Phone_Num, String School) {
@@ -38,8 +33,7 @@ public class ContactDTO {
         this.Parents_inf = Parents_inf;
         this.Phone_Num = Phone_Num;
         this.School = School;
-    }
-
+    } 
 
     public void setId_Student(int Id_Student) {
         this.Id_Student = Id_Student;

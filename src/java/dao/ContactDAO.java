@@ -54,7 +54,6 @@ public class ContactDAO {
             return false;
         }
         try {
-            con = DBUtils.getConnection();
             stm = con.prepareStatement(sql);
             stm.setInt(1, dto.getId_Student());
             stm.setString(2, dto.getEmail_User());
@@ -81,26 +80,30 @@ public class ContactDAO {
     public static boolean editContact(ContactDTO dto) throws SQLException{
         Connection con = null;
         PreparedStatement stm = null;
-        String sql = "UPDATE dbo.Contact SET Email_User = ?, Parents_inf= ?, Phone_num= ?, School= ? WHERE Id_Student= ?";
-        if(dto != null){
+        String sql = "update dbo.Contact set Email_User = ?, Parents_inf = ?, Phone_num = ?, School = ? where Id_Student = ?";
+        if (dto == null) {
             return false;
         }
-        try{
+        try {
             stm = con.prepareStatement(sql);
             stm.setString(1, dto.getEmail_User());
             stm.setString(2, dto.getParents_inf());
             stm.setString(3, dto.getPhone_Num());
             stm.setString(4, dto.getSchool());
             stm.setInt(5, dto.getId_Student());
-            int effectedRow = stm.executeUpdate();
-            if (effectedRow > 0){
-                return true;
-            } else{
-                addContact(dto);
+            int effectedRows = stm.executeUpdate();
+            if (effectedRows>0) {
                 return true;
             }
-        } catch (Exception ex){
-            ex.printStackTrace();
+        } catch ( Exception ex ) {
+            
+        } finally {
+            if (con!=null) {
+                con.close();
+            } 
+            if (stm!=null) {
+                stm.close();
+            }
         }
         return false;
     }

@@ -4,8 +4,6 @@
     Author     : HoangMinh
 --%>
 
-<%@page import="dao.ContactDAO"%>
-<%@page import="dto.ContactDTO"%>
 <%@page import="dto.AdminDTO"%>
 <%@page import="dto.TeacherDTO"%>
 <%@page import="dto.StudentDTO"%>
@@ -105,6 +103,7 @@
         AdminDTO admin = null;
         String username = "";
         String role = "";
+
         if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
             role = (String) session.getAttribute("role");
             if (role.equals("admin")) {
@@ -137,7 +136,19 @@
                 <%
                     }
                 %>
-
+                 <div class="container-fluid">
+                <span class="navbar-brand" href="#" style="cursor:pointer;">
+                    <div class="dropdown">
+                          
+                    <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
+                    <div class="dropdown-content" id="drop-info">
+                      <a href="#">Exam</a>
+                      <a href="#">Exam</a>
+                      <a href="#">Exam</a>
+                    </div>
+                </div>               
+                </span>
+              </div>
                 <%
                     if (session.getAttribute("ACCOUNT") != null) {
                 %>
@@ -146,8 +157,7 @@
                         <div class="dropdown">
                             <button class="dropbtn">Welcome, <%= username%></button>
                             <div class="dropdown-content">
-                                <input type="hidden" name="profileName" value="<%= username %>">
-                                <input type="hidden" name="txtStudentID" value="<%= stud.getId_Student() %>"
+                                <input type="hidden" name="profileName" value="<%= username %>" />
                                 <input type="submit" name="action" value="View Profile">
                                 <input type="submit" name="action" value="Edit Profile">
                                 <input type="submit" name="action" value="Logout">
@@ -168,31 +178,31 @@
             if (role.equals("teacher")) {
         %>
         <div id="formContent" style="padding:2%;">
-            <h3>My Profile</h3>
+            <h3 style="color: white; text-align: center">My Profile</h3>
 
-            <img height="250vh" width="250vh" style="border-radius: 25px" src="<%= teac.getAvatar() %>">
+            <img height="250vh" width="250vh" style="border-radius: 50%; display: block; margin-left: auto; margin-right: auto" src="<%= teac.getAvatar() %>">
             
-            <ul class="list-group">
-                <li class="list-group-item">Teacher name: <%= teac.getName() %></li>
-                <li class="list-group-item">Phone number: <%= teac.getPhone_Num() %> </li>
+            <ul class="list-group" style="padding: 3%; text-align: center; width: 50%; margin-left: 23rem;">
+                <li class="list-group-item" >Teacher name: <%= teac.getName() %></li>
+                <li class="list-group-item">Phonenumber: <%= teac.getPhone_Num() %> </li>
                 <li class="list-group-item">Email: <%= teac.getEmail() %> </li>
                 <li class="list-group-item">Information: <%= teac.getInformation() %></li>
+                 <li class="list-group-item">Degree: Muốn bằng nào t cũng có</li>
             </ul>
         </div>
         <%
         } else if (role.equals("student")) {
-            ContactDTO contact = (ContactDTO) session.getAttribute("CONTACT");
         %>
-            
         <div id="formContent" style="padding:2%;">
             <h3>My Profile</h3>
+
             <ul class="list-group">
                 <li class="list-group-item">Id: <%= stud.getId_Student() %></li>
                 <li class="list-group-item">Username: <%= stud.getUsername() %></li>
-                <li class="list-group-item">Phone number: <%= contact.getPhone_Num() %></li>
-                <li class="list-group-item">Email: <%= contact.getEmail_User() %></li>
-                <li class="list-group-item">School: <%= contact.getSchool() %></li>
-                <li class="list-group-item">Parent_info: <%= contact.getParents_inf() %></li>
+                <li class="list-group-item">Phonenumber: </li>
+                <li class="list-group-item">Email:</li>
+               
+
 
             </ul>
         </div>
@@ -217,8 +227,10 @@
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 <footer>

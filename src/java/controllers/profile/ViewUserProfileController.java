@@ -7,6 +7,7 @@ package controllers.profile;
 
 import dao.ContactDAO;
 import dto.ContactDTO;
+import dto.StudentDTO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -24,7 +25,7 @@ import javax.servlet.http.HttpSession;
  */
 public class ViewUserProfileController extends HttpServlet {
 
-    private final String VIEW_PROFILE_PAGE = "View/viewprofile.jsp";
+    private final String VIEW_PROFILE_PAGE = "View/contactview.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,13 +39,21 @@ public class ViewUserProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = VIEW_PROFILE_PAGE;
         HttpSession session = request.getSession();
-        int idStudent = new Integer(request.getParameter("txtStudentID"));
-        ContactDTO contact = ContactDAO.SearchingContact(idStudent);
-        session.setAttribute("CONTACT", contact);
-        String url = "View/viewprofile.jsp";
-        RequestDispatcher rd = request.getRequestDispatcher(url);
-        rd.forward(request, response);
+        StudentDTO stuAcc = (StudentDTO) session.getAttribute("ACCOUNT");
+        try {
+            int stuID = stuAcc.getId_Student();
+            ContactDTO contact = ContactDAO.SearchingContact(stuID);
+            if(contact != null){
+                session.setAttribute("CONTACT", contact);
+            } else {
+                
+            }
+        } finally {
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
