@@ -162,7 +162,7 @@
                     } else {
                     %>
                     <div class="container-fluid">
-                        <a href="Access/login.jsp">Login/Signup</a>
+                        <a href="Access/login.jsp" style="text-decoration: none; color: black;">Login/Signup</a>
                     </div>
                     <%
                         }
@@ -180,7 +180,10 @@
         <div class="container px-4" id="detail_frame">
             <div class="row g-2">
                 <div class="col-6" >
-                    <div class="p-3 border bg-light" ><img src="<%= dto.getImage()%>" width="150px" height="150px">Course Name : <%= dto.getName()%></div>
+                    <div class="p-3 border bg-light" >
+                        <img src="<%= dto.getImage()%>" width="150px" height="150px" style="margin-right: 2px;">
+                        Course Name : <%= dto.getName()%>
+                    </div>
                 </div>
                 <div class="col-6" >
                     <div class="p-3 border bg-light" ><p id="column_inf">Teacher Name :<%= dao.getTeacherName(dto.getName())%> </p></div>

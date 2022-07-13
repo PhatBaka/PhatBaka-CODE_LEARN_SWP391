@@ -191,15 +191,15 @@
         </div>
 
         <h2 style="text-align: center; color: white; margin-top: 3%;">My course</h2>
-        <div class="row" id="column_pos">
-            <div class="col">
+        <div class="row" id="column_pos" style="padding: 1%;">
+            <div class="col" style="posi">
                 <%
                     if (list != null) {
                 %>
                 <table border="1">
                     <thead>
                         <tr>
-                            <th>No.</th>
+                            <th>No</th>
                             <th></th>
                             <th>Name</th>
                             <th>Description</th>
