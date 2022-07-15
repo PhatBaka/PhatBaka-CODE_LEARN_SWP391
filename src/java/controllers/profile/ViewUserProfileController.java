@@ -26,6 +26,7 @@ import javax.servlet.http.HttpSession;
 public class ViewUserProfileController extends HttpServlet {
 
     private final String VIEW_PROFILE_PAGE = "View/contactview.jsp";
+    private final String UPDATE_PROFILE_PAGE = "Edit/contact.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,7 +40,7 @@ public class ViewUserProfileController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = VIEW_PROFILE_PAGE;
+        String url = "";
         HttpSession session = request.getSession();
         StudentDTO stuAcc = (StudentDTO) session.getAttribute("ACCOUNT");
         try {
@@ -47,8 +48,9 @@ public class ViewUserProfileController extends HttpServlet {
             ContactDTO contact = ContactDAO.SearchingContact(stuID);
             if(contact != null){
                 session.setAttribute("CONTACT", contact);
+                url = VIEW_PROFILE_PAGE;
             } else {
-                
+                url = UPDATE_PROFILE_PAGE;
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

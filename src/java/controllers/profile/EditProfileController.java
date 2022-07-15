@@ -5,9 +5,14 @@
  */
 package controllers.profile;
 
+import dao.ContactDAO;
 import dto.ContactDTO;
+import dto.StudentDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +24,7 @@ import javax.servlet.http.HttpSession;
  * @author nearl
  */
 public class EditProfileController extends HttpServlet {
-
+    private final String VIEW_CONTACT_PAGE = "View/contactview.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -30,15 +35,31 @@ public class EditProfileController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        ContactDTO contact = (ContactDTO) session.getAttribute("CONTACT");
+        String url = "";
+        StudentDTO stuAcc = (StudentDTO) session.getAttribute("ACCOUNT");
+        int id = stuAcc.getId_Student();
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String parent = request.getParameter("parentinf");
+        String school = request.getParameter("school");
         try{
-            
+            ContactDTO dto = new ContactDTO(id, email, parent, phone, school);
+            ContactDTO contact = ContactDAO.SearchingContact(id);
+            if(contact == null){
+                ContactDAO.addContact(dto);
+            } else{
+                ContactDAO.editContact(dto);
+            }
+            contact = ContactDAO.SearchingContact(id);
+            session.setAttribute("CONTACT", contact);
+            url =  VIEW_CONTACT_PAGE;
         }
         finally{
-            
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 
@@ -54,7 +75,11 @@ public class EditProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -68,7 +93,11 @@ public class EditProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

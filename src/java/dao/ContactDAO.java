@@ -54,6 +54,7 @@ public class ContactDAO {
             return false;
         }
         try {
+            con = DBUtils.getConnection();
             stm = con.prepareStatement(sql);
             stm.setInt(1, dto.getId_Student());
             stm.setString(2, dto.getEmail_User());
@@ -85,6 +86,7 @@ public class ContactDAO {
             return false;
         }
         try {
+            con = DBUtils.getConnection();
             stm = con.prepareStatement(sql);
             stm.setString(1, dto.getEmail_User());
             stm.setString(2, dto.getParents_inf());

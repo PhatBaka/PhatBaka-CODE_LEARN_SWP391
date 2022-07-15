@@ -154,9 +154,7 @@
                 <p class="list-group-item list-group-item-action">Parent information: <%= contact.getParents_inf() %> </p>
                 <p class="list-group-item list-group-item-action">Phone number: <%= contact.getPhone_Num() %> </p>
                 <p class="list-group-item list-group-item-action">School: <%= contact.getSchool() %> </p>
-                <form action="MainController">
-                    <input type="submit" value="Edit Profile" class="btn btn-primary btn-lg"  />
-                </form>
+                <a href="../Edit/contact.jsp">Edit</a>
             </div>
         </div>
         

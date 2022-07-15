@@ -4,6 +4,8 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dto.ContactDTO"%>
+<%@page import="dto.StudentDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -147,13 +149,14 @@
                 </div>
           </nav>
         </div>
-
+                        <%
+                            StudentDTO student = (StudentDTO) session.getAttribute("ACCOUNT");
+                        %>
         <div class="container_2">
             <h1 style="text-align:center;">CONTACT FORM</h1>
-            <form action="#" name="myform" method="post" onsubmit="return validateform()">
+            <form action="MainController" name="myform" method="post" onsubmit="return validateform()">
                 <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">ID Student: <></span>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="idstudent" readonly >
+                    <span class="input-group-text" id="inputGroup-sizing-sm">ID Student: <%= student.getId_Student() %></span>
                 </div>
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Email User: </span>
@@ -164,15 +167,15 @@
                   <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="phone" placeholder=" input your phone number">
               </div>
                 <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">Parent name(Mother/Father):  </span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">Parent name(Mother/Father):   </span>
                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="parentinf" placeholder=" input father or mother name">
                 </div>
                 <div class="input-group input-group-sm mb-3">
-                    <span class="input-group-text" id="inputGroup-sizing-sm">School:  </span>
+                    <span class="input-group-text" id="inputGroup-sizing-sm">School:  </span> 
                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="school" placeholder="Where is your school?">
                 </div>
-                <button type="submit" class="btn btn-primary btn-lg" >
-                    Register
+                <button type="submit" name="action" class="btn btn-primary btn-lg" value="Edit Profile">
+                    Edit profile
                 </button>
                 
             </form>
