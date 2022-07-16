@@ -295,7 +295,7 @@
     %>
 
     <body>
-
+        <c:set var="role" value="${sessionScope.role}" />
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
                 <div class="container-fluid">
@@ -327,7 +327,6 @@
                         <div class="dropdown">
                             <button class="icon">
                                 <ion-icon name="notifications-outline"></ion-icon></br>
-                                <span>Noti</span>
                             </button>
                             <div class="dropdown-content" id="drop-info">
                                 
