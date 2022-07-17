@@ -107,7 +107,58 @@
                 </form>
             </div>
             
-              <div class="col-sm-4" id="paging">col-sm-4</div>
+              <div class="col-sm-4 rounded-left" class="check " id="paging">
+                  <style>
+                      .datetime{
+                          width:250px;
+                          padding: 15px;
+                          border: 3px solid #222922 ;
+                          border-radius: 15px;
+                          margin-top: 50%;
+                          margin-left:  70px;
+                          font-family: "Segoe UI",sans-serif;
+                          border-color: blue;
+                      }
+                      .date{
+                          text-align: center;
+                          letter-spacing: 2px;
+                          font-size: 20px;
+                          font-weight:20px;  
+                      }
+                        .time{
+                          text-align: center;
+                          font-size: 23px;
+                          font-weight:20px; 
+                         letter-spacing:3px;
+                      }
+                      .time span:not(last-child){
+                          letter-spacing:3px;
+                          font-size: 25px;
+                      }
+                      .time span:last-child{
+                          background: #39ace7;
+                          font-size: 15px;
+                          margin-bottom: 25px;
+                      }
+                  </style>
+                  <div class="datetime" >
+                      <div class="date">
+                          <span id="dayName">day</span>
+                           <span id="Month">Month</span>
+                            <span id="dayNum">00</span>
+                             <span id="year">year</span>
+                             
+                      </div>
+                      <div class="time">
+                           <span id="hour">00 :</span>
+                           <span id="minutes">00 :</span>
+                            <span id="second"> 00</span>
+                             <span id="period">AM</span>
+                      </div>
+                  </div>  
+                  
+                 
+              </div>
           </div>
 
 
