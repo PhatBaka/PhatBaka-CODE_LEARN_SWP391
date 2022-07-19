@@ -6,82 +6,52 @@
 package dao;
 
 import DBtills.DBUtils;
-import java.io.Serializable;
+import dto.EnrollDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 /**
  *
- * @author Dell G7 7590
+ * @author Nea
  */
-public class EnrollDAO implements Serializable {
-
-    public static boolean enroll(int studentId, int courseId) throws ClassNotFoundException, SQLException {
-        /* Get Parameters from HTML Forms from View files (.jsp,.html) */
-        Connection con = null;
-        PreparedStatement statement = null;
-        int _studentId = studentId;
-        int _courseId = courseId;
-        try {
-            con = DBUtils.getConnection();
-
-            String sql = "INSERT INTO Enroll (Id_Student,Id_Course) "
-                    + "VALUES (?,?)";
-
-            statement = con.prepareStatement(sql);
-            statement.setInt(1, _studentId);
-            statement.setInt(2, _courseId);
-            if (statement.executeUpdate() > 0) {
-                return true;
-            }
-        } finally {
-            if (statement != null) {
-                statement.close();
-            }
-            if (con != null) {
-                con.close();
-            }
+public class EnrollDAO {
+//[Id_Enroll]
+//      ,[Id_Course]
+//      ,[Id_Student]
+//      ,[Exam_Stats]
+    private static final String GET_ENROLL = "SELECT Id_Enroll, Id_Course, Id_Student, Exam_Stats FROM dbo.Enroll WHERE Id_Student = ? AND Id_Course = ?";
+    private static final String UPDATE_ENROLL = "UPDATE Enroll SET Exam_Stats = 1 WHERE Id_Course = ? AND Id_Student = ?";
+    public static int updateEnroll(EnrollDTO enroll) throws ClassNotFoundException, SQLException{
+        int result = 0;
+        Connection conn = DBUtils.getConnection();
+        if(conn != null){
+            PreparedStatement ptm = conn.prepareStatement(UPDATE_ENROLL);
+            ptm.setInt(1, enroll.getId_course());
+            ptm.setInt(2, enroll.getId_student());
+            result = ptm.executeUpdate();
+            conn.close();
         }
-        return false;
+        return result;
     }
-
-    public static boolean checkEnroll(int studentId, int courseId) throws ClassNotFoundException, SQLException {
-        /* Get Parameters from HTML Forms from View files (.jsp,.html) */
-        Connection con = null;
-        PreparedStatement statement = null;
-        ResultSet rs = null;
-        int _studentId = studentId;
-        int _courseId = courseId;
-        try {
-            con = DBUtils.getConnection();
-
-            String sql = "SELECT Exam_Stats FROM Enroll "
-                    + "WHERE Id_Student = ? "
-                    + "AND Id_Course = ?";
-
-            statement = con.prepareStatement(sql);
-            statement.setInt(1, _studentId);
-            statement.setInt(2, _courseId);
-            if (rs.next()) {
-                if (rs.getBoolean("Exam_Stats")) {
-                    return true;
-                }
+    public static EnrollDTO getEnroll(int id_student, int id_course) throws ClassNotFoundException, SQLException{
+        EnrollDTO enroll = null;
+         
+        Connection conn = DBUtils.getConnection();
+        if(conn != null){
+            PreparedStatement ptm = conn.prepareStatement(GET_ENROLL);
+            ptm.setInt(1, id_student);
+            ptm.setInt(2, id_course);
+            ResultSet rs = ptm.executeQuery();
+            if(rs != null && rs.next()){
+                
+                enroll = new EnrollDTO(rs.getInt("Id_Enroll"), id_course, id_student,  rs.getInt("Exam_Stats"));
             }
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (statement != null) {
-                statement.close();
-            }
-            if (con != null) {
-                con.close();
-            }
+            conn.close();
+            
         }
-        return false;
+        return enroll;
+        
     }
-
 }
