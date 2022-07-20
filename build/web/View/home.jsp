@@ -315,8 +315,9 @@
                     if (role.equals("student") || role.equals("teacher")) {
                 %>
                 <div class="container-fluid">
+                   
                     <form action="MainController">
-                        <input type="submit" value="My Courses" name="action" />
+                        <input type="submit" class="navbar-brand" value="My Courses" name="action" style="position: relative; left: 7rem; border-radius:40px"/>
                     </form>
                 </div>
                 <%
