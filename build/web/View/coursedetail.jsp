@@ -229,7 +229,7 @@
             <form action="MainController">
                 <input type="hidden" name="courseName" value="<%= dto.getName()%>" />
                 <input type="hidden" name="action" value="Login" />
-                <input type="submit" name="submit" class="fadeIn fourth" value="Enroll Course" style="width: 20%; position: relative; margin-left: 55rem;">
+                <input type="submit" style="position: relative; left: 12em;" name="submit" class="fadeIn fourth" value="Enroll Course" style="width: 20%; position: relative; margin-left: 55rem;">
             </form>
             <%
                 }

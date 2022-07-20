@@ -3,21 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/SWP/SWP391_Project/src/java/controllers/course/SearchController.java</file>
-            <file>file:/D:/SWP/SWP391_Project/web/View/home.jsp</file>
-            <file>file:/D:/SWP/SWP391_Project/src/java/controllers/profile/EditProfileController.java</file>
-            <file>file:/D:/SWP/SWP391_Project/src/java/dao/CourseDAO.java</file>
-            <file>file:/D:/SWP/SWP391_Project/web/View/lesson.jsp</file>
-            <file>file:/D:/SWP/SWP391_Project/src/java/controllers/profile/ChangePasswordController.java</file>
-            <file>file:/D:/SWP/SWP391_Project/src/java/dao/ExamDAO.java</file>
-            <file>file:/D:/SWP/SWP391_Project/web/View/markview.jsp</file>
-            <file>file:/D:/SWP/SWP391_Project/src/java/dto/ExamDTO.java</file>
-            <file>file:/D:/SWP/SWP391_Project/src/java/controllers/auth/LoginController.java</file>
-            <file>file:/D:/SWP/SWP391_Project/src/java/controllers/mark/ViewMarkController.java</file>
-            <file>file:/D:/SWP/SWP391_Project/src/java/controllers/exam/ViewExamController.java</file>
-            <file>file:/D:/SWP/SWP391_Project/src/java/DBtills/DBUtils.java</file>
-            <file>file:/D:/SWP/SWP391_Project/web/View/coursedetail.jsp</file>
-            <file>file:/D:/SWP/SWP391_Project/web/Edit/markreport.jsp</file>
+            <file>file:/C:/Users/Hai%20Trieu/Desktop/study%20zone/SERVER_PRJ/SWP_Project/web/View/mycourse.jsp</file>
+            <file>file:/C:/Users/Hai%20Trieu/Desktop/study%20zone/SERVER_PRJ/SWP_Project/web/View/viewprofile.jsp</file>
+            <file>file:/C:/Users/Hai%20Trieu/Desktop/study%20zone/SERVER_PRJ/SWP_Project/web/View/home.jsp</file>
         </group>
     </open-files>
 </project-private>

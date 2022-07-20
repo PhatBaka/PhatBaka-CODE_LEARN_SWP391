@@ -327,6 +327,7 @@
                         <div class="dropdown">
                             <button class="icon">
                                 <ion-icon name="notifications-outline"></ion-icon></br>
+                                <span syle="padding: 5px">Noti</span>
                             </button>
                             <div class="dropdown-content" id="drop-info">
                                 

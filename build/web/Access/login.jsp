@@ -202,7 +202,7 @@ html {
               <form action="MainController" method="POST">
                 <label>Username</label><input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
                 <label>Password</label><input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-                <label id="option">Select:</label>
+                </br><label id="option">Select:</label>
                 <select id="select" name="role">
                     <option value="Admin" selected="selected">Admin</option>
                     <option value="Teacher">Teacher</option>
