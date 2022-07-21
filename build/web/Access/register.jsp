@@ -218,21 +218,21 @@
 <body>
     <div class="container">
         <nav class="navbar navbar-expand-lg bg-light" id="background">
-            <div class="container-fluid">
+              <div class="container-fluid">
                 <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                        <a href="${home}" style="text-decoration: none; color: black;">
-                            Home
-                        </a>
-            </div>
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Categories</a>
-            </div>
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">About Us</a>
-            </div>
-            <div class="container-fluid">
-                <span class="navbar-brand" href="#" style="cursor:pointer;">Welcome Guest</span>
-            </div>
+                <a  style="text-decoration: none; color: black;">
+                   
+                </a>
+              </div>
+              <div class="container-fluid">
+                <a class="navbar-brand" href="#"></a>
+              </div>
+              <div class="container-fluid">
+                <a class="navbar-brand" href="${home}">Home</a>
+              </div>
+              <div class="container-fluid">
+                <a class="navbar-brand" href="#"></a>
+              </div>
         </nav>
     </div>
 
