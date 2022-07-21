@@ -56,7 +56,6 @@
             {
                 width: 100%;
                 padding: 2%;
-                background-color: pink;
             }
 
             /* Dropdown Button */
@@ -398,7 +397,7 @@
             <div class="row align-items-center" >
                 <div class="search">
                     <div class="webdesigntuts-workshop">
-                    <form action="" method="" style="position: relative; top: -1rem; right: 20rem;">		    
+                    <form action="" method="" style="position: relative; top: -1rem; right: 1rem;">		    
                             <input type="search" placeholder="What are you looking for?">		    	
                             <button><ion-icon name="search"></ion-icon></button>
                     </form>
