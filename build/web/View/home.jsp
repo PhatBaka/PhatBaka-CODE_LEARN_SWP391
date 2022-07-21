@@ -41,7 +41,6 @@
                 width: 100%;
                 text-align: center;
                 position: absolute;
-                top: 25rem;
             }
 
             #frame
@@ -53,13 +52,11 @@
 
             }
 
-            .search_container
+            .search
             {
                 width: 100%;
                 padding: 2%;
-                position: relative;
-                top: 3rem;
-                text-align: right;
+                background-color: pink;
             }
 
             /* Dropdown Button */
@@ -326,7 +323,7 @@
                 <div class="container-fluid">
                     <span class="navbar-brand" style="cursor:pointer;">
                         <div class="dropdown">
-                            <button class="icon">
+                            <button class="icon" style="position: relative; left:3rem;">
                                 <ion-icon name="notifications-outline"></ion-icon></br>
                                 <span syle="padding: 5px">Noti</span>
                             </button>
@@ -373,6 +370,7 @@
 
                     </span>
                 </div>
+
                 <%
                 } else {
                 %>
@@ -394,19 +392,18 @@
                 %>
             </nav>
             
-        </div>
-        <div class="search_container">
+        </div>      
 
-            <section class="webdesigntuts-workshop">
-                <form action="" method="" style="position: relative;  top: -3rem; right: 10rem;">		    
-                        <input type="search" placeholder="What are you looking for?">		    	
-                        <button><ion-icon name="search"></ion-icon></button>
-                </form>
-            </section>
-        </div>
-
-            <div class="container_2" style="background">
+            <div class="container_2">
             <div class="row align-items-center" >
+                <div class="search">
+                    <div class="webdesigntuts-workshop">
+                    <form action="" method="" style="position: relative; top: -1rem; right: 20rem;">		    
+                            <input type="search" placeholder="What are you looking for?">		    	
+                            <button><ion-icon name="search"></ion-icon></button>
+                    </form>
+                </div>
+                </div>
                 <%
                     int count = 0;
                     for (count = 0; count < 3; count++) {
