@@ -52,6 +52,7 @@
         {
             text-align: center;
             padding: 1%;
+            font-weight: bolder;
         }
 
         #column_inf_2
@@ -67,6 +68,58 @@
             top : 20rem;
             z-index: 2;
         }
+        
+        .icon{
+                border: none;
+                width: 200%;
+                border-radius: 20px;
+                height: 3em;
+                margin-left: 200%;
+                text-align: center;
+                background-color: #DDDDDD;
+            }
+            
+        .icon:hover{
+
+            background-color: #009900;
+            color: white;
+        }
+        
+        /* The container <div> - needed to position the dropdown content */
+            .dropdown {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* Dropdown Content (Hidden by Default) */
+            .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+            }
+
+            /* Links inside the dropdown */
+            .dropdown-content input {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+            /* Change color of dropdown links on hover */
+            .dropdown-content input:hover {background-color: #ddd;}
+
+            /* Show the dropdown menu on hover */
+            .dropdown:hover .dropdown-content {display: block;}
+
+            /* Change the background color of the dropdown button when the dropdown content is shown */
+            .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+            .dropdown:hover .icon {background-color: #3e8e41;}
+        
         input[type=button], input[type=submit], input[type=reset]  {
             background-color: #56baed;
             border: none;
@@ -93,7 +146,7 @@
             background-color: #39ace7;
 
 
-
+                
 
         </style>
     </head>
@@ -127,16 +180,18 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg bg-light" id="background">
                     <div class="container-fluid">
-                        <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                        <a href="${home}" style="text-decoration: none; color: black;">
-                            Home
+                        <a href="http://localhost:8084/CODE_LEARN/View/home.jsp" style="text-decoration: none; color: black;">
+                            <div class="icon">
+                                <ion-icon name="home-outline"></ion-icon></br>
+                                <span>Home</span>
+                            </div>
                         </a>
                     </div>
                     <%
                         if (role.equals("student") || role.equals("teacher")) {
                     %>
                     <div class="container-fluid">
-                        <input class="navbar-brand" type="submit" name="action" value="My Courses" >
+                        <input class="navbar-brand" type="submit" name="action" value="My Courses" style="position: relative; top: 1rem;">
                     </div>
                     <%
                         }
@@ -145,14 +200,14 @@
                     <%
                         if (session.getAttribute("ACCOUNT") != null) {
                     %>
-                    <div class="container-fluid">
-                        <span class="navbar-brand" style="cursor:pointer;">
+                    <div class="container-fluid" style="">
+                        <span class="navbar-brand" >
                             <div class="dropdown">
-                                <button class="dropbtn">Welcome, <%= username%></button>
+                                <div class="dropbtn" style="cursor:pointer; position: relatiive; right: 2rem; border: 1px solid black; padding: 3%;"><span style="">Welcome, <%= username%></span> </button>
                                 <div class="dropdown-content">
-                                    <input type="submit" name="action" value="View Profile">
-                                    <input type="submit" name="action" value="Edit Profile">
-                                    <input type="submit" name="action" value="Logout">
+                                    <input type="submit" name="action" value="View Profile"></br>
+                                    <input type="submit" name="action" value="Edit Profile"></br>
+                                    <input type="submit" name="action" value="Logout"></br>
                                 </div>
                             </div>
 
@@ -162,7 +217,13 @@
                     } else {
                     %>
                     <div class="container-fluid">
-                        <a href="Access/login.jsp" style="text-decoration: none; color: black;">Login/Signup</a>
+                        <a href="http://localhost:8084/CODE_LEARN/Access/login.jsp" style="text-decoration: none; color: black;">
+                            <div class="icon">
+                                    <ion-icon name="log-in-outline"></ion-icon></br>
+                                    <span syle="padding: 5px">Login</span>
+                            </div>
+                        </a>
+
                     </div>
                     <%
                         }
@@ -170,7 +231,10 @@
                 </nav>
             </div>
         </form>
-
+                </br>
+                </br>
+                </br>
+                </br>
         <%! CourseDTO dto = null;%>
 
         <%
@@ -181,8 +245,8 @@
             <div class="row g-2">
                 <div class="col-6" >
                     <div class="p-3 border bg-light" >
-                        <img src="<%= dto.getImage()%>" width="150px" height="150px" style="margin-right: 2px;">
-                        Course Name : <%= dto.getName()%>
+                        <img src="<%= dto.getImage()%>" width="150px" height="150px" style="margin-right: 2px; border: 1px solid black; border-radius: 30px;">
+                        <span id="column_inf">Course Name : <%= dto.getName()%> </span>
                     </div>
                 </div>
                 <div class="col-6" >
@@ -192,7 +256,6 @@
                     <div class="p-3 border bg-light" >
                         <p id="column_inf">
                             Date Open: <%= dto.getDate_Open()%>
-
                         </p>
                         <p id="column_inf">
                             Date Close: <%= dto.getDate_Close()%>
@@ -236,7 +299,7 @@
             %>
         </div>
 
-        <div class="container px-4" id="lesson">
+<!--        <div class="container px-4" id="lesson">
             <div class="row g-2">
                 <div class="col-6" >
                     <div class="p-3 border bg-light" >
@@ -267,14 +330,14 @@
                     </div>
                 </div>
             </div>   
-        </div>
+        </div>-->
         <%
             if (role.equals("teacher")) {
         %>
         <div class="container px-4" id="detail_frame">
             <div class="row g-2">
                 <form action="MainController">
-                    <input type="submit" value="Create Exam" name="action" />
+                    <input type="submit" value="Create Exam" name="action" style="position: relative; left: 5rem;"/>
                 </form>
             </div>
         </div>
@@ -284,5 +347,9 @@
 
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     </body>
 </html>

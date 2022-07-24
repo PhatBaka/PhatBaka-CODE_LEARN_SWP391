@@ -98,7 +98,13 @@ html {
     border-bottom: 2px solid #5fbae9;
   }
   
-  
+  .icon{
+                border: none;
+                width: 200%;
+                border-radius: 20px;
+                height: 3em;
+                margin-left: 200%;
+            }
   
   /* FORM TYPOGRAPHY*/
   
@@ -170,15 +176,19 @@ html {
             <nav class="navbar navbar-expand-lg bg-light" id="background">
               <div class="container-fluid">
                 <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                <a  style="text-decoration: none; color: black;">
-                   
+                <a style="text-decoration: none; color: black;">
+                   <button class="icon" style="position:relative;">
+                        <ion-icon name="home-outline"></ion-icon></br>
+                        <span syle="padding: 5px">Home</span>
+                    </button>
                 </a>
               </div>
               <div class="container-fluid">
                 <a class="navbar-brand" href="#"></a>
               </div>
               <div class="container-fluid">
-                <a class="navbar-brand" href="${home}">Home</a>
+
+                </a>
               </div>
               <div class="container-fluid">
                 <a class="navbar-brand" href="#"></a>
@@ -223,8 +233,10 @@ html {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
     </body>
-
+    
    
 </html>
