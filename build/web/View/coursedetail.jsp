@@ -202,7 +202,7 @@
                     <div class="container-fluid" style="">
                         <span class="navbar-brand" >
                             <div class="dropdown">
-                                <div class="dropbtn" style="cursor:pointer; position: relatiive; right: 2rem; border: 1px solid black; padding: 3%; width: 15rem; text-align: center;"><span style="">Welcome, <%= username%></span> </button>
+                                <div class="dropbtn" style="cursor:pointer; position: relative; right: 2rem; border: 1px solid black; padding: 3%; width: 15rem; text-align: center;"><span style="">Welcome, <%= username%></span> </button>
                                 <div class="dropdown-content">
                                     <input type="submit" name="action" value="View Profile"></br>
                                     <input type="submit" name="action" value="Edit Profile"></br>
