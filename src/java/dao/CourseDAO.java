@@ -71,7 +71,6 @@ public class CourseDAO implements Serializable {
                         + "AND Course.Name = ?";
 
                 statement = con.prepareStatement(sql);
-                statement.setString(1, courseName);
                 rs = statement.executeQuery();
                 if(rs.next()) {
                     name = rs.getString("Name");
@@ -171,9 +170,9 @@ public class CourseDAO implements Serializable {
             con = DBUtils.getConnection();
 
             String sql = "INSERT INTO Enroll (Id_Student,Id_Course) "
-                    + "VALUES (?,(SELECT Id_Course "
+                    + "VALUES (1,(SELECT Id_Course "
                     + "FROM Course "
-                    + "WHERE Name = ?))";
+                    + "WHERE Name = 'CSharp by Manh'))";
 
             statement = con.prepareStatement(sql);
             statement.setInt(1, _studentId);

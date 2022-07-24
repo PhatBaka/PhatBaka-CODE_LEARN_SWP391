@@ -130,9 +130,9 @@ input[type=button], input[type=submit], input[type=reset]  {
                             Home
                         </a>
             </div>
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Categories</a>
-            </div>
+            <div class="container-fluid" >
+                        <input type="submit" value="My Courses" name="action" style="border: none; background-color: inherit"/>
+                    </div>
             <div class="container-fluid">
               <a class="navbar-brand" href="#">About Us</a>
             </div>

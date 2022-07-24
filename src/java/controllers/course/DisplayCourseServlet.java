@@ -5,28 +5,20 @@
  */
 package controllers.course;
 
-import dao.CourseDAO;
-import dto.CourseDTO;
-import dto.StudentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Dell G7 7590
  */
-@WebServlet(name = "EnrollCourseController", urlPatterns = {"/EnrollCourseController"})
-public class EnrollCourseController extends HttpServlet {
-
-    private final String ENROLL_SUCCESS_PAGE = "View/coursedetail.jsp";
-    private final String ERROR_PAGE = "";
+@WebServlet(name = "DisplayCourseServlet", urlPatterns = {"/DisplayCourseServlet"})
+public class DisplayCourseServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,33 +32,17 @@ public class EnrollCourseController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
-        String url = ERROR_PAGE;
-        String courseName = "";
-        boolean result = false;
-
-        try {
-            HttpSession session = request.getSession(false);
-            if (session != null) {
-                StudentDTO dto = (StudentDTO) session.getAttribute("ACCOUNT");
-                courseName = request.getParameter("courseName");
-                CourseDAO dao = new CourseDAO();
-                CourseDTO course = dao.detail(courseName);
-                result = dao.enroll(dto.getId_Student(), courseName);
-                if (result) {
-                    if (course != null) {
-                        request.setAttribute("course", course);
-                        request.setAttribute("ENROLL", "TRUE");
-                        url = ENROLL_SUCCESS_PAGE;
-                    }
-                }
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet DisplayCourseServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DisplayCourseServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

@@ -40,7 +40,7 @@ public class MyCourseController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private final String MY_COURSE_PAGE = "View/mycourse.jsp";
-    private final String ERROR = "errors.html";
+    private final String ERROR = "";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

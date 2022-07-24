@@ -125,7 +125,9 @@
                             Home
                         </a>
               </div>
-             
+             <div class="container-fluid" >
+                        <input type="submit" value="My Courses" name="action" style="border: none; background-color: inherit"/>
+                    </div>
                     <div class="container-fluid">
                 <span class="navbar-brand" href="#" style="cursor:pointer;">
                     <div class="dropdown">
