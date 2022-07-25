@@ -170,18 +170,20 @@ html {
         </style>
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
-             <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                <a href="${home}" style="text-decoration: none; color: black;">
-                    Home
+              <div class="container-fluid">
+                <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                <a  style="text-decoration: none; color: black;">
+                   
                 </a>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">Categories</a>
               </div>
               <div class="container-fluid">
-                <a class="navbar-brand" href="#">About Us</a>
+                <a class="navbar-brand" href="#"></a>
               </div>
               <div class="container-fluid">
-                <a class="navbar-brand" href="#">Login/SignUp</a>
+                <a class="navbar-brand" href="${home}">Home</a>
+              </div>
+              <div class="container-fluid">
+                <a class="navbar-brand" href="#"></a>
               </div>
             </nav>
         </div>
