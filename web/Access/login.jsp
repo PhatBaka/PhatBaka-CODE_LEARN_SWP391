@@ -170,18 +170,18 @@ html {
             <nav class="navbar navbar-expand-lg bg-light" id="background">
               <div class="container-fluid">
                 <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                        <a href="${home}" style="text-decoration: none; color: black;">
-                            Home
-                        </a>
+                <a  style="text-decoration: none; color: black;">
+                   
+                </a>
               </div>
               <div class="container-fluid">
-                <a class="navbar-brand" href="#">Categories</a>
+                <a class="navbar-brand" href="#"></a>
               </div>
               <div class="container-fluid">
-                <a class="navbar-brand" href="#">About Us</a>
+                <a class="navbar-brand" href="${home}">Home</a>
               </div>
               <div class="container-fluid">
-                <a class="navbar-brand" href="#">Login/SignUp</a>
+                <a class="navbar-brand" href="#"></a>
               </div>
             </nav>
           </div>
@@ -202,7 +202,7 @@ html {
               <form action="MainController" method="POST">
                 <label>Username</label><input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
                 <label>Password</label><input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-                <label id="option">Select:</label>
+                </br><label id="option">Select:</label>
                 <select id="select" name="role">
                     <option value="Admin" selected="selected">Admin</option>
                     <option value="Teacher">Teacher</option>
@@ -211,11 +211,12 @@ html {
                 </select>
                 <input type="submit" class="fadeIn fourth" name="action" value="Login" style="width: 40%;"></br>
                 </form>       
-                <a type="button" class="fadeIn fourth" href="forgotpassword.jsp" style="width: 40%; margin-top: -5%;">Forgot Password</a>
+                <a type="button" class="fadeIn fourth" href="http://localhost:8084/CODE_LEARN/Access/forgotpassword.jsp" style="width: 40%; margin-top: -5%;">Forgot Password</a>
                 <br>
-                <a type="button" class="fadeIn fourth" href="register.jsp" style="width: 40%; margin-top: -5%;" >Register</a>
+                <a type="button" class="fadeIn fourth" href="http://localhost:8084/CODE_LEARN/Access/register.jsp" style="width: 40%; margin-top: -5%;" >Register</a>
             </div>
           </div>
+              
           <footer>
           </footer>
           <!-- JavaScript Bundle with Popper -->

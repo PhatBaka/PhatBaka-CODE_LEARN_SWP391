@@ -162,7 +162,7 @@
                     } else {
                     %>
                     <div class="container-fluid">
-                        <a href="Access/login.jsp">Login/Signup</a>
+                        <a href="Access/login.jsp" style="text-decoration: none; color: black;">Login/Signup</a>
                     </div>
                     <%
                         }
@@ -180,7 +180,10 @@
         <div class="container px-4" id="detail_frame">
             <div class="row g-2">
                 <div class="col-6" >
-                    <div class="p-3 border bg-light" ><img src="<%= dto.getImage()%>" width="150px" height="150px">Course Name : <%= dto.getName()%></div>
+                    <div class="p-3 border bg-light" >
+                        <img src="<%= dto.getImage()%>" width="150px" height="150px" style="margin-right: 2px;">
+                        Course Name : <%= dto.getName()%>
+                    </div>
                 </div>
                 <div class="col-6" >
                     <div class="p-3 border bg-light" ><p id="column_inf">Teacher Name :<%= dao.getTeacherName(dto.getName())%> </p></div>
@@ -213,12 +216,20 @@
                 </div>
             </div>
             <%
-                if (role.equals("student")) {
+                if (stud != null) {
                     String enrollStatus = (String) session.getAttribute("ENROLL");
             %>
             <form action="MainController">
                 <input type="hidden" name="courseName" value="<%= dto.getName()%>" />
                 <input type="submit" name="action" class="fadeIn fourth" value="Enroll Course"  style="width: 20%; position: relative; margin-left: 55rem;">
+            </form>
+            <%
+            } else if (stud == null && role.equals("")) {
+            %>
+            <form action="MainController">
+                <input type="hidden" name="courseName" value="<%= dto.getName()%>" />
+                <input type="hidden" name="action" value="Login" />
+                <input type="submit" style="position: relative; left: 12em;" name="submit" class="fadeIn fourth" value="Enroll Course" style="width: 20%; position: relative; margin-left: 55rem;">
             </form>
             <%
                 }
