@@ -262,7 +262,6 @@ input[type=button], input[type=submit], input[type=reset]  {
         </style>
     </head>
     <%
-        
         StudentDTO stud = null;
         TeacherDTO teac = null;
         AdminDTO admin = null;
@@ -348,9 +347,11 @@ input[type=button], input[type=submit], input[type=reset]  {
                             <div class="dropdown">
                                 <button class="dropbtn">Welcome, <%= username%></button>
                                 <div class="dropdown-content">
-                                    <input type="submit" name="action" value="View Profile"></br></br>
-                                    <input type="submit" name="action" value="Edit Profile"></br></br>
-                                    <input type="submit" name="action" value="Logout" style="position: relative; left: 1rem;"></br></br>
+                                    <form action="MainController">
+                                        <input type="submit" name="action" value="View Profile"></br></br>
+                                        <input type="submit" name="action" value="Edit Profile"></br></br>
+                                        <input type="submit" name="action" value="Logout" style="position: relative; left: 1rem;"></br></br>
+                                    </form>
                                 </div>
                             </div>
                         </span>
