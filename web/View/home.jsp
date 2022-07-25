@@ -55,14 +55,14 @@
             }
             /* Dropdown Button */
             .dropbtn {
-                background-color: #04AA6D;
-                color: white;
+                background-color:#CCCCCC;;
+                color: black;
                 padding: 16px;
                 font-size: 16px;
                 border: none;
                 border-radius: 20px;
             }
-            /* The container <div> - needed to position the dropdown content */
+             /* The container <div> - needed to position the dropdown content */
             .dropdown {
                 position: relative;
                 display: inline-block;
@@ -74,10 +74,13 @@
                 background-color: #f1f1f1;
                 min-width: 160px;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
+                border-radius: 40px;
+                z-index: 2;
             }
             /* Links inside the dropdown */
             .dropdown-content input {
+                position: relative;
+                top: 1rem;
                 color: black;
                 padding: 12px 16px;
                 text-decoration: none;
@@ -90,6 +93,7 @@
             /* Change the background color of the dropdown button when the dropdown content is shown */
             .dropdown:hover .dropbtn {background-color: #3e8e41;}
             .dropdown:hover .icon {background-color: #3e8e41;}
+        
             .icon{
                 border: none;
                 width: 200%;
@@ -346,7 +350,7 @@ input[type=button], input[type=submit], input[type=reset]  {
                 <div class="container-fluid">
                         <span class="navbar-brand" style="cursor:pointer;">
                             <div class="dropdown">
-                                <button class="dropbtn">Welcome, <%= username%></button>
+                                <button class="dropbtn" >Welcome, <%= username%></button>
                                 <div class="dropdown-content">
                                     <input type="submit" name="action" value="View Profile"></br></br>
                                     <input type="submit" name="action" value="Edit Profile"></br></br>
