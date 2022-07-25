@@ -47,6 +47,7 @@ public class MainController extends HttpServlet {
     17  Add course   _general(Admin/teacher)
     18  Edit course  _general(Admin/teacher)
     19  Delete Course   _general(Admin/teacher)
+    20  Change password
     
     Các cấp độ phân quyền: 
          - level 1: user(low)
@@ -58,7 +59,7 @@ public class MainController extends HttpServlet {
            ( 2 người phụ trách 2 tính năng search và edit profile)
         
 */
-    private static final String ERROR = "";//Nhập vào tên trang khi lỗi xuất hiện.
+    private static final String ERROR = "error.jsp";//Nhập vào tên trang khi lỗi xuất hiện.
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -155,6 +156,16 @@ public class MainController extends HttpServlet {
             //view my courses
             else if("my courses".equals(action)){
                 url = "/MyCourseController";
+            }
+            //use-case 20
+            else if("change password".equals(action)){
+                url = "/ChangePasswordController";
+            }else if("do exam".equals(action)){
+                url = "/DoExamController";
+            }else if("result".equals(action)){
+                url = "/GetResultController";
+            }else if("submit".equals(action)){
+                url = "/GetListResultController";
             }
             request.getRequestDispatcher(url).forward(request, response);// chuyển trang đến url đương ứng, đồng thời gửi đến trang url đương ứng với request để trang url tương ứng xử lý
         }

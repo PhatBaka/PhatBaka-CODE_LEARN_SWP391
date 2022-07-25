@@ -72,33 +72,24 @@ public class TeacherDAO {
         return false;
     }
     
-    public boolean changePassword(TeacherDTO dto, String newPassword, String oldPassword) throws ClassNotFoundException, SQLException {
-        if (dto == null) {
-            return false;
-        }
+    public static boolean changePassword(String username, String newPassword, String oldPassword) throws ClassNotFoundException, SQLException {
         Connection con = null;
         PreparedStatement stm = null;
-        String validAccSQL = "select Id_Teacher from dbo.Teacher where Username = ? and Password = ?";
-        String changePassSQL = "Update dbo.Teacher set Password = ? where Username = ?";
+        String changePass = "Update dbo.Teacher set Password = ? where Username = ? and Password = ?";
         try {
             con = DBUtils.getConnection();
             if (con != null) {
-                stm = con.prepareStatement(validAccSQL);
-                stm.setString(1, dto.getUserName());
-                stm.setString(2, oldPassword);
+                stm = con.prepareStatement(changePass);
+                stm.setString(1, newPassword);
+                stm.setString(2, username);
+                stm.setString(3, oldPassword);
                 int effectedRows = stm.executeUpdate();
-                if (effectedRows > 0) {
-                    stm = con.prepareStatement(changePassSQL);
-                    stm.setString(1, newPassword);
-                    stm.setString(2, dto.getUserName());
-                    stm.executeUpdate();
+                if(effectedRows > 0){
                     return true;
-                } else {
-                    return false;
                 }
             }
         } catch (Exception ex) {
-
+            ex.printStackTrace();
         } finally {
             if (con != null) {
                 con.close();

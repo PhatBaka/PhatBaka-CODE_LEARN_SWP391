@@ -17,6 +17,14 @@ public class MarkReportDTO {
     
     public MarkReportDTO(){}
 
+    public MarkReportDTO(int Id_Exam, int Id_Student, float Mark) {
+        this.Id_Exam = Id_Exam;
+        this.Id_Student = Id_Student;
+        this.Mark = Mark;
+    }
+    
+    
+
     public MarkReportDTO(int Id_Report, int Id_Exam, int Id_Student, float Mark) {
         this.Id_Report = Id_Report;
         this.Id_Exam = Id_Exam;

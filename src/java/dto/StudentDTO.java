@@ -13,6 +13,7 @@ public class StudentDTO {
     private int Id_Student;
     private String Username;
     private String Password;
+    
 
     public StudentDTO() {
     }
@@ -21,7 +22,7 @@ public class StudentDTO {
         this.Id_Student = Id_Student;
         this.Username = Username;
         this.Password = Password;
-    }
+    }    
 
     public StudentDTO(String Username, String Password) {
         this.Username = Username;
@@ -73,6 +74,6 @@ public class StudentDTO {
         this.Password = Password;
     }   
 
-
+   
     
 }
