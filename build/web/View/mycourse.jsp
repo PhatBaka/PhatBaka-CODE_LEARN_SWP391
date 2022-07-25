@@ -69,8 +69,8 @@
 
             /* Dropdown Button */
             .dropbtn {
-                background-color: #04AA6D;
-                color: white;
+                background-color: #CCCCCC;
+                color: black;
                 padding: 16px;
                 font-size: 16px;
                 border: none;
@@ -78,11 +78,31 @@
             }
 
             /* The container <div> - needed to position the dropdown content */
+           
+            .dropbtn:hover {
+            background-color:#009933	;
+            color: white;
+        }
+
+            /* Links inside the dropdown */
+            .icon{
+                border: none;
+                width: 200%;
+                border-radius: 20px;
+                height: 3em;
+                margin-left: 200%;
+            }
+            
+            .icon:hover{
+                background-color: #009933;
+                color: white;
+            }
+
+           /* The container <div> - needed to position the dropdown content */
             .dropdown {
                 position: relative;
                 display: inline-block;
             }
-
             /* Dropdown Content (Hidden by Default) */
             .dropdown-content {
                 display: none;
@@ -92,24 +112,19 @@
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                 z-index: 1;
             }
-
             /* Links inside the dropdown */
-            .dropdown-content a {
+            .dropdown-content input {
                 color: black;
                 padding: 12px 16px;
                 text-decoration: none;
                 display: block;
             }
-
             /* Change color of dropdown links on hover */
-            .dropdown-content a:hover {background-color: #ddd;}
-
+            .dropdown-content input:hover {background-color: #ddd;}
             /* Show the dropdown menu on hover */
             .dropdown:hover .dropdown-content {display: block;}
-
             /* Change the background color of the dropdown button when the dropdown content is shown */
             .dropdown:hover .dropbtn {background-color: #3e8e41;}
-
             .dropdown:hover .icon {background-color: #3e8e41;}
 
             .icon{
@@ -120,7 +135,32 @@
                 margin-left: 200%;
             }
 
-
+            input[type=button], input[type=submit], input[type=reset]  {
+            background-color: #CCCCCC	;
+            border: none;
+            color: black;
+            padding: 15px 80px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 13px;
+            -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+            box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            
+            
+        }
+        input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+             background-color: #009933;
+            color: white;
+        } 
         </style>
 
 
@@ -150,17 +190,20 @@
                 <div class="container-fluid">
                     <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
                     <a href="${home}" style="text-decoration: none; color: black;">
-                        Home
+                    <button class="icon">
+                        <ion-icon name="home-outline"></ion-icon></br>
+                        <span>Home</span>
+                    </button>
                     </a>
-                </div>
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="#">Categories</a>
                 </div>
                 <div class="container-fluid">
                     <span class="navbar-brand" href="#" style="cursor:pointer;">
                         <div class="dropdown">
 
-                            <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
+                            <button class="icon">
+                                <ion-icon name="notifications-outline"></ion-icon></br>
+                                <span>Noti</span>
+                            </button>
                             <div class="dropdown-content" id="drop-info">
                                 <form action="MainController">
                                     <input type="submit" name="action" value="Exam 1"> </br>
@@ -178,9 +221,9 @@
                             <div class="dropdown-content">
                                 <form action="MainController">
                                     <input type="hidden" name="profileName" value="<%= username%>" />
-                                    <input type="submit" name="action" value="View Profile">
-                                    <input type="submit" name="action" value="Edit Profile">
-                                    <input type="submit" name="action" value="Logout">
+                                    <input type="submit" name="action" value="View Profile"></br></br>
+                                    <input type="submit" name="action" value="Edit Profile"></br></br>
+                                    <input type="submit" name="action" value="Logout"></br>
                                 </form>
                             </div>
                         </div>
@@ -246,7 +289,8 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     </body>
 </html>

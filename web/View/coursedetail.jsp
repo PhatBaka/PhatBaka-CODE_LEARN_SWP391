@@ -61,6 +61,26 @@
             z-index: 2;
         }
         
+        .dropbtn {
+                background-color:#CCCCCC;;
+                color: black;
+                font-size: 16px;
+                border-radius: 20px;
+                cursor:pointer; 
+                position: relative; 
+                right: 2rem; 
+                border: 1px solid black; 
+                padding: 3%; 
+                width: 15rem; 
+                text-align: center;
+                
+            }
+        
+        .dropbtn:hover {
+            background-color:pink;
+            color: white;
+        }
+        
         .icon{
                 border: none;
                 width: 200%;
@@ -184,7 +204,7 @@
                     <div class="container-fluid" style="">
                         <span class="navbar-brand" >
                             <div class="dropdown">
-                                <div class="dropbtn" style="cursor:pointer; position: relative; right: 2rem; border: 1px solid black; padding: 3%; width: 15rem; text-align: center; background-color: #CCCCCC">
+                                <div class="dropbtn" style="">
                                     <span style="">Welcome, <%= username%></span> 
                                 </button> <!-- ĐỪNG ĐỔI CÁI TAG NÀY THÀNH </DIV> NÓ LÀM CHẠY SAI CÁI NÚT LOGOUT -->
                                 
