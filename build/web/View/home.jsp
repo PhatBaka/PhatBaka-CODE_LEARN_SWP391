@@ -34,7 +34,6 @@
                 background-size:  1920px 1080px;
                 background-position: 60% 10%; 
             }
-
             .container_2
             {
                 padding: 1%;
@@ -42,22 +41,18 @@
                 text-align: center;
                 position: absolute;
             }
-
             #frame
             {
                 margin-right: 10px;
                 margin-left: 10px;
                 padding: 1%;
                 display: flex;
-
             }
-
             .search
             {
                 width: 100%;
                 padding: 2%;
             }
-
             /* Dropdown Button */
             .dropbtn {
                 background-color: #04AA6D;
@@ -67,13 +62,11 @@
                 border: none;
                 border-radius: 20px;
             }
-
             /* The container <div> - needed to position the dropdown content */
             .dropdown {
                 position: relative;
                 display: inline-block;
             }
-
             /* Dropdown Content (Hidden by Default) */
             .dropdown-content {
                 display: none;
@@ -83,7 +76,6 @@
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                 z-index: 1;
             }
-
             /* Links inside the dropdown */
             .dropdown-content input {
                 color: black;
@@ -91,18 +83,13 @@
                 text-decoration: none;
                 display: block;
             }
-
             /* Change color of dropdown links on hover */
             .dropdown-content input:hover {background-color: #ddd;}
-
             /* Show the dropdown menu on hover */
             .dropdown:hover .dropdown-content {display: block;}
-
             /* Change the background color of the dropdown button when the dropdown content is shown */
             .dropdown:hover .dropbtn {background-color: #3e8e41;}
-
             .dropdown:hover .icon {background-color: #3e8e41;}
-
             .icon{
                 border: none;
                 width: 200%;
@@ -111,19 +98,20 @@
                 margin-left: 200%;
             }
             
+            .icon:hover{
+                color: white;
+            }
+            
             <!--search bar-->
             
-
 .webdesigntuts-workshop {
 	height: 100%;
 	position: relative;
 	text-align: center;
 	width: 100%;
 }
-
 .webdesigntuts-workshop:before,
 .webdesigntuts-workshop:after {
-
 	display: block;	
 	height: 1px;
 	left: 50%;
@@ -132,20 +120,17 @@
 	width: 800px;
         
 }
-
 .webdesigntuts-workshop:before {
 	background: #444;
 	background: linear-gradient(left, #151515, #444, #151515);
 	top: 192px;
         
 }
-
 .webdesigntuts-workshop:after {
 	background: #000;
 	background: linear-gradient(left, #151515, #000, #151515);	
 	top: 191px;
 }
-
 .webdesigntuts-workshop form {
 	background: #111;
 	background: linear-gradient(#1b1b1b, #111);
@@ -159,7 +144,6 @@
 	position: relative;
 	z-index: 1;
 }
-
 .webdesigntuts-workshop input {
 	background: #222;	
 	background: linear-gradient(#333, #222);	
@@ -179,20 +163,16 @@
 	width: 200px;
         
 }
-
 .ie .webdesigntuts-workshop input {
 	line-height: 40px;
         
 }
-
 .webdesigntuts-workshop input::-webkit-input-placeholder {
    color: #888;
 }
-
 .webdesigntuts-workshop input:-moz-placeholder {
    color: #888;
 }
-
 .webdesigntuts-workshop input:focus {
 	animation: glow 800ms ease-out infinite alternate;
 	background: #222922;
@@ -202,15 +182,12 @@
 	color: #efe;
 	outline: none;
 }
-
 .webdesigntuts-workshop input:focus::-webkit-input-placeholder { 
 	color: #efe;
 }
-
 .webdesigntuts-workshop input:focus:-moz-placeholder {
 	color: #efe;
 }
-
 .webdesigntuts-workshop button {
 	background: #222;
 	background: linear-gradient(#333, #222);
@@ -233,7 +210,6 @@
 	text-shadow: 0 -1px 0 #000;
 	width: 80px;
 }	
-
 .webdesigntuts-workshop button:hover,
 .webdesigntuts-workshop button:focus {
 	background: #292929;
@@ -241,14 +217,12 @@
 	color: #5f5;
 	outline: none;
 }
-
 .webdesigntuts-workshop button:active {
 	background: #292929;
 	background: linear-gradient(#393939, #292929);
 	box-shadow: 0 1px 0 #000, inset 1px 0 1px #222;
 	top: 1px;
 }
-
 @keyframes glow {
     0% {
 		border-color: #393;
@@ -259,13 +233,34 @@
 		box-shadow: 0 0 20px rgba(0,255,0,.6), inset 0 0 10px rgba(0,255,0,.4), 0 2px 0 #000;
     }
 }
-
+input[type=button], input[type=submit], input[type=reset]  {
+            background-color: #CCCCCC	;
+            border: none;
+            color: black;
+            padding: 15px 80px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 13px;
+            -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+            box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
             
+            
+        }
+        input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+             background-color: #009933;
+            color: white;
+        }                
         </style>
-
-
     </head>
-
     <%
         
         StudentDTO stud = null;
@@ -289,7 +284,6 @@
             }
         }
     %>
-
     <body>
         <c:set var="role" value="${sessionScope.role}" />
         <div class="container">
@@ -344,32 +338,23 @@
                                 %>
                             </div>
                         </div>
-
                     </span>
                 </div>
-
-
                 <%
                     if (session.getAttribute("ACCOUNT") != null) {
                 %>
                 <div class="container-fluid">
-                    <span class="navbar-brand" style="cursor:pointer;">
-                        <div class="dropdown">
-                            <button class="dropbtn" style="border-radius: 25px;">Welcome, <%= username%></button>
-                            <div class="dropdown-content">
-                                <form action="MainController" >
-                                    <input type="hidden" name="profileName" value="<%= username%>" style="text-align:center;"/>
-                                    <input type="submit" name="action" value="View Profile" style="text-align:center;">
-                                    <input type="submit" name="action" value="Edit Profile" style="text-align:center;">
-                                    <input type="submit" name="action" value="Logout">
-                                </form>
-                                    
+                        <span class="navbar-brand" style="cursor:pointer;">
+                            <div class="dropdown">
+                                <button class="dropbtn">Welcome, <%= username%></button>
+                                <div class="dropdown-content">
+                                    <input type="submit" name="action" value="View Profile"></br></br>
+                                    <input type="submit" name="action" value="Edit Profile"></br></br>
+                                    <input type="submit" name="action" value="Logout" style="position: relative; left: 1rem;"></br></br>
+                                </div>
                             </div>
-                        </div>
-
-                    </span>
-                </div>
-
+                        </span>
+                    </div>                    
                 <%
                 } else {
                 %>
@@ -392,7 +377,6 @@
             </nav>
             
         </div>      
-
             <div class="container_2">
             <div class="row align-items-center" >
                 <div class="search">
@@ -415,7 +399,7 @@
                                 <input type="hidden" name="courseName" value="<%= courselist.get(count).getName()%>" />
                                 <h5 class="card-title"><%= courselist.get(count).getName()%></h5>
                                 <p class="card-text"><%= courselist.get(count).getDescription()%></p>
-                                <input style="background-color: rgba(8, 189, 250, 0.092); margin-left: 1rem;" class="btn btn-outline-secondary"
+                                <input class="btn btn-outline-secondary"
                                        type="submit" value="Course Details" name="action" />
                             </div>
                         </div>
@@ -425,14 +409,11 @@
                     }
                 %>
             </div>
-
         </div>
-
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
     </body>
 </html>
