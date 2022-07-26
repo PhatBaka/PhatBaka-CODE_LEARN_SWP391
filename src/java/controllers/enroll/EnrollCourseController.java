@@ -52,13 +52,18 @@ public class EnrollCourseController extends HttpServlet {
                 courseName = request.getParameter("courseName");
                 CourseDAO dao = new CourseDAO();
                 CourseDTO course = dao.detail(courseName);
-                result = dao.enroll(dto.getId_Student(), courseName);
-                if (result) {
-                    if (course != null) {
-                        request.setAttribute("course", course);
-                        session.setAttribute("ENROLL", course.getName());
-                        url = ENROLL_SUCCESS_PAGE;
+                boolean check = dao.checkEnroll(dto.getId_Student(), courseName);
+                if (check) {
+                    result = dao.enroll(dto.getId_Student(), courseName);
+                    if (result) {
+                        if (course != null) {
+                            request.setAttribute("course", course);
+                            session.setAttribute("ENROLL", course.getName());
+                            url = ENROLL_SUCCESS_PAGE;
+                        }
                     }
+                } else {
+                    session.setAttribute("status", "Already enrolled!!!");
                 }
             }
         } catch (SQLException ex) {

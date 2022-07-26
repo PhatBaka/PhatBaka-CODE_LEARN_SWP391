@@ -191,6 +191,39 @@ public class CourseDAO implements Serializable {
         }
         return false;
     }
+    
+    public boolean checkEnroll(int studentId, String courseName) throws ClassNotFoundException, SQLException {
+        /* Get Parameters from HTML Forms from View files (.jsp,.html) */
+        Connection con = null;
+        PreparedStatement statement = null;
+        ResultSet rs = null;
+        int _studentId = studentId;
+        String _courseName = courseName;
+        try {
+            con = DBUtils.getConnection();
+
+            String sql = "SELECT * FROM Enroll "
+                    + "WHERE Id_Student = ?, Id_Course = (SELECT Id_Course "
+                    + "FROM Course "
+                    + "WHERE Name = ?))";
+
+            statement = con.prepareStatement(sql);
+            statement.setInt(1, _studentId);
+            statement.setString(2, _courseName);
+            rs = statement.executeQuery();
+            if (rs.next()) {
+                return false;
+            }
+        } finally {
+            if (statement != null) {
+                statement.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return true;
+    }
 
     public boolean delete(String courseName) throws ClassNotFoundException, SQLException {
         String _courseName = courseName;
