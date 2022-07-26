@@ -173,7 +173,10 @@ html {
               <div class="container-fluid">
                 <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
                 <a  style="text-decoration: none; color: black;">
-                   
+                   <button class="icon">
+                        <ion-icon name="home-outline"></ion-icon></br>
+                        <span>Home</span>
+                   </button>
                 </a>
               </div>
               <div class="container-fluid">

@@ -120,7 +120,20 @@
             border-radius: 0 0 10px 10px;
         }
 
-
+        .icon{
+            border: none;
+            width: 200%;
+            border-radius: 20px;
+            height: 3em;
+            margin-left: 200%;
+            position: relative;
+            left: 4rem;
+            }
+            
+        .icon:hover{
+            background-color: #009933;
+            color: white;
+        }
 
         /* TABS */
 
@@ -225,10 +238,15 @@
                 </a>
               </div>
               <div class="container-fluid">
-                <a class="navbar-brand" href="#"></a>
+                <a class="navbar-brand" href="${home}">
+                    <button class="icon">
+                        <ion-icon name="home-outline"></ion-icon></br>
+                        <span>Home</span>
+                    </button>
+                </a>
               </div>
               <div class="container-fluid">
-                <a class="navbar-brand" href="${home}">Home</a>
+                
               </div>
               <div class="container-fluid">
                 <a class="navbar-brand" href="#"></a>
@@ -266,7 +284,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
