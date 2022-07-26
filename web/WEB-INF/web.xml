@@ -80,6 +80,18 @@
         <servlet-name>EditTeacheProfileController</servlet-name>
         <servlet-class>controllers.profile.medium.EditTeacheProfileController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DoExamController</servlet-name>
+        <servlet-class>controllers.exam.DoExamController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetListResultController</servlet-name>
+        <servlet-class>controllers.exam.GetListResultController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetResultController</servlet-name>
+        <servlet-class>controllers.exam.GetResultController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MainController</servlet-name>
         <url-pattern>/</url-pattern>
@@ -159,6 +171,18 @@
     <servlet-mapping>
         <servlet-name>EditTeacheProfileController</servlet-name>
         <url-pattern>/EditTeacheProfileController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoExamController</servlet-name>
+        <url-pattern>/DoExamController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetListResultController</servlet-name>
+        <url-pattern>/GetListResultController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetResultController</servlet-name>
+        <url-pattern>/GetResultController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

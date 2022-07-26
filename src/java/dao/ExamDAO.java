@@ -31,20 +31,41 @@ public class ExamDAO {
     private  static final String SEARCH_EXAM = "SELECT Id_Exam, Name, Question, Exam_Date FROM Exam WHERE Name like ?";
     
     private  static final String NOTI_EXAM = "SELECT Id_Exam, Name, Question, Exam_Date FROM Exam WHERE Exam_Date BETWEEN ? AND ?";
-    
-    public static int addNewExam(ExamDTO exam) throws ClassNotFoundException, SQLException{
-        int result = 0;
+        public static final String GET_EXAM = "SELECT Id_Exam, Name, Exam_Date, Hour, Question FROM dbo.Exam WHERE Id_Course = ?";
+    public static ExamDTO getExam(int id_course) throws ClassNotFoundException, SQLException{
+        ExamDTO exam = null;
+        int check = id_course;
         Connection conn = DBUtils.getConnection();
         if(conn != null){
-            PreparedStatement ptm = conn.prepareStatement(ADD_EXAM);
-            ptm.setString(1, exam.getName());
-            ptm.setString(2, exam.getQuestion());
-            ptm.setDate(3, exam.getDate());
-            result = ptm.executeUpdate();
+            PreparedStatement ptm = conn.prepareStatement(GET_EXAM);
+            ptm.setInt(1, id_course);
+            ResultSet rs = ptm.executeQuery();
+            if(rs!=null && rs.next()){
+                int id_exam = rs.getInt("Id_Exam");
+                String name = rs.getString("Name");
+                Date exam_date = rs.getDate("Exam_Date");
+                int hour = rs.getInt("Hour");
+                String question = rs.getString("Question");
+                exam = new ExamDTO(id_exam, name, exam_date, hour, question, id_course);
+            }
             conn.close();
-        }     
-        return result;
+        }
+        return exam;
     }
+    
+//    public static int addNewExam(ExamDTO exam) throws ClassNotFoundException, SQLException{
+//        int result = 0;
+//        Connection conn = DBUtils.getConnection();
+//        if(conn != null){
+//            PreparedStatement ptm = conn.prepareStatement(ADD_EXAM);
+//            ptm.setString(1, exam.getName());
+//            ptm.setString(2, exam.getQuestion());
+//            ptm.setDate(3, exam.getDate());
+//            result = ptm.executeUpdate();
+//            conn.close();
+//        }     
+//        return result;
+//    }
     
     public static int deleteExam(int id) throws ClassNotFoundException, SQLException{
         int result = 0;
@@ -58,20 +79,20 @@ public class ExamDAO {
         return result;
     }
     
-    public static int updateExam(ExamDTO exam) throws ClassNotFoundException, SQLException{
-        int result = 0;
-        Connection conn = DBUtils.getConnection();
-        if(conn != null){
-            PreparedStatement ptm = conn.prepareStatement(EDIT_EXAM);
-            ptm.setString(1, exam.getName());
-            ptm.setString(2, exam.getQuestion());
-            ptm.setDate(3, exam.getDate());
-            ptm.setInt(4, exam.getId_Exam());
-            result = ptm.executeUpdate();
-            conn.close();
-        }
-        return result;
-    }
+//    public static int updateExam(ExamDTO exam) throws ClassNotFoundException, SQLException{
+//        int result = 0;
+//        Connection conn = DBUtils.getConnection();
+//        if(conn != null){
+//            PreparedStatement ptm = conn.prepareStatement(EDIT_EXAM);
+//            ptm.setString(1, exam.getName());
+//            ptm.setString(2, exam.getQuestion());
+//            ptm.setDate(3, exam.getDate());
+//            ptm.setInt(4, exam.getId_Exam());
+//            result = ptm.executeUpdate();
+//            conn.close();
+//        }
+//        return result;
+//    }
     
     public static  List<ExamDTO> getListExam(String search) throws SQLException, ClassNotFoundException{
         List<ExamDTO> list = null;
@@ -110,6 +131,7 @@ public class ExamDAO {
         }
         return list;
     }
+
     
     public ExamDTO SearchingExam(String Search) throws SQLException {
 

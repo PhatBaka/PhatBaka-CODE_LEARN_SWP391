@@ -155,6 +155,12 @@ public class MainController extends HttpServlet {
             //view my courses
             else if("my courses".equals(action)){
                 url = "/MyCourseController";
+            }else if("do exam".equals(action)){
+                url = "/DoExamController";
+            }else if("result".equals(action)){
+                url = "/GetResultController";
+            }else if("submit".equals(action)){
+                url = "/GetListResultController";
             }
             request.getRequestDispatcher(url).forward(request, response);// chuyển trang đến url đương ứng, đồng thời gửi đến trang url đương ứng với request để trang url tương ứng xử lý
         }
