@@ -1,23 +1,21 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controllers.auth;
+package controllers.profile;
 
-import dao.StudentDAO;
-import dao.TeacherDAO;
+import dao.ContactDAO;
+import dto.ContactDTO;
 import dto.RegisterErrorDTO;
 import dto.StudentDTO;
-import dto.TeacherDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,10 +23,14 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author nearl
+ * @author nguye
  */
-public class RegisterController extends HttpServlet {
-    private final String ADD_CONTACT_PAGE = "Edit/addcontact.jsp";
+@WebServlet(name = "AddContactController", urlPatterns = {"/AddContactController"})
+public class AddContactController extends HttpServlet {
+
+    private static String LOGIN_PAGE = "Access/login.jsp";
+    private static String ADD_CONTACT_PAGE = "Edit/addcontact.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,41 +43,35 @@ public class RegisterController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        String role = request.getParameter("role");
         HttpSession session = request.getSession();
-        RegisterErrorDTO errors = new RegisterErrorDTO();
-        Object acc;
-        String url = "/Access/register.jsp";
+        String url = ADD_CONTACT_PAGE;
+        StudentDTO stuAcc = (StudentDTO) session.getAttribute("ACCOUNT");
+        int id = stuAcc.getId_Student();
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String parent = request.getParameter("parentinf");
+        String school = request.getParameter("school");
         try {
-                if (role.equals("student")) {
-                    StudentDTO dto = new StudentDTO(username, password);
-                    boolean result = StudentDAO.createStudentAccount(dto);
-                    if (result) {
-                        acc = (StudentDTO)StudentDAO.getAccount(username, password);
-                        session.setAttribute("ACCOUNT", acc);
-                        url = ADD_CONTACT_PAGE;
-                    }
-                } else if (role.equals("teacher")) {
-                    TeacherDTO dto = new TeacherDTO(username, password);
-                    boolean result = TeacherDAO.createTeacherAccount(dto);
-                    if (result) {
-                        
-                    }
-                }
+            ContactDTO dto = new ContactDTO(id, email, parent, phone, school);
+            if (ContactDAO.addContact(dto)) {
+                url = LOGIN_PAGE;
+            } else {
+                url = ADD_CONTACT_PAGE;
+            }
         } catch (SQLException ex) {
+            RegisterErrorDTO errors = new RegisterErrorDTO();
             String msg = ex.getMessage();
-            log("CreateAccountServlet _ SQL " + ex.getMessage());
-            if (msg.contains("duplicate")) {
-                errors.setUsernameIsExisted(username + " is existed.");
-                request.setAttribute("CREATEERRORS", errors);
+            if (msg.contains("UQ__Contact__BC5BFB63B97AD3FB")) {
+                errors.setEmailIsExisted(email + " is existed.");
+                request.setAttribute("EMAILERRORS", errors);
+            } else if (msg.contains("UQ__Contact__7DC10DF017890E34")) {
+                errors.setPhoneIsExisted(phone + " is existed.");
+                request.setAttribute("PHONEERRORS", errors);
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -93,7 +89,7 @@ public class RegisterController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddContactController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -111,7 +107,7 @@ public class RegisterController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AddContactController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

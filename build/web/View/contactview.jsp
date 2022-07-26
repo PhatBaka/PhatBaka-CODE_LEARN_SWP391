@@ -4,6 +4,15 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dao.CourseDAO"%>
+<%@page import="dto.CourseDTO"%>
+<%@page import="dao.ExamDAO"%>
+<%@page import="dto.ExamDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="dto.AdminDTO"%>
+<%@page import="dto.TeacherDTO"%>
+<%@page import="dto.StudentDTO"%>
 <%@page import="dto.ContactDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -109,52 +118,118 @@
     </head>
 
     <body>
+        <%
+        StudentDTO stud = null;
+        TeacherDTO teac = null;
+        AdminDTO admin = null;
+        String username = "";
+        String role = "";
+        List<ExamDTO> examlist = ExamDAO.getNotiExam();
+        List<CourseDTO> courselist = CourseDAO.display();
+        if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
+            role = (String) session.getAttribute("role");
+            if (role.equals("admin")) {
+                admin = (AdminDTO) session.getAttribute("ACCOUNT");
+                username = admin.getAdminName();
+            } else if (role.equals("teacher")) {
+                teac = (TeacherDTO) session.getAttribute("ACCOUNT");
+                username = teac.getName();
+            } else if (role.equals("student")) {
+                stud = (StudentDTO) session.getAttribute("ACCOUNT");
+                username = stud.getUsername();
+            }
+        }
+    %>
         <div class="container">
-          <nav class="navbar navbar-expand-lg bg-light" id="background">
-            <div class="container-fluid">
-              <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                        <a href="${home}" style="text-decoration: none; color: black;">
-                            Home
-                        </a>
-            </div>
-          
-                  <div class="container-fluid">
-                <span class="navbar-brand" href="#" style="cursor:pointer;">
-                    <div class="dropdown">
-                          
-                    <button class="icon"><ion-icon name="notifications-outline"></ion-icon></button>
-                    <div class="dropdown-content" id="drop-info">
-                      <a href="#">Exam</a>
-                      <a href="#">Exam</a>
-                      <a href="#">Exam</a>
-                    </div>
-                </div>               
-                </span>
-              </div>
-            <div class="container-fluid">
-               <div class="dropdown">
-                    <button class="dropbtn">Welcome User</button>
-                    <div class="dropdown-content">
-                      <a href="#">Profile</a>
-                      <a href="#">Edit Profile</a>
-                      <a href="#">Logout</a>
-                    </div>
+            <nav class="navbar navbar-expand-lg bg-light" id="background">
+                <div class="container-fluid">
+                    <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                    <a href="${home}" style="text-decoration: none; color: black;">
+                        Home
+                    </a>
                 </div>
-            </div>
-          </nav>
+                <%
+                    if (role.equals("student") || role.equals("teacher")) {
+                %>
+                <div class="container-fluid" >
+                    <form action="MainController">
+                        <input type="submit" value="My Courses" name="action" />
+                    </form>
+                </div>
+                <%
+                    }
+                %>
+                <div class="container-fluid">
+                    <span class="navbar-brand" style="cursor:pointer;">
+                        <div class="dropdown">
+                            <button class="icon">
+                                <ion-icon name="notifications-outline""></ion-icon>
+                            </button>
+                            <div class="dropdown-content" id="drop-info">
+                                
+                                <%
+                                    if (role.equals("student") && examlist != null) {
+                                        for (ExamDTO exam : examlist) {
+                                %>
+                                <form action="MainController">
+                                    <input type="hidden" name="profileName" value="<%= username%>" />
+                                    <input type="text" name="examName" value="<%= exam.getName()%>" /> 
+                                    <input type="submit" name="action" value="View Exam"> </br>
+                                </form>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </div>
+                        </div>
+
+                    </span>
+                </div>
+
+
+                <%
+                    if (session.getAttribute("ACCOUNT") != null) {
+                %>
+                <div class="container-fluid">
+                    <span class="navbar-brand" style="cursor:pointer;">
+                        <div class="dropdown">
+                            <button class="dropbtn" style="border-radius: 25px;">Welcome <%= username %></button>
+                            <div class="dropdown-content">
+                                <form action="MainController">
+                                    <input type="hidden" name="profileName" value="<%= username %>" />
+                                    <input type="submit" name="action" value="Logout">
+                                </form>
+                            </div>
+                        </div>
+
+                    </span>
+                </div>
+                <%
+                } else {
+                %>
+                <div class="container-fluid" >
+                    <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
+                    <a href="${login}">
+                        Login
+                    </a>
+                </div>
+                <%
+                    }
+                %>
+            </nav>
         </div>
 <%
     ContactDTO contact = (ContactDTO) session.getAttribute("CONTACT");
 %>
         <div class="container_2">
-            <h1 class="View_font">CONTACT</h1>
+            <h1 class="View_font">YOUR PROFILE</h1>
             <div class="list-group" id="list_group" style="text-align:center;">
                 <p class="list-group-item list-group-item-action">Id Student: <%= contact.getId_Student() %></p>
                 <p class="list-group-item list-group-item-action">Email: <%= contact.getEmail_User() %> </p>
                 <p class="list-group-item list-group-item-action">Parent information: <%= contact.getParents_inf() %> </p>
                 <p class="list-group-item list-group-item-action">Phone number: <%= contact.getPhone_Num() %> </p>
                 <p class="list-group-item list-group-item-action">School: <%= contact.getSchool() %> </p>
-                <a href="../Edit/contact.jsp">Edit</a>
+                <a href="../Edit/editcontact.jsp">Edit Profile</a>
             </div>
         </div>
         

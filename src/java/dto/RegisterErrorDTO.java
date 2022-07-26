@@ -11,6 +11,8 @@ package dto;
  */
 public class RegisterErrorDTO {
     private String usernameIsExisted;
+    private String emailIsExisted;
+    private String phoneIsExisted;
 
     public RegisterErrorDTO() {
     
@@ -23,4 +25,22 @@ public class RegisterErrorDTO {
     public void setUsernameIsExisted(String usernameIsExisted) {
         this.usernameIsExisted = usernameIsExisted;
     }
+
+    public String getEmailIsExisted() {
+        return emailIsExisted;
+    }
+
+    public void setEmailIsExisted(String emailIsExisted) {
+        this.emailIsExisted = emailIsExisted;
+    }
+
+    public String getPhoneIsExisted() {
+        return phoneIsExisted;
+    }
+
+    public void setPhoneIsExisted(String phoneIsExisted) {
+        this.phoneIsExisted = phoneIsExisted;
+    }
+    
+    
 }

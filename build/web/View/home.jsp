@@ -196,12 +196,11 @@
                 <div class="container-fluid">
                     <span class="navbar-brand" style="cursor:pointer;">
                         <div class="dropdown">
-                            <button class="dropbtn" style="border-radius: 25px;">Welcome, <%= username %></button>
+                            <button class="dropbtn" style="border-radius: 25px;">Welcome <%= username %></button>
                             <div class="dropdown-content">
                                 <form action="MainController">
                                     <input type="hidden" name="profileName" value="<%= username %>" />
                                     <input type="submit" name="action" value="View Profile">
-                                    <input type="submit" name="action" value="Edit Profile">
                                     <input type="submit" name="action" value="Logout">
                                 </form>
                             </div>

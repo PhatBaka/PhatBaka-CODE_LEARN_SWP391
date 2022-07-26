@@ -26,7 +26,6 @@ import javax.servlet.http.HttpSession;
 public class ViewUserProfileController extends HttpServlet {
 
     private final String VIEW_PROFILE_PAGE = "View/contactview.jsp";
-    private final String UPDATE_PROFILE_PAGE = "Edit/contact.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +37,7 @@ public class ViewUserProfileController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, SQLException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         String url = "";
         HttpSession session = request.getSession();
@@ -46,12 +45,8 @@ public class ViewUserProfileController extends HttpServlet {
         try {
             int stuID = stuAcc.getId_Student();
             ContactDTO contact = ContactDAO.SearchingContact(stuID);
-            if(contact != null){
-                session.setAttribute("CONTACT", contact);
-                url = VIEW_PROFILE_PAGE;
-            } else {
-                url = UPDATE_PROFILE_PAGE;
-            }
+            session.setAttribute("CONTACT", contact);
+            url = VIEW_PROFILE_PAGE;
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
@@ -74,6 +69,8 @@ public class ViewUserProfileController extends HttpServlet {
             processRequest(request, response);
         } catch (SQLException ex) {
             Logger.getLogger(ViewUserProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ViewUserProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -91,6 +88,8 @@ public class ViewUserProfileController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
+            Logger.getLogger(ViewUserProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(ViewUserProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

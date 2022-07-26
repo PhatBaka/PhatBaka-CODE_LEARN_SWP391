@@ -7,6 +7,7 @@ package controllers.profile;
 
 import dao.ContactDAO;
 import dto.ContactDTO;
+import dto.RegisterErrorDTO;
 import dto.StudentDTO;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,6 +26,7 @@ import javax.servlet.http.HttpSession;
  */
 public class EditProfileController extends HttpServlet {
     private final String VIEW_CONTACT_PAGE = "View/contactview.jsp";
+    private final String EDIT_CONTACT_PAGE = "Edit/editcontact.jsp";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,10 +37,10 @@ public class EditProfileController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
+            throws ServletException, IOException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String url = "";
+        String url = EDIT_CONTACT_PAGE;
         StudentDTO stuAcc = (StudentDTO) session.getAttribute("ACCOUNT");
         int id = stuAcc.getId_Student();
         String email = request.getParameter("email");
@@ -47,15 +49,25 @@ public class EditProfileController extends HttpServlet {
         String school = request.getParameter("school");
         try{
             ContactDTO dto = new ContactDTO(id, email, parent, phone, school);
-            ContactDTO contact = ContactDAO.SearchingContact(id);
-            if(contact == null){
-                ContactDAO.addContact(dto);
-            } else{
-                ContactDAO.editContact(dto);
+            if(ContactDAO.editContact(dto)){
+                ContactDTO contact = ContactDAO.SearchingContact(id);
+                session.setAttribute("CONTACT", contact);
+                url =  VIEW_CONTACT_PAGE;
             }
-            contact = ContactDAO.SearchingContact(id);
-            session.setAttribute("CONTACT", contact);
-            url =  VIEW_CONTACT_PAGE;
+            else{
+                url = EDIT_CONTACT_PAGE;
+                }
+            }
+        catch(SQLException ex){
+            RegisterErrorDTO errors = new RegisterErrorDTO();
+            String msg = ex.getMessage();
+            if(msg.contains("UQ__Contact__BC5BFB63B97AD3FB")){
+                errors.setEmailIsExisted(email + " is existed.");
+                request.setAttribute("EMAILERRORS", errors);
+            } else if(msg.contains("UQ__Contact__7DC10DF017890E34")){
+                errors.setPhoneIsExisted(phone + " is existed.");
+                request.setAttribute("PHONEERRORS", errors);
+            }
         }
         finally{
             RequestDispatcher rd = request.getRequestDispatcher(url);
@@ -77,7 +89,7 @@ public class EditProfileController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -95,7 +107,7 @@ public class EditProfileController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(EditProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

@@ -4,6 +4,14 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dao.ExamDAO"%>
+<%@page import="dao.CourseDAO"%>
+<%@page import="dto.CourseDTO"%>
+<%@page import="dto.ExamDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="dto.AdminDTO"%>
+<%@page import="dto.TeacherDTO"%>
 <%@page import="dto.ContactDTO"%>
 <%@page import="dto.StudentDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -25,11 +33,6 @@
               var phone = document.myform.phone.value;
               var school = document.myform.school.value;
   
-              if(email == null || email == "")
-              {
-                alert("email can not be null");
-                return false;
-              }
 
               if( email == null || email == "" )
               {
@@ -123,31 +126,106 @@
     </head>
 
     <body>
+        <%
+        StudentDTO stud = null;
+        TeacherDTO teac = null;
+        AdminDTO admin = null;
+        String username = "";
+        String role = "";
+        List<ExamDTO> examlist = ExamDAO.getNotiExam();
+        List<CourseDTO> courselist = CourseDAO.display();
+        if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
+            role = (String) session.getAttribute("role");
+            if (role.equals("admin")) {
+                admin = (AdminDTO) session.getAttribute("ACCOUNT");
+                username = admin.getAdminName();
+            } else if (role.equals("teacher")) {
+                teac = (TeacherDTO) session.getAttribute("ACCOUNT");
+                username = teac.getName();
+            } else if (role.equals("student")) {
+                stud = (StudentDTO) session.getAttribute("ACCOUNT");
+                username = stud.getUsername();
+            }
+        }
+    %>
         <div class="container">
-          <nav class="navbar navbar-expand-lg bg-light" id="background">
-            <div class="container-fluid">
-              <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                        <a href="${home}" style="text-decoration: none; color: black;">
-                            Home
-                        </a>
-            </div>
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">Categories</a>
-            </div>
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">My Profile</a>
-            </div>
-            <div class="container-fluid">
-                <span class="navbar-brand" href="#" style="cursor:pointer;">
-                    <div class="dropdown">
-                    <button class="dropbtn">Welcome User</button>
-                    <div class="dropdown-content">
-                      <a href="#">Profile</a>
-                      <a href="#">Edit Profile</a>
-                      <a href="#">Logout</a>
-                    </div>
+            <nav class="navbar navbar-expand-lg bg-light" id="background">
+                <div class="container-fluid">
+                    <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                    <a href="${home}" style="text-decoration: none; color: black;">
+                        Home
+                    </a>
                 </div>
-          </nav>
+                <%
+                    if (role.equals("student") || role.equals("teacher")) {
+                %>
+                <div class="container-fluid" >
+                    <form action="MainController">
+                        <input type="submit" value="My Courses" name="action" />
+                    </form>
+                </div>
+                <%
+                    }
+                %>
+                <div class="container-fluid">
+                    <span class="navbar-brand" style="cursor:pointer;">
+                        <div class="dropdown">
+                            <button class="icon">
+                                <ion-icon name="notifications-outline""></ion-icon>
+                            </button>
+                            <div class="dropdown-content" id="drop-info">
+                                
+                                <%
+                                    if (role.equals("student") && examlist != null) {
+                                        for (ExamDTO exam : examlist) {
+                                %>
+                                <form action="MainController">
+                                    <input type="hidden" name="profileName" value="<%= username%>" />
+                                    <input type="text" name="examName" value="<%= exam.getName()%>" /> 
+                                    <input type="submit" name="action" value="View Exam"> </br>
+                                </form>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </div>
+                        </div>
+
+                    </span>
+                </div>
+
+
+                <%
+                    if (session.getAttribute("ACCOUNT") != null) {
+                %>
+                <div class="container-fluid">
+                    <span class="navbar-brand" style="cursor:pointer;">
+                        <div class="dropdown">
+                            <button class="dropbtn" style="border-radius: 25px;">Welcome <%= username %></button>
+                            <div class="dropdown-content">
+                                <form action="MainController">
+                                    <input type="hidden" name="profileName" value="<%= username %>" />
+                                    <input type="submit" name="action" value="View Profile">
+                                    <input type="submit" name="action" value="Logout">
+                                </form>
+                            </div>
+                        </div>
+
+                    </span>
+                </div>
+                <%
+                } else {
+                %>
+                <div class="container-fluid" >
+                    <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
+                    <a href="${login}">
+                        Login
+                    </a>
+                </div>
+                <%
+                    }
+                %>
+            </nav>
         </div>
                         <%
                             StudentDTO student = (StudentDTO) session.getAttribute("ACCOUNT");
@@ -162,10 +240,22 @@
                     <span class="input-group-text" id="inputGroup-sizing-sm">Email User: </span>
                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="email" placeholder="input your email">
                 </div>
+                <c:set var="errors" value="${requestScope.EMAILERRORS}" />
+                <c:if test="${not empty errors.emailIsExisted}">
+                <font color="red">
+                    ${errors.emailIsExisted}
+                </font>
+                </c:if>
                 <div class="input-group input-group-sm mb-3">
                   <span class="input-group-text" id="inputGroup-sizing-sm">Phone Number (Parent):  </span>
                   <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="phone" placeholder=" input your phone number">
-              </div>
+                </div>
+                <c:set var="errors" value="${requestScope.PHONEERRORS}" />
+                <c:if test="${not empty errors.phoneIsExisted}">
+                <font color="red">
+                    ${errors.phoneIsExisted}
+                </font>
+                </c:if>
                 <div class="input-group input-group-sm mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-sm">Parent name(Mother/Father):   </span>
                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="parentinf" placeholder=" input father or mother name">
@@ -175,12 +265,10 @@
                     <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="school" placeholder="Where is your school?">
                 </div>
                 <button type="submit" name="action" class="btn btn-primary btn-lg" value="Edit Profile">
-                    Edit profile
+                     Done
                 </button>
-                
             </form>
-        </div>
-
+        </div> 
           <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </body>

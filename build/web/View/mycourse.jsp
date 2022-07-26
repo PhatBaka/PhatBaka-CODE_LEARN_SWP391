@@ -179,7 +179,6 @@
                                 <form action="MainController">
                                     <input type="hidden" name="profileName" value="<%= username%>" />
                                     <input type="submit" name="action" value="View Profile">
-                                    <input type="submit" name="action" value="Edit Profile">
                                     <input type="submit" name="action" value="Logout">
                                 </form>
                             </div>

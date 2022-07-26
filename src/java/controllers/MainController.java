@@ -156,6 +156,21 @@ public class MainController extends HttpServlet {
             else if("my courses".equals(action)){
                 url = "/MyCourseController";
             }
+            else if("change password".equals(action)){
+                url = "/ChangePasswordController";
+            }
+            else if("add profile".equals(action)){
+                url = "/AddContactController";
+            }
+            else if("get new password".equals(action)){
+                url = "/SendOTPController";
+            }
+            else if("reset password".equals(action)){
+                url = "/ValidateOTPController";
+            }
+            else if("change your password".equals(action)){
+                url = "/NewPasswordController";
+            }
             request.getRequestDispatcher(url).forward(request, response);// chuyển trang đến url đương ứng, đồng thời gửi đến trang url đương ứng với request để trang url tương ứng xử lý
         }
 

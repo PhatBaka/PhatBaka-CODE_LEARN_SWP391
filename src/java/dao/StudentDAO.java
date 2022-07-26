@@ -65,43 +65,8 @@ public class StudentDAO {
         return false;
     }
     
-    public boolean changePassword(StudentDTO dto, String newPassword, String oldPassword) throws ClassNotFoundException, SQLException {
-        if (dto == null) {
-            return false;
-        }
-        Connection con = null;
-        PreparedStatement stm = null;
-        String validAccSQL = "select Id_Student from dbo.Student where Username = ? and Password = ?";
-        String changePassSQL = "update dbo.Student set Password = ? where Username = ?";
-        try {
-            con = DBUtils.getConnection();
-            if (con != null) {
-                stm = con.prepareStatement(validAccSQL);
-                stm.setString(1, dto.getUsername());
-                stm.setString(2, oldPassword);
-                int effectedRows = stm.executeUpdate();
-                if (effectedRows > 0) {
-                    stm = con.prepareStatement(changePassSQL);
-                    stm.setString(1, newPassword);
-                    stm.setString(2, dto.getUsername());
-                    stm.executeUpdate();
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        } catch (Exception ex) {
-
-        } finally {
-            if (con != null) {
-                con.close();
-            }
-            if (stm != null) {
-                con.close();
-            }
-        }
-        return false;
-    }
+    
+     
     
    public boolean checkLogin(String username, String password) throws SQLException {
        Connection conn = null;

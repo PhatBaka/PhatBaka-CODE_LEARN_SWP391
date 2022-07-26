@@ -18,7 +18,7 @@ import java.sql.SQLException;
  */
 public class ContactDAO {
 
-    public static ContactDTO SearchingContact(int studentID) throws SQLException {
+    public static ContactDTO SearchingContact(int studentID) throws SQLException, ClassNotFoundException {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -36,17 +36,21 @@ public class ContactDAO {
                         rs.getString("Phone_Num"),
                         rs.getString("School"));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         } finally {
-            conn.close();
-            ps.close();
-            rs.close();
+            if (conn != null) {
+                conn.close();
+            }
+            if (ps != null) {
+                ps.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
         }
         return null;
     }
-    
-    public static boolean addContact(ContactDTO dto) throws SQLException{
+
+    public static boolean addContact(ContactDTO dto) throws SQLException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         String sql = "insert into dbo.Contact (Id_Student, Email_User, Parents_inf, Phone_Num, School) values (?, ?, ?, ?, ?)";
@@ -62,23 +66,21 @@ public class ContactDAO {
             stm.setString(4, dto.getPhone_Num());
             stm.setString(5, dto.getSchool());
             int effectedRows = stm.executeUpdate();
-            if (effectedRows>0) {
+            if (effectedRows > 0) {
                 return true;
             }
-        } catch ( Exception ex ) {
-            
         } finally {
-            if (con!=null) {
+            if (con != null) {
                 con.close();
-            } 
-            if (stm!=null) {
+            }
+            if (stm != null) {
                 stm.close();
             }
         }
         return false;
     }
-    
-    public static boolean editContact(ContactDTO dto) throws SQLException{
+
+    public static boolean editContact(ContactDTO dto) throws SQLException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         String sql = "update dbo.Contact set Email_User = ?, Parents_inf = ?, Phone_num = ?, School = ? where Id_Student = ?";
@@ -94,16 +96,14 @@ public class ContactDAO {
             stm.setString(4, dto.getSchool());
             stm.setInt(5, dto.getId_Student());
             int effectedRows = stm.executeUpdate();
-            if (effectedRows>0) {
+            if (effectedRows > 0) {
                 return true;
             }
-        } catch ( Exception ex ) {
-            
         } finally {
-            if (con!=null) {
+            if (con != null) {
                 con.close();
-            } 
-            if (stm!=null) {
+            }
+            if (stm != null) {
                 stm.close();
             }
         }

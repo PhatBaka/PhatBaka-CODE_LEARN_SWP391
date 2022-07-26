@@ -241,14 +241,11 @@ html {
                 <h3>Teacher Profile</h3>
               <form action="#">
                 <lable>Full name<input type="text" id="name" class="fadeIn second" name="name" placeholder="Full Name" style="width: 50%"></lable></br>   
-                <lable>Phonenumber<input type="text" id="phonenumber" class="fadeIn third" name="phonenumber" placeholder="Phonenumber" style="width: 50%"></lable></br>    
+                <lable>Phone number<input type="text" id="phonenumber" class="fadeIn third" name="phonenumber" placeholder="Phonenumber" style="width: 50%"></lable></br>    
                 <lable>Email <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email" style="width: 50%"></lable></br>
                 <lable>Degree <input type="text" id="email" class="fadeIn third" name="degree" placeholder="Degree" style="width: 50%"></lable></br>
                 <input type="submit" class="fadeIn fourth" value="submit" style="width: 20%;">
               </form>
-          
-    
-          
             </div>
           </div>
           <!-- JavaScript Bundle with Popper -->
