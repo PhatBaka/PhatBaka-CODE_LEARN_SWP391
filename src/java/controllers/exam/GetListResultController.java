@@ -75,7 +75,7 @@ public class GetListResultController extends HttpServlet {
             if(markResult >= 5){
                 
                 int result = 0;
-                
+
                 String the1 = String.valueOf(MarkReportDAO.setResult(new MarkReportDTO(id_exam, id_student, markResult)));
                 result = new Integer(the1);
                 if (result > 0) {

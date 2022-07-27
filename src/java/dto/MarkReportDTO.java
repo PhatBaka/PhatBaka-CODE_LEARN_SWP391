@@ -25,7 +25,9 @@ public class MarkReportDTO {
     }
 
     public MarkReportDTO(int id_exam, int id_student, float markResult) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.Id_Exam = id_exam;
+        this.Id_Student = id_student;
+        this.Mark = markResult;
     }
     
 
