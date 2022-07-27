@@ -97,27 +97,6 @@
 </head>
 
 <body>
-    <%
-        StudentDTO stud = null;
-        TeacherDTO teac = null;
-        AdminDTO admin = null;
-        String username = "";
-        String role = "";
-
-        if (session.getAttribute("role") != null && session.getAttribute("ACCOUNT") != null) {
-            role = (String) session.getAttribute("role");
-            if (role.equals("admin")) {
-                admin = (AdminDTO) session.getAttribute("ACCOUNT");
-                username = admin.getAdminName();
-            } else if (role.equals("teacher")) {
-                teac = (TeacherDTO) session.getAttribute("ACCOUNT");
-                username = teac.getName();
-            } else if (role.equals("student")) {
-                stud = (StudentDTO) session.getAttribute("ACCOUNT");
-                username = stud.getUsername();
-            }
-        }
-    %>
     <form action="MainController">
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-light" id="background">
@@ -127,15 +106,9 @@
                             Home
                         </a>
                 </div>
-                <%
-                    if (role.equals("student") || role.equals("teacher")) {
-                %>
                 <div class="container-fluid">
                     <input class="navbar-brand" type="submit" name="action" value="My Courses" >
                 </div>
-                <%
-                    }
-                %>
                  <div class="container-fluid">
                 <span class="navbar-brand" href="#" style="cursor:pointer;">
                     <div class="dropdown">
@@ -150,80 +123,37 @@
                 </span>
               </div>
                 <%
-                    if (session.getAttribute("ACCOUNT") != null) {
+                    TeacherDTO dto = (TeacherDTO) session.getAttribute("PROFILE");
                 %>
                 <div class="container-fluid">
                     <span class="navbar-brand" style="cursor:pointer;">
                         <div class="dropdown">
-                            <button class="dropbtn">Welcome, <%= username%></button>
+                            <button class="dropbtn">Welcome, <%= dto.getUserName() %></button>
                             <div class="dropdown-content">
-                                <input type="hidden" name="profileName" value="<%= username %>" />
+                                <input type="hidden" name="profileName" value="<%= dto.getUserName() %>" />
                                 <input type="submit" name="action" value="View Profile">
-                                <input type="submit" name="action" value="Edit Profile">
                                 <input type="submit" name="action" value="Logout">
                             </div>
                         </div>
 
                     </span>
                 </div>
-                <%
-                    }
-                %>
             </nav>
         </div>
     </form>
 
     <div class="wrapper fadeInDown">
-        <%
-            if (role.equals("teacher")) {
-        %>
         <div id="formContent" style="padding:2%;">
             <h3 style="color: white; text-align: center">My Profile</h3>
-
-            <img height="250vh" width="250vh" style="border-radius: 50%; display: block; margin-left: auto; margin-right: auto" src="<%= teac.getAvatar() %>">
-            
+            <img height="250vh" width="250vh" style="border-radius: 50%; display: block; margin-left: auto; margin-right: auto" src="<%= dto.getAvatar() %>">
             <ul class="list-group" style="padding: 3%; text-align: center; width: 50%; margin-left: 23rem;">
-                <li class="list-group-item" >Teacher name: <%= teac.getName() %></li>
-                <li class="list-group-item">Phonenumber: <%= teac.getPhone_Num() %> </li>
-                <li class="list-group-item">Email: <%= teac.getEmail() %> </li>
-                <li class="list-group-item">Information: <%= teac.getInformation() %></li>
-                 <li class="list-group-item">Degree: Muốn bằng nào t cũng có</li>
+                <li class="list-group-item">Teacher name: <%= dto.getName() %></li>
+                <li class="list-group-item">Phone number: <%= dto.getPhone_Num() %> </li>
+                <li class="list-group-item">Email: <%= dto.getEmail() %> </li>
+                <li class="list-group-item">Information: <%= dto.getInformation() %></li>
+                <a href = "../Edit/editprofile.jsp">Edit</a>
             </ul>
         </div>
-        <%
-        } else if (role.equals("student")) {
-        %>
-        <div id="formContent" style="padding:2%;">
-            <h3>My Profile</h3>
-
-            <ul class="list-group">
-                <li class="list-group-item">Id: <%= stud.getId_Student() %></li>
-                <li class="list-group-item">Username: <%= stud.getUsername() %></li>
-                <li class="list-group-item">Phonenumber: </li>
-                <li class="list-group-item">Email:</li>
-               
-
-
-            </ul>
-        </div>
-        <%
-        } else if (role.equals("admin")) {
-        %>
-        <div id="formContent" style="padding:2%;">
-            <h3>My Profile</h3>
-
-            <ul class="list-group">
-                <li class="list-group-item">Username: <%= username%></li>
-                <li class="list-group-item">Phonenumber: </li>
-                <li class="list-group-item">Email:</li>
-                <li class="list-group-item">Degree:</li>
-
-
-            </ul>
-        </div>
-        <%
-            }
-        %>
     </div>
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>

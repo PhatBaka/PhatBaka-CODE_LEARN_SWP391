@@ -133,7 +133,7 @@
                 username = admin.getAdminName();
             } else if (role.equals("teacher")) {
                 teac = (TeacherDTO) session.getAttribute("ACCOUNT");
-                username = teac.getName();
+                username = teac.getUserName();
             } else if (role.equals("student")) {
                 stud = (StudentDTO) session.getAttribute("ACCOUNT");
                 username = stud.getUsername();

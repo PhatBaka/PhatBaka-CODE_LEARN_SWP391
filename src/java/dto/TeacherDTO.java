@@ -32,6 +32,19 @@ public class TeacherDTO {
         this.Avatar=Avatar;
     }
 
+    public TeacherDTO(String UserName, String Name, String Phone_Num, String Information, String Email, String Avatar) {
+        this.UserName = UserName;
+        this.Name = Name;
+        this.Phone_Num = Phone_Num;
+        this.Information = Information;
+        this.Email = Email;
+        this.Avatar = Avatar;
+    }
+
+    
+    
+    
+
     public TeacherDTO(String UserName, String Password) {
         this.UserName = UserName;
         this.Password = Password;

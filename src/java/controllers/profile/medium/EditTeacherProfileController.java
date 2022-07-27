@@ -1,21 +1,19 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controllers.profile;
+package controllers.profile.medium;
 
-import dao.ContactDAO;
 import dao.TeacherDAO;
-import dto.ContactDTO;
-import dto.StudentDTO;
 import dto.TeacherDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,12 +21,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author nearl
+ * @author nguye
  */
-public class ViewUserProfileController extends HttpServlet {
-
-    private final String VIEW_CONTACT_PAGE = "View/contactview.jsp";
-    private final String VIEW_PROFILE_PAGE = "View/viewprofile.jsp";
+@WebServlet(name = "EditTeacherProfileController", urlPatterns = {"/EditTeacherProfileController"})
+public class EditTeacherProfileController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,25 +36,27 @@ public class ViewUserProfileController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException, ClassNotFoundException {
+            throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String role = (String) session.getAttribute("role");
-        String url = "";
-        try {
-            if(role.equals("student")){
-                StudentDTO stuAcc = (StudentDTO) session.getAttribute("ACCOUNT");
-                int stuID = stuAcc.getId_Student();
-                ContactDTO contact = ContactDAO.SearchingContact(stuID);
-                session.setAttribute("CONTACT", contact);
-                url = VIEW_CONTACT_PAGE;
-            } if(role.equals("teacher")){
-                TeacherDTO teacherAcc = (TeacherDTO) session.getAttribute("ACCOUNT");
-                teacherAcc = TeacherDAO.getAccount(teacherAcc.getUserName(), teacherAcc.getPassword());
-                session.setAttribute("PROFILE", teacherAcc);
-                url = VIEW_PROFILE_PAGE;
+        String url = "Edit/editprofile.jsp";
+        TeacherDTO teacherAcc = (TeacherDTO) session.getAttribute("PROFILE");
+        String username = teacherAcc.getUserName();
+        /* TODO output your page here. You may use following sample code. */
+        String name = request.getParameter("name");
+        String phonenumber = request.getParameter("phonenumber");
+        String email = request.getParameter("email");
+        String information = request.getParameter("information");
+        String avatar = request.getParameter("avatar");
+        try{
+            teacherAcc = new TeacherDTO(username, name, phonenumber, information, email, avatar);
+            boolean success = TeacherDAO.editTeacherProfile(teacherAcc);
+            session.setAttribute("PROFILE", teacherAcc);
+            if(success){
+                url = "View/viewprofile.jsp";
             }
-        } finally {
+        }
+        finally{
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
@@ -78,10 +76,10 @@ public class ViewUserProfileController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewUserProfileController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewUserProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditTeacherProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditTeacherProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -98,10 +96,10 @@ public class ViewUserProfileController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ViewUserProfileController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ViewUserProfileController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EditTeacherProfileController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(EditTeacherProfileController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

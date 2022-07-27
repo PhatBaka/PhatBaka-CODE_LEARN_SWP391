@@ -102,7 +102,7 @@ public class MainController extends HttpServlet {
             }
             //use-case 9
             else if("edit teacher profile".equals(action)){
-                url = "/EditTeacheProfileController";
+                url = "/EditTeacherProfileController";
             }            
             //use-case 10
             else if("add teacher profile".equals(action)){

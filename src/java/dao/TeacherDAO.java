@@ -42,6 +42,37 @@ public class TeacherDAO {
         }
         return acc;
     }
+    
+ public static boolean editTeacherProfile(TeacherDTO dto) throws SQLException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        String sql = "update dbo.Teacher set Name = ?, Phone_Num = ?, Information = ?, Avatar = ?, Email = ? where Username = ?";
+        if (dto == null) {
+            return false;
+        }
+        try {
+            con = DBUtils.getConnection();
+            stm = con.prepareStatement(sql);
+            stm.setString(1, dto.getName());
+            stm.setString(2, dto.getPhone_Num());
+            stm.setString(3, dto.getInformation());
+            stm.setString(4, dto.getAvatar());
+            stm.setString(5, dto.getEmail());
+            stm.setString(6, dto.getUserName());
+            int effectedRows = stm.executeUpdate();
+            if (effectedRows > 0) {
+                return true;
+            }
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+        }
+        return false;
+    }
 
     public static boolean createTeacherAccount(TeacherDTO dto) throws ClassNotFoundException, SQLException {
         if (dto == null) {

@@ -4,6 +4,7 @@
     Author     : HoangMinh
 --%>
 
+<%@page import="dto.TeacherDTO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -14,7 +15,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <title>Teacher profile</title>
-        
         <style>
             body
 {
@@ -216,35 +216,35 @@ html {
                             Home
                         </a>
               </div>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">Categories</a>
-              </div>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">About Us</a>
-              </div>
-              <div class="container-fluid">
-                <span class="navbar-brand" href="#" style="cursor:pointer;">
-                    <div class="dropdown">
-                    <button class="dropbtn">Welcome User</button>
-                    <div class="dropdown-content">
-                      <a href="#">Profile</a>
-                      <a href="#">Edit Profile</a>
-                      <a href="#">Logout</a>
-                    </div>
+                            <%
+                                TeacherDTO teacher = (TeacherDTO) session.getAttribute("PROFILE");
+                            %>
+                <div class="container-fluid">
+                    <span class="navbar-brand" style="cursor:pointer;">
+                        <div class="dropdown">
+                            <button class="dropbtn" style="border-radius: 25px;">Welcome <%= teacher.getUserName() %></button>
+                            <div class="dropdown-content">
+                                <form action="MainController">
+                                    <input type="hidden" name="profileName" value="<%= teacher.getUserName() %>" />
+                                    <input type="submit" name="action" value="Logout">
+                                </form>
+                            </div>
+                        </div>
+                    </span>
                 </div>
-            </nav>
         </div>
 
         <div class="wrapper fadeInDown">
             
             <div id="formContent" style="padding:2%;">
                 <h3>Teacher Profile</h3>
-              <form action="#">
+              <form action="MainController">
                 <lable>Full name<input type="text" id="name" class="fadeIn second" name="name" placeholder="Full Name" style="width: 50%"></lable></br>   
                 <lable>Phone number<input type="text" id="phonenumber" class="fadeIn third" name="phonenumber" placeholder="Phonenumber" style="width: 50%"></lable></br>    
-                <lable>Email <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email" style="width: 50%"></lable></br>
-                <lable>Degree <input type="text" id="email" class="fadeIn third" name="degree" placeholder="Degree" style="width: 50%"></lable></br>
-                <input type="submit" class="fadeIn fourth" value="submit" style="width: 20%;">
+                <lable>Email <input type="text" id="email" class="fadeIn third" name="email" placeholder="email" style="width: 50%"></lable></br>
+                <lable>Information <input type="text" id="information" class="fadeIn third" name="information" placeholder="Information" style="width: 50%"></lable></br>
+                <lable>Avatar <input type="text" id ="avatar" class="fadeIn third" name="avatar" placeholder="JPG link" style="width: 50%"></lable></br>
+                <input type="submit" class="fadeIn fourth" name="action" value="Edit Teacher Profile" style="width: 20%;">
               </form>
             </div>
           </div>
