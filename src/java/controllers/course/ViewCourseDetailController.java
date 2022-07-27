@@ -10,6 +10,7 @@ import dao.CourseDAO;
 import dao.EnrollDAO;
 import dto.CourseDTO;
 import dto.StudentDTO;
+import dto.TeacherDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -29,8 +30,10 @@ import javax.servlet.http.HttpSession;
  * @author nearl
  */
 public class ViewCourseDetailController extends HttpServlet {
+
     private final String DETAIL_PAGE = "View/coursedetail.jsp"; // course detail page address
     private final String NOT_FOUND_PAGE = "View/error.jsp"; //error page 
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,22 +47,24 @@ public class ViewCourseDetailController extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String url = NOT_FOUND_PAGE;
-        boolean result = false;
         String _courseName = request.getParameter("courseName"); //course id hidden trong .jsp/.html
-        
+
         try {
-           CourseDAO dao = new CourseDAO();
-           CourseDTO course = dao.detail(_courseName);
-           HttpSession session = request.getSession(false);
-           if(session!=null){
-               StudentDTO student = (StudentDTO) session.getAttribute("ACCOUNT");
-               result = EnrollDAO.checkEnroll(student.getId_Student(),course.getId_Course() );
-           }
-           
-           if(course!=null&&result){
-               request.setAttribute("course", course);
-               url = DETAIL_PAGE;
-           }
+            CourseDAO dao = new CourseDAO();
+            CourseDTO course = dao.detail(_courseName);
+            String role = (String) request.getAttribute("role");
+            HttpSession session = request.getSession(false);
+            if (session != null && role != null) {
+                if ("student".equals(role)) {
+                    StudentDTO student = (StudentDTO) session.getAttribute("ACCOUNT");
+                    request.setAttribute("enroll", EnrollDAO.checkEnroll(student.getId_Student(), course.getId_Course()));
+                }
+            }
+
+            if (course != null) {
+                request.setAttribute("course", course);
+                url = DETAIL_PAGE;
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (ClassNotFoundException ex) {
