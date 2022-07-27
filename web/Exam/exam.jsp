@@ -122,7 +122,6 @@
                         for (int i = index; i < answers.size(); i++) {
                     %>  
 
-
                     <label><%= answers.get(i).getAnswer()%></label>
                     <input name="answer" type="checkbox" value="<%= answers.get(i).getAnswer()%>"
                            <%
@@ -188,7 +187,7 @@
             %>
         </div>
 
-        <div class="col-sm-4" id="paging">col-sm-4</div>
+        <div class="col-sm-4" id="paging"></div>
     </div>
 
     <!-- JavaScript Bundle with Popper -->
