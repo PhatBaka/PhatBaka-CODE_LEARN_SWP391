@@ -218,19 +218,31 @@
             <%
                 if (stud != null) {
                     String enrollStatus = (String) session.getAttribute("ENROLL");
+                    if (enrollStatus != null) {
+
             %>
             <form action="MainController">
                 <input type="hidden" name="courseName" value="<%= dto.getName()%>" />
-                
+
                 <input type="submit" name="action" class="fadeIn fourth" value="Enroll Course"  style="width: 20%; position: relative; margin-left: 55rem;">
-                                    <!--------------------------->
-                                    <input type="hidden" name="id_student" value="<%= stud.getId_Student() %>"/>
-                                    <input type="hidden" name="id_course" value="<%= dto.getId_Course() %>">
-                                    <input type="submit" name="action" value="do exam"/>
-                                    
-                                    <!--------------------------->      
-            
+
             </form>
+            <%
+            } else {
+            %>
+            <form action="MainController">
+
+                <!--------------------------->
+                <input type="hidden" name="id_student" value="<%= stud.getId_Student()%>"/>
+                <input type="hidden" name="id_course" value="<%= dto.getId_Course()%>">
+                <input type="submit" name="action" class="fadeIn fourth"  value="do exam"  style="width: 20%; position: relative; margin-left: 55rem;"/>
+
+                <!--------------------------->      
+
+            </form>
+            <%
+                }
+            %>
             <%
             } else if (stud == null && role.equals("")) {
             %>
@@ -238,7 +250,7 @@
                 <input type="hidden" name="courseName" value="<%= dto.getName()%>" />
                 <input type="hidden" name="action" value="Login" />
                 <input type="submit" style="position: relative; left: 12em;" name="submit" class="fadeIn fourth" value="Enroll Course" style="width: 20%; position: relative; margin-left: 55rem;">
-      
+
             </form>
             <%
                 }
