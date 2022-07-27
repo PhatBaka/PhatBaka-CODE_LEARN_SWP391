@@ -99,5 +99,22 @@ public class StudentDAO {
         }
        return false;
    }
+   
+   public static String getUsernameBYEmail(String email) 
+            throws ClassNotFoundException, SQLException{
+        String sql = "select Username from dbo.Student where Id_Student in (select Id_Student from dbo.Contact where Email_User = ?)";
+        Connection conn = DBUtils.getConnection();
+        String username;
+        if(conn != null){
+            PreparedStatement ptm = conn.prepareStatement(sql);
+            ptm.setString(1, email);
+            ResultSet rs = ptm.executeQuery();
+            if(rs != null && rs.next()){
+                return username = rs.getString("Username");
+            }
+            conn.close();
+        }
+        return null;
+    }
 }
 

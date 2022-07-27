@@ -3,54 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/EnrollDAO.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/profile/medium/EditTeacheProfileController.java</file>
+            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/password/NewPasswordController.java</file>
+            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/forgotpassword.jsp</file>
             <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/ContactDAO.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/TeacherDAO.java</file>
             <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dto/RegisterErrorDTO.java</file>
+            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/password/ValidateOTPController.java</file>
             <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/examschedule.jsp</file>
             <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/viewprofile.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/Access/login.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/coursedetail.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/CategoryDAO.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/course/DisplayCourseServlet.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dto/ContactDTO.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/home.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/course/DeleteCourseController.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/search.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/mycourse.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/Edit/editprofile.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/Edit/editcontact.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dto/StudentDTO.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/auth/RegisterController.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/lesson.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/profile/AddContactController.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/Edit/addcourse.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/StudentDAO.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/markview.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/Edit/addcontact.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/CourseDAO.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/lession.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/MainController.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/ExamDAO.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/Edit/markreport.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/profile/medium/AddProfileController.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/SubjectDAO.java</file>
             <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/Access/register.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/notifications/NotificationController.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/PasswordDAO.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/profile/medium/DeleteProfileController.java</file>
+            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/mycourse.jsp</file>
             <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/auth/LogoutController.java</file>
             <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/auth/LoginController.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/LessonDAO.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/Edit/courseedit.jsp</file>
+            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/auth/RegisterController.java</file>
+            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/enterotp.jsp</file>
+            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/newpassword.jsp</file>
+            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/StudentDAO.java</file>
             <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/contactview.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/allcourse.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/profile/ViewUserProfileController.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/Exam/exam.jsp</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/DBtills/DBUtils.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/profile/EditProfileController.java</file>
-            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dao/NotificationDAO.java</file>
+            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/web/View/markview.jsp</file>
+            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/dto/CourseDTO.java</file>
+            <file>file:/D:/Documents/GitHub/PhatBaka-CODE_LEARN_SWP391/src/java/controllers/password/SendOTPController.java</file>
         </group>
     </open-files>
 </project-private>

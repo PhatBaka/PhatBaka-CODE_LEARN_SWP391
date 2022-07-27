@@ -109,4 +109,28 @@ public class ContactDAO {
         }
         return false;
     }
+    public static boolean changePassword(String email, String newPassword) throws ClassNotFoundException, SQLException{
+        Connection conn = null;
+        PreparedStatement stm = null;
+        String sql = " update dbo.Student set Password = ? where Id_Student in (select Id_Student from dbo.Contact where Email_User = ?)";
+        try{
+            conn = DBUtils.getConnection();
+            stm = conn.prepareStatement(sql);
+            stm.setString(1, newPassword);
+            stm.setString(2, email);
+            int effectedRows = stm.executeUpdate();
+            if(effectedRows > 0){
+                return true;
+            }
+        } finally{
+            if(conn != null){
+                conn.close();
+            }
+            if(stm != null){
+                stm.close();
+            }
+        }
+        return false;
+    }
+    
 }

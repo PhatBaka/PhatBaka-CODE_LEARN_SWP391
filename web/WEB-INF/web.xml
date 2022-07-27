@@ -160,6 +160,14 @@
         <servlet-name>EditTeacheProfileController</servlet-name>
         <url-pattern>/EditTeacheProfileController</url-pattern>
     </servlet-mapping>
+    <servlet>
+    <servlet-name>ValidateOTPController</servlet-name>
+    <servlet-class>controllers.password.ValidateOTPController</servlet-class>
+  </servlet> 
+<servlet-mapping>
+    <servlet-name>ValidateOTPController</servlet-name>
+    <url-pattern>/ValidateOTPController</url-pattern>
+  </servlet-mapping>
     <session-config>
         <session-timeout>
             30

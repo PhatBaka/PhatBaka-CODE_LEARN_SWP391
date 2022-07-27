@@ -13,6 +13,20 @@ public class RegisterErrorDTO {
     private String usernameIsExisted;
     private String emailIsExisted;
     private String phoneIsExisted;
+    private String emailNotExisted;
+
+
+    public String getEmailNotExisted() {
+        return emailNotExisted;
+    }
+
+    
+    
+    public void setEmailNotExisted(String emailNotExisted) {
+        this.emailNotExisted = emailNotExisted;
+    }
+    
+    
 
     public RegisterErrorDTO() {
     

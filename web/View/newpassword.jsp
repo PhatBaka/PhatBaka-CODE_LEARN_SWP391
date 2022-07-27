@@ -17,6 +17,33 @@
     </head>
 
     <body>
+        <script type="text/javascript">
+        function validateform()
+        {
+            var name = document.myform.username.value;
+            var password = document.myform.password.value;
+            var confirm = document.myform.confirm.value;
+            var gmail = document.myform.gmail.value;
+
+            if (name == null || name == "")
+            {
+                alert("username can not be null");
+                return false;
+            } else if (password == null || password == "")
+            {
+                alert("password can not be null");
+                return false;
+            } else if (confirm == null || confirm == "")
+            {
+                alert("Password confirm can not be null");
+                return false;
+            } else if (confirm != password)
+            {
+                alert("Password confirm must be equal password");
+                return false;
+            }
+        }
+    </script>
         <style>
             body
 {
@@ -179,7 +206,7 @@ html {
 
           <div class="wrapper fadeInDown" id="loginForm" >
             <div id="formContent" style="padding: 2%;">
-                <h1>LOGIN</h1>
+                <h1>Forgot password</h1>
               <!-- Tabs Titles -->
                <%
                   if(request.getAttribute("ERROR")!=null){
@@ -188,22 +215,15 @@ html {
               <%
                   }
               %>
-          
-              <!-- Login Form -->
+         
               <form action="MainController" method="POST">
-                <label>Username</label><input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
-                <label>Password</label><input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+                <label>New Password</label><input type="text" id="login" class="fadeIn second" name="password" placeholder="Enter your password here">
                 <br>
-                <label id="option">Select:</label>
-                <select id="select" name="role">
-                    <option value="Admin" selected="selected">Admin</option>
-                    <option value="Teacher">Teacher</option>
-                    <option value="Student">Student</option>
-                </select>
-                <input type="submit" class="fadeIn fourth" name="action" value="Login" style="width: 40%;">
+                <label>Confirm Password</label><input type="text" id="login" class="fadeIn second" name="confirm" placeholder="Confirm your password here">
                 <br>
-                </form>       
-                <a href="../View/forgotpassword.jsp">Forgot password</a>
+                <input type="submit" class="fadeIn fourth" name="action" value="Get New Password" style="width: 60%;">
+                <br>
+              </form>      
                 <br>
                 <a type="button" class="fadeIn fourth" href="register.jsp" style="width: 40%; margin-top: -5%;" >Register</a>
             </div>

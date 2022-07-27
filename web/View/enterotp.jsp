@@ -179,7 +179,7 @@ html {
 
           <div class="wrapper fadeInDown" id="loginForm" >
             <div id="formContent" style="padding: 2%;">
-                <h1>LOGIN</h1>
+                <h1>Enter OTP</h1>
               <!-- Tabs Titles -->
                <%
                   if(request.getAttribute("ERROR")!=null){
@@ -188,22 +188,16 @@ html {
               <%
                   }
               %>
-          
-              <!-- Login Form -->
+         
               <form action="MainController" method="POST">
-                <label>Username</label><input type="text" id="login" class="fadeIn second" name="username" placeholder="username">
-                <label>Password</label><input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+                <input type="text" id="login" class="fadeIn second" name="otp" placeholder="Enter your otp here">
                 <br>
-                <label id="option">Select:</label>
-                <select id="select" name="role">
-                    <option value="Admin" selected="selected">Admin</option>
-                    <option value="Teacher">Teacher</option>
-                    <option value="Student">Student</option>
-                </select>
-                <input type="submit" class="fadeIn fourth" name="action" value="Login" style="width: 40%;">
+                <input type="submit" class="fadeIn fourth" name="action" value="Validate OTP" style="width: 60%;">
                 <br>
-                </form>       
-                <a href="../View/forgotpassword.jsp">Forgot password</a>
+                <font color="Red">
+                    ${OTPMESSAGE}
+                </font>
+              </form>      
                 <br>
                 <a type="button" class="fadeIn fourth" href="register.jsp" style="width: 40%; margin-top: -5%;" >Register</a>
             </div>

@@ -174,15 +174,6 @@ html {
                             Home
                         </a>
               </div>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">Categories</a>
-              </div>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">About Us</a>
-              </div>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#">Login/SignUp</a>
-              </div>
             </nav>
           </div>
 
@@ -212,7 +203,7 @@ html {
                 <input type="submit" class="fadeIn fourth" name="action" value="Login" style="width: 40%;">
                 <br>
                 </form>       
-              <a href="../View/forgotpassword.jsp">Forgot password</a>
+                <a href="../View/forgotpassword.jsp">Forgot password</a>
                 <br>
                 <a type="button" class="fadeIn fourth" href="register.jsp" style="width: 40%; margin-top: -5%;" >Register</a>
             </div>
