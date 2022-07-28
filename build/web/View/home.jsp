@@ -309,13 +309,17 @@ input[type=button], input[type=submit], input[type=reset]  {
 				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<%
-							if (role.equals("student") || role.equals("teacher")) {
+                                                    if (role.equals("student") || role.equals("teacher")) {
 						%>
-						<li class="nav-item">
-                                                    <form action="MainController">
-                                                            <input type="submit" class="navbar-brand" value="My Courses" name="action" style="position: relative; left: 7rem; border-radius:40px"/>
-                                                    </form>
-						</li>
+                                                <li class="nav-item">
+                                                   <span class="navbar-brand" style="cursor:pointer;">
+                                                        <div class="dropdown">
+                                                            <form action="MainController">
+                                                                    <input type="submit" class="navbar-brand" value="My Courses" name="action" style="position: relative; left: 7rem; border-radius:40px"/>
+                                                            </form>
+                                                        </div>
+                                                    </span>
+                                                </li>
 						<%
 						}
 						%>
