@@ -189,7 +189,7 @@ hr .new1 {
 
 input[type=button], input[type=submit], input[type=reset]  {
             background-color: #CCCCCC	;
-            border: none;
+            border: 1px solid black;
             color: black;
             padding: 15px 80px;
             text-align: center;
@@ -210,13 +210,14 @@ input[type=button], input[type=submit], input[type=reset]  {
             
         }
         input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-             background-color: #009933;
-            color: white;
+            color: white; 
+            background-color: #009933;
+            
         }
         
         .icon{
                 background-color: #CCCCCC	;
-                border: none;
+                border: 1px solid black;
                 color: black;
                 padding: 15px 80px;
                 text-align: center;
@@ -236,7 +237,7 @@ input[type=button], input[type=submit], input[type=reset]  {
             }
             
             .icon:hover{
-                color: white;
+                color: pink;
                 background-color:#009933; 
             }
         </style>
@@ -267,9 +268,9 @@ input[type=button], input[type=submit], input[type=reset]  {
     <form action="MainController">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<div class="container-fluid">
+				<div class="container-fluid" style="background-color: #66FF99; padding: 4px; ">
 					<c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-					<a href="${home}" style="text-decoration: none; color: black;">
+					<a href="${home}" style="text-decoration: none; color: black; position: relative; left: 2rem;">
 						<span class="icon">Home</ion-icon></span>
 					</a>
 				  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -277,7 +278,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 				  </button>
 
 				  <div class="collapse navbar-collapse" id="navbarNav">
-					<ul class="navbar-nav">
+					<ul class="navbar-nav" style="position: relative; left: 2rem;">
 						<%
 						if (role.equals("student") || role.equals("teacher")) {
 						%>
@@ -308,11 +309,11 @@ input[type=button], input[type=submit], input[type=reset]  {
 						<span class="navbar-brand" style="cursor:pointer;">
 							<div class="dropdown">
 								<button class="icon">Welcome, <%= username%></button>
-								<div class="dropdown-content">
+								<div class="dropdown-content" style="text-align: center; top: 4rem; left: 0.7rem;">
 									<input type="hidden" name="profileName" value="<%= username %>" />
-									<input type="submit" name="action" value="View Profile">
-									<input type="submit" name="action" value="Edit Profile">
-									<input type="submit" name="action" value="Logout">
+									<input type="submit" name="action" value="View Profile"></br></br>
+									<input type="submit" name="action" value="Edit Profile"></br></br>
+									<input type="submit" name="action" value="Logout"></br></br>
 								</div>
 							</div>
 	
