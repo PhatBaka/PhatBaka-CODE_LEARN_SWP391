@@ -167,23 +167,15 @@ html {
   }
         </style>
         <div class="container">
-            <nav class="navbar navbar-expand-lg bg-light" id="background">
-              <div class="container-fluid">
-                <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                <a  style="text-decoration: none; color: black;">
-                   
-                </a>
-              </div>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#"></a>
-              </div>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="${home}">Home</a>
-              </div>
-              <div class="container-fluid">
-                <a class="navbar-brand" href="#"></a>
-              </div>
-            </nav>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid" style="background-color: #66FF99; padding: 5px;">
+                    <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                  <a class="navbar-brand" href="${home}">Home</a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                </div>
+          </nav>
           </div>
 
           <div class="wrapper fadeInDown" id="loginForm" >

@@ -16,7 +16,7 @@
     <link type="text/css" href="/css/teacherprofile.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <title>Teacher profile</title>
+    <title>Profile</title>
 
     <style>
             body
@@ -186,6 +186,59 @@ hr .new1 {
 .date {
     background-color: #ccc
 }
+
+input[type=button], input[type=submit], input[type=reset]  {
+            background-color: #CCCCCC	;
+            border: none;
+            color: black;
+            padding: 15px 80px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            font-size: 13px;
+            -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+            box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+            -webkit-border-radius: 5px 5px 5px 5px;
+            border-radius: 5px 5px 5px 5px;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            
+            
+        }
+        input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
+             background-color: #009933;
+            color: white;
+        }
+        
+        .icon{
+                background-color: #CCCCCC	;
+                border: none;
+                color: black;
+                padding: 15px 80px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                text-transform: uppercase;
+                font-size: 13px;
+                -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+                box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+                -webkit-border-radius: 5px 5px 5px 5px;
+                border-radius: 5px 5px 5px 5px;
+                -webkit-transition: all 0.3s ease-in-out;
+                -moz-transition: all 0.3s ease-in-out;
+                -ms-transition: all 0.3s ease-in-out;
+                -o-transition: all 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
+            }
+            
+            .icon:hover{
+                color: white;
+                background-color:#009933; 
+            }
         </style>
 </head>
 
@@ -213,61 +266,66 @@ hr .new1 {
     %>
     <form action="MainController">
         <div class="container">
-            <nav class="navbar navbar-expand-lg bg-light" id="background">
-                <div class="container-fluid">
-                    
-                        <span class="navbar-brand" style="cursor:pointer;">
-                        <div class="dropdown">
-                            <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                        <a href="${home}" style="text-decoration: none; color: black;">
-                            <span>Home</span>
-                        </a>
-                            </a>
-                        </div>
-                    </span>
-                </div>
-                <%
-                    if (role.equals("student") || role.equals("teacher")) {
-                %>
-                <div class="container-fluid">
-                    <input class="navbar-brand" type="submit" name="action" value="My Courses" >
-                </div>
-                <%
-                    }
-                %>
-                 <div class="container-fluid">
-                <span class="navbar-brand" href="#" style="cursor:pointer;">
-                    <div class="dropdown">
-                    <button class="icon">Notification</ion-icon></button>
-                    <div class="dropdown-content" id="drop-info">
-                      <a href="#">Exam</a>
-                      <a href="#">Exam</a>
-                      <a href="#">Exam</a>
-                    </div>
-                </div>               
-                </span>
-              </div>
-                <%
-                    if (session.getAttribute("ACCOUNT") != null) {
-                %>
-                <div class="container-fluid">
-                    <span class="navbar-brand" style="cursor:pointer;">
-                        <div class="dropdown">
-                            <button class="dropbtn">Welcome, <%= username%></button>
-                            <div class="dropdown-content">
-                                <input type="hidden" name="profileName" value="<%= username %>" />
-                                <input type="submit" name="action" value="View Profile">
-                                <input type="submit" name="action" value="Edit Profile">
-                                <input type="submit" name="action" value="Logout">
-                            </div>
-                        </div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container-fluid">
+					<c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+					<a href="${home}" style="text-decoration: none; color: black;">
+						<span class="icon">Home</ion-icon></span>
+					</a>
+				  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				  </button>
 
-                    </span>
-                </div>
-                <%
-                    }
-                %>
-            </nav>
+				  <div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+						<%
+						if (role.equals("student") || role.equals("teacher")) {
+						%>
+                                                
+					  <li class="nav-item" style="position: relative; left: 1rem; top: 0.3rem;">
+						<input class="navbar-brand" type="submit" name="action" value="My Courses" >
+					  </li>
+					  <%
+							}
+					  %>
+                                          
+					  <li class="nav-item" style="position: relative; left: 1rem; top: 0.1rem;">
+						<span class="navbar-brand" href="#" style="cursor:pointer;">
+							<div class="dropdown">
+								<button class="icon">Notification</ion-icon></button>
+								<div class="dropdown-content" id="drop-info">
+									<a href="#">Exam</a>
+									<a href="#">Exam</a>
+									<a href="#">Exam</a>
+								</div>
+							</div>               
+						</span>
+					  </li>
+					  <%
+							if (session.getAttribute("ACCOUNT") != null) {
+						%>
+					  <li class="nav-item" style="position: relative; left: 1rem;">
+						<span class="navbar-brand" style="cursor:pointer;">
+							<div class="dropdown">
+								<button class="icon">Welcome, <%= username%></button>
+								<div class="dropdown-content">
+									<input type="hidden" name="profileName" value="<%= username %>" />
+									<input type="submit" name="action" value="View Profile">
+									<input type="submit" name="action" value="Edit Profile">
+									<input type="submit" name="action" value="Logout">
+								</div>
+							</div>
+	
+						</span>
+					  </li>
+					  <%
+                                                    }
+                                            %>
+					  
+					</ul>
+				  </div>
+				</div>
+			</nav>
         </div>
     </form>
 
