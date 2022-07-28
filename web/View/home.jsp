@@ -290,138 +290,146 @@ input[type=button], input[type=submit], input[type=reset]  {
             }
         }
     %>
-    <body>
-        <c:set var="role" value="${sessionScope.role}" />
-        <div class="container">
-            <nav class="navbar navbar-expand-lg bg-light" id="background">
-                <div class="container-fluid">
-                    <span class="navbar-brand" style="cursor:pointer;">
-                        <div class="dropdown">
-                            <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-                            <a href="${home}" style="text-decoration: none; color: black;"> 
-                                <button class="icon">
-                                    <ion-icon name="home-outline"></ion-icon></br>
-                                    <span>Home</span>
-                                </button>
-                            </a>
-                        </div>
-                    </span>
-                </div>
-                <%
-                    if (role.equals("student") || role.equals("teacher")) {
-                %>
-                <div class="container-fluid">
-                   
-                    <form action="MainController">
-                        <input type="submit" class="navbar-brand" value="My Courses" name="action" style="position: relative; left: 7rem; border-radius:40px"/>
-                    </form>
-                </div>
-                <%
-                    }
-                %>
-                <div class="container-fluid">
-                    <span class="navbar-brand" style="cursor:pointer;">
-                        <div class="dropdown">
-                            <button class="icon" style="position: relative; left:3rem;">
-                                <ion-icon name="notifications-outline"></ion-icon></br>
-                                <span syle="padding: 5px">Noti</span>
-                            </button>
-                            <div class="dropdown-content" id="drop-info">
-                                
-                                <%
-                                    if (role.equals("student") && examlist != null) {
-                                        for (ExamDTO exam : examlist) {
-                                %>
-                                <form action="MainController">
-                                    <input type="hidden" name="profileName" value="<%= username%>" />
-                                    <input type="text" name="examName" value="<%= exam.getName()%>" /> 
-                                    <input type="text" name="examDate" value="<%= String.valueOf(exam.getDate()) %>" />
-                                    <input type="submit" name="action" value="View Exam"> </br>
-                                </form>
-                                <%
-                                        }
-                                    }
-                                %>
-                            </div>
-                        </div>
-                    </span>
-                </div>
-                <%
-                    if (session.getAttribute("ACCOUNT") != null) {
-                %>
-                <div class="container-fluid">
-                        <span class="navbar-brand" style="cursor:pointer;">
-                            <div class="dropdown">
-                                <button class="dropbtn" style="">Welcome, <%= username%></button>
-                                <div class="dropdown-content">
-                                    <form action="MainController" >
-                                    <input type="submit" name="action" value="View Profile"></br></br>
-                                    <input type="submit" name="action" value="Edit Profile"></br></br>
-                                    <input type="submit" name="action" value="Logout" style="position: relative; left: 1rem;"></br></br>
-                                    </form>
-                                </div>
-                            </div>
-                        </span>
-                    </div>                    
-                <%
-                } else {
-                %>
-                <div class="container-fluid" >
-                    <span class="navbar-brand" style="cursor:pointer;">
-                        <div class="dropdown">
-                            <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
+<body>
+		<c:set var="role" value="${sessionScope.role}" />
+		<div class="container">
+			<nav class="navbar navbar-expand-lg bg-light">
+				<div class="container-fluid" style="background-color: #66FF99; padding: 4px;">
+					<c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+					<a href="${home}" style="text-decoration: none; color: black;">
+						<button class="icon">
+							<ion-icon name="home-outline"></ion-icon></br>
+							<span>Home</span>
+						</button>
+					</a>
+				  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				  </button>
+				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<%
+							if (role.equals("student") || role.equals("teacher")) {
+						%>
+						<li class="nav-item">
+							<form action="MainController">
+								<input type="submit" class="navbar-brand" value="My Courses" name="action" style="position: relative; left: 7rem; border-radius:40px"/>
+							</form>
+						</li>
+						<%
+						}
+						%>
+						<li class="nav-item">
+							<span class="navbar-brand" style="cursor:pointer;">
+								<div class="dropdown">
+									<button class="icon">
+										<span syle="padding: 5px">Noti</span>
+									</button>
+									<div class="dropdown-content" id="drop-info">
+										
+										<%
+											if (role.equals("student") && examlist != null) {
+												for (ExamDTO exam : examlist) {
+										%>
+										<form action="MainController">
+											<input type="hidden" name="profileName" value="<%= username%>" />
+											<input type="text" name="examName" value="<%= exam.getName()%>" /> 
+											<input type="text" name="examDate" value="<%= String.valueOf(exam.getDate()) %>" />
+											<input type="submit" name="action" value="View Exam"> </br>
+										</form>
+										<%
+												}
+											}
+										%>
+									</div>
+								</div>
+							</span>
+						</li>
+						<%
+							if (session.getAttribute("ACCOUNT") != null) {
+						%>
+						<li class="nav-item">
+							<span class="navbar-brand" style="cursor:pointer;">
+								<div class="dropdown">
+									<button class="dropbtn" style="">Welcome, <%= username%></button>
+									<div class="dropdown-content">
+										<form action="MainController" >
+										<input type="submit" name="action" value="View Profile"></br></br>
+										<input type="submit" name="action" value="Edit Profile"></br></br>
+										<input type="submit" name="action" value="Logout" style="position: relative; left: 1rem;"></br></br>
+										</form>
+									</div>
+								</div>
+							</span>
+						</li>
+						<%
+							} else {
+						%>
+						<li class="nav-item">
+							<c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
                             <a href="${login}" style="text-decoration: none; color: black;">
                                 <button class="icon">
                                     <ion-icon name="log-in-outline"></ion-icon></br>
                                     <span syle="padding: 5px">Login</span>
                                 </button>
                             </a>
-                        </div>
-                    </span>
-                </div>
-                <%
-                    }
-                %>
-            </nav>
-            
-        </div>      
-            <div class="container_2">
-            <div class="row align-items-center" >
-                <div class="search">
-                    <div class="webdesigntuts-workshop">
-                    <form action="" method="" style="position: relative; top: -1rem; right: 1rem;">		    
-                            <input type="search" placeholder="What are you looking for?">		    	
-                            <button><ion-icon name="search"></ion-icon></button>
-                    </form>
-                </div>
-                </div>
-                <%
-                    int count = 0;
-                    for (count = 0; count < 3; count++) {
-                %>
-                <form action="MainController" >
-                    <div class="col-sm" id="frame">
-                        <div class="card" style="width: 18rem; margin: auto;">
-                            <div class="card-body">
-                                <img src="<%= courselist.get(count).getImage()%>" style="width:40%;    "/>
-                                <input type="hidden" name="courseName" value="<%= courselist.get(count).getName()%>" />
-                                <h5 class="card-title"><%= courselist.get(count).getName()%></h5>
-                                <p class="card-text"><%= courselist.get(count).getDescription()%></p>
-                                <input class="btn btn-outline-secondary"
-                                       type="submit" value="Course Details" name="action" />
-                            </div>
-                        </div>
-                    </div>
-                </form>
-                <%
-                    }
-                %>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+					  	</li>		
+						<%
+							}
+						%>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+							  Dropdown
+							</a>
+							<ul class="dropdown-menu">
+							  <li><a class="dropdown-item" href="#">Action</a></li>
+							  <li><a class="dropdown-item" href="#">Another action</a></li>
+							  <li><hr class="dropdown-divider"></li>
+							  <li><a class="dropdown-item" href="#">Something else here</a></li>
+							</ul>
+						</li>
+	
+					</ul>
+					<form action="" method= "POST" class="d-flex" role="search">
+					  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					  <button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+					
+				  </div>
+				</div>
+			</nav>
+		</div>
+	
+		<div class="container_2">
+			<div class="row align-items-center" >   
+				</div>
+				<%
+					int count = 0;
+					for (count = 0; count < 3; count++) {
+				%>
+				<form action="MainController" >
+					<div class="col-sm" id="frame">
+						<div class="card" style="width: 18rem; margin: auto;">
+							<div class="card-body">
+								<img src="<%= courselist.get(count).getImage()%>" style="width:40%;    "/>
+								<input type="hidden" name="courseName" value="<%= courselist.get(count).getName()%>" />
+								<h5 class="card-title"><%= courselist.get(count).getName()%></h5>
+								<p class="card-text"><%= courselist.get(count).getDescription()%></p>
+								<input class="btn btn-outline-secondary"
+									   type="submit" value="Course Details" name="action" />
+							</div>
+						</div>
+					</div>
+				</form>
+				<%
+					}
+				%>
+			</div>
+		</div>
+
+		  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+		  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+		  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     </body>
 </html>
