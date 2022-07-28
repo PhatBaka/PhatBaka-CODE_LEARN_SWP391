@@ -295,13 +295,14 @@ input[type=button], input[type=submit], input[type=reset]  {
 		<div class="container">
 			<nav class="navbar navbar-expand-lg bg-light">
 				<div class="container-fluid" style="background-color: #66FF99; padding: 4px;">
-					<c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
-					<a href="${home}" style="text-decoration: none; color: black;">
-						<button class="icon">
-							<ion-icon name="home-outline"></ion-icon></br>
-							<span>Home</span>
-						</button>
-					</a>
+                                <span class="navbar-brand" style="cursor:pointer;">
+                                        <div class="dropdown">
+                                            <c:url var="home" value="${requestScope.contextPath}/View/home.jsp"></c:url>
+                                            <a href="${home}" style="text-decoration: none; color: black;">
+                                                <span> Home </span>
+                                            </a>
+                                        </div>
+                                </span>
 				  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				  </button>
@@ -311,9 +312,9 @@ input[type=button], input[type=submit], input[type=reset]  {
 							if (role.equals("student") || role.equals("teacher")) {
 						%>
 						<li class="nav-item">
-							<form action="MainController">
-								<input type="submit" class="navbar-brand" value="My Courses" name="action" style="position: relative; left: 7rem; border-radius:40px"/>
-							</form>
+                                                    <form action="MainController">
+                                                            <input type="submit" class="navbar-brand" value="My Courses" name="action" style="position: relative; left: 7rem; border-radius:40px"/>
+                                                    </form>
 						</li>
 						<%
 						}
@@ -321,9 +322,7 @@ input[type=button], input[type=submit], input[type=reset]  {
 						<li class="nav-item">
 							<span class="navbar-brand" style="cursor:pointer;">
 								<div class="dropdown">
-									<button class="icon">
-										<span syle="padding: 5px">Noti</span>
-									</button>
+									<span> Noti </span>
 									<div class="dropdown-content" id="drop-info">
 										
 										<%
@@ -365,28 +364,18 @@ input[type=button], input[type=submit], input[type=reset]  {
 							} else {
 						%>
 						<li class="nav-item">
-							<c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
-                            <a href="${login}" style="text-decoration: none; color: black;">
-                                <button class="icon">
-                                    <ion-icon name="log-in-outline"></ion-icon></br>
-                                    <span syle="padding: 5px">Login</span>
-                                </button>
-                            </a>
+                                                    <span class="navbar-brand" style="cursor:pointer;">
+                                                        <div class="dropdown">
+                                                            <c:url var="login" value="${requestScope.contextPath}/Access/login.jsp"></c:url>
+                                                            <a href="${login}" style="text-decoration: none; color: black;">
+                                                                Login
+                                                            </a>
+                                                        </div>
+                                                    </span>
 					  	</li>		
 						<%
 							}
 						%>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							  Dropdown
-							</a>
-							<ul class="dropdown-menu">
-							  <li><a class="dropdown-item" href="#">Action</a></li>
-							  <li><a class="dropdown-item" href="#">Another action</a></li>
-							  <li><hr class="dropdown-divider"></li>
-							  <li><a class="dropdown-item" href="#">Something else here</a></li>
-							</ul>
-						</li>
 	
 					</ul>
 					<form action="" method= "POST" class="d-flex" role="search">
