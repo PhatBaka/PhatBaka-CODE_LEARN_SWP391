@@ -44,19 +44,14 @@ public class ViewCourseDetailController extends HttpServlet {
             throws ServletException, IOException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         String url = NOT_FOUND_PAGE;
-        boolean result = false;
+        
         String _courseName = request.getParameter("courseName"); //course id hidden trong .jsp/.html
         
         try {
            CourseDAO dao = new CourseDAO();
            CourseDTO course = dao.detail(_courseName);
-           HttpSession session = request.getSession(false);
-           if(session!=null){
-               StudentDTO student = (StudentDTO) session.getAttribute("ACCOUNT");
-               result = EnrollDAO.checkEnroll(student.getId_Student(),course.getId_Course() );
-           }
            
-           if(course!=null&&result){
+           if(course!=null){
                request.setAttribute("course", course);
                url = DETAIL_PAGE;
            }
